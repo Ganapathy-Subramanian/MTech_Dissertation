@@ -5,7 +5,7 @@ python-multipart
 python-dotenv
 
 # ── ML — Phase 1 (Active) ─────────────────────────────────────────────────
-scikit-learn
+scikit-learn==1.9.0
 joblib
 textblob
 spacy
