@@ -39,5 +39,6 @@ pytest-asyncio
 requests
 black
 flake8
-pytest coverage
+pytest 
+coverage
 openpyxl
