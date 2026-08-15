@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NexusCRM — Register</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg-void:#060a12;--bg-card:#111827;--bg-input:#0a1020;--border:#1e2d45;--border-focus:#2a7fff;--blue:#2a7fff;--blue-bright:#4d9fff;--blue-glow:rgba(42,127,255,0.25);--green:#10d88e;--red:#ff4d6d;--text-primary:#f0f4ff;--text-secondary:#8899b4;--text-muted:#4a5a74;--font-main:'Sora',sans-serif;}
+html,body{min-height:100%;font-family:var(--font-main);background:var(--bg-void);color:var(--text-primary);}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(42,127,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(42,127,255,0.04) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0;}
+body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 50% at 50% -20%,rgba(42,127,255,0.12) 0%,transparent 70%);pointer-events:none;z-index:0;}
+.page{position:relative;z-index:1;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 20px;}
+.card{width:100%;max-width:440px;background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:40px 36px;box-shadow:0 0 0 1px rgba(42,127,255,0.08),0 32px 64px rgba(0,0,0,0.6);animation:slideUp 0.4s ease;}
+@keyframes slideUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.logo{display:flex;align-items:center;gap:10px;margin-bottom:28px;}
+.logo-icon{width:38px;height:38px;background:linear-gradient(135deg,#2a7fff,#10d88e);border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;color:#fff;}
+.logo-text{font-size:20px;font-weight:700;letter-spacing:-0.5px;}
+h1{font-size:22px;font-weight:600;margin-bottom:4px;letter-spacing:-0.3px;}
+.subtitle{font-size:13px;color:var(--text-secondary);margin-bottom:28px;}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.field{margin-bottom:16px;}
+label{display:block;font-size:12px;font-weight:500;color:var(--text-secondary);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.8px;}
+input{width:100%;padding:11px 14px;background:var(--bg-input);border:1px solid var(--border);border-radius:9px;color:var(--text-primary);font-size:14px;font-family:var(--font-main);transition:border-color 0.2s,box-shadow 0.2s;outline:none;}
+input::placeholder{color:var(--text-muted);}
+input:focus{border-color:var(--border-focus);box-shadow:0 0 0 3px var(--blue-glow);}
+.btn{width:100%;padding:13px;margin-top:8px;background:var(--blue);color:#fff;font-size:14px;font-weight:600;font-family:var(--font-main);border:none;border-radius:10px;cursor:pointer;transition:all 0.2s;}
+.btn:hover{background:var(--blue-bright);transform:translateY(-1px);box-shadow:0 8px 24px var(--blue-glow);}
+.btn:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
+.error{background:rgba(255,77,109,0.12);border:1px solid rgba(255,77,109,0.3);border-radius:8px;padding:10px 14px;font-size:13px;color:#ff8097;margin-top:12px;display:none;}
+.error.show{display:block;}
+.success{background:rgba(16,216,142,0.12);border:1px solid rgba(16,216,142,0.3);border-radius:8px;padding:10px 14px;font-size:13px;color:var(--green);margin-top:12px;display:none;}
+.success.show{display:block;}
+.alt-link{text-align:center;font-size:13px;color:var(--text-muted);margin-top:20px;}
+.alt-link a{color:var(--blue);text-decoration:none;font-weight:500;}
+.loading{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:spin 0.6s linear infinite;vertical-align:middle;margin-right:6px;}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="card">
+    <div class="logo">
+      <div class="logo-icon">N</div>
+      <div class="logo-text">NexusCRM</div>
+    </div>
+    <h1>Create account</h1>
+    <p class="subtitle">Join to track and manage your support requests</p>
+    <div class="row">
+      <div class="field"><label>Full Name</label><input id="name" placeholder="John Smith"/></div>
+      <div class="field"><label>Username</label><input id="username" placeholder="johnsmith"/></div>
+    </div>
+    <div class="field"><label>Email Address</label><input type="email" id="email" placeholder="you@company.com"/></div>
+    <div class="field"><label>Phone Number</label><input id="phone" placeholder="+1 555 000 0000"/></div>
+    <div class="row">
+      <div class="field"><label>Password</label><input type="password" id="pw" placeholder="••••••••"/></div>
+      <div class="field"><label>Confirm</label><input type="password" id="pw2" placeholder="••••••••"/></div>
+    </div>
+    <button class="btn" id="regBtn" onclick="doRegister()">Create Account</button>
+    <div class="error" id="err"></div>
+    <div class="success" id="succ"></div>
+    <div class="alt-link">Already have an account? <a href="login.html">Sign in</a></div>
+  </div>
+</div>
+<script>
+async function doRegister(){
+  const name=document.getElementById('name').value.trim();
+  const username=document.getElementById('username').value.trim();
+  const email=document.getElementById('email').value.trim();
+  const phone=document.getElementById('phone').value.trim();
+  const pw=document.getElementById('pw').value;
+  const pw2=document.getElementById('pw2').value;
+  const err=document.getElementById('err'),succ=document.getElementById('succ'),btn=document.getElementById('regBtn');
+  err.classList.remove('show');succ.classList.remove('show');
+  if(!name||!username||!email||!phone||!pw) {err.textContent='Please fill in all fields.';err.classList.add('show');return;}
+  if(pw!==pw2){err.textContent='Passwords do not match.';err.classList.add('show');return;}
+  if(pw.length<6){err.textContent='Password must be at least 6 characters.';err.classList.add('show');return;}
+  btn.disabled=true;btn.innerHTML='<span class="loading"></span>Creating account...';
+  try{
+    const r=await fetch('/customer/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,username,email,phone,password:pw})});
+    const d=await r.json();
+    if(!r.ok) throw new Error(d.detail||'Registration failed');
+    succ.textContent='Account created successfully! Redirecting to login...';succ.classList.add('show');
+    setTimeout(()=>window.location.href='login.html',2000);
+  }catch(e){err.textContent=e.message;err.classList.add('show');btn.disabled=false;btn.textContent='Create Account';}
+}
+</script>
+</body>
+</html>

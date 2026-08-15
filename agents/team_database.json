@@ -1,0 +1,68 @@
+{
+  "support": {
+    "name": "Customer Support",
+    "description": "General customer support queries",
+    "agents": [
+      "AGENT_001"
+    ],
+    "skills": [
+      "billing",
+      "account",
+      "general"
+    ],
+    "capacity": 50
+  },
+  "technical": {
+    "name": "Technical Support",
+    "description": "Technical issues and troubleshooting",
+    "agents": [],
+    "skills": [
+      "technical_support",
+      "refund",
+      "orders"
+    ],
+    "capacity": 40
+  },
+  "billing": {
+    "name": "Billing Team",
+    "description": "Billing and payment issues",
+    "agents": [
+      "AGENT_003"
+    ],
+    "skills": [
+      "billing",
+      "payments",
+      "refund"
+    ],
+    "capacity": 35
+  },
+  "escalation": {
+    "name": "Escalation Team",
+    "description": "Complex and escalated issues",
+    "agents": [
+      "AGENT_004"
+    ],
+    "skills": [
+      "complex_issues",
+      "escalation",
+      "vip"
+    ],
+    "capacity": 20
+  },
+  "claims": {
+    "name": "Claims Team",
+    "description": "Insurance claims, policy coverage, policy changes, emergency services",
+    "agents": [
+      "AGENT_002",
+      "AGENT_003",
+      "AGENT_004"
+    ],
+    "skills": [
+      "claims",
+      "policy",
+      "emergency",
+      "coverage"
+    ],
+    "capacity": 60
+  }
+}

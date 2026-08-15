@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NexusCRM — Sign In</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg-void:#060a12;
+  --bg-surface:#0d1422;
+  --bg-card:#111827;
+  --bg-input:#0a1020;
+  --border:#1e2d45;
+  --border-focus:#2a7fff;
+  --blue:#2a7fff;
+  --blue-bright:#4d9fff;
+  --blue-glow:rgba(42,127,255,0.25);
+  --green:#10d88e;
+  --red:#ff4d6d;
+  --text-primary:#f0f4ff;
+  --text-secondary:#8899b4;
+  --text-muted:#4a5a74;
+  --font-main:'Sora',sans-serif;
+  --font-mono:'JetBrains Mono',monospace;
+}
+html,body{height:100%;font-family:var(--font-main);background:var(--bg-void);color:var(--text-primary);overflow:hidden}
+
+/* Background grid */
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:linear-gradient(rgba(42,127,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(42,127,255,0.04) 1px,transparent 1px);
+  background-size:60px 60px;pointer-events:none;z-index:0;
+}
+body::after{
+  content:'';position:fixed;inset:0;
+  background:radial-gradient(ellipse 80% 50% at 50% -20%,rgba(42,127,255,0.12) 0%,transparent 70%);
+  pointer-events:none;z-index:0;
+}
+
+.page{position:relative;z-index:1;height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;}
+
+.card{
+  width:100%;max-width:420px;
+  background:var(--bg-card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:40px 36px;
+  box-shadow:0 0 0 1px rgba(42,127,255,0.08), 0 32px 64px rgba(0,0,0,0.6);
+  animation:slideUp 0.4s ease;
+}
+@keyframes slideUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+.logo{display:flex;align-items:center;gap:10px;margin-bottom:32px;}
+.logo-icon{
+  width:38px;height:38px;
+  background:linear-gradient(135deg,#2a7fff,#10d88e);
+  border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:16px;color:#fff;letter-spacing:-0.5px;
+}
+.logo-text{font-size:20px;font-weight:700;letter-spacing:-0.5px;color:var(--text-primary);}
+.logo-sub{font-size:10px;font-family:var(--font-mono);color:var(--text-muted);text-transform:uppercase;letter-spacing:2px;margin-top:2px;}
+
+h1{font-size:22px;font-weight:600;margin-bottom:4px;letter-spacing:-0.3px;}
+.subtitle{font-size:13px;color:var(--text-secondary);margin-bottom:28px;}
+
+/* Role tabs */
+.role-tabs{display:flex;gap:4px;background:var(--bg-input);border:1px solid var(--border);border-radius:10px;padding:4px;margin-bottom:24px;}
+.role-tab{
+  flex:1;padding:8px;border:none;background:transparent;
+  color:var(--text-muted);font-size:13px;font-weight:500;font-family:var(--font-main);
+  border-radius:7px;cursor:pointer;transition:all 0.2s;
+}
+.role-tab.active{background:var(--blue);color:#fff;box-shadow:0 2px 8px var(--blue-glow);}
+.role-tab:hover:not(.active){color:var(--text-secondary);background:rgba(255,255,255,0.04);}
+
+.field{margin-bottom:16px;}
+label{display:block;font-size:12px;font-weight:500;color:var(--text-secondary);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.8px;}
+input{
+  width:100%;padding:11px 14px;
+  background:var(--bg-input);
+  border:1px solid var(--border);
+  border-radius:9px;
+  color:var(--text-primary);
+  font-size:14px;font-family:var(--font-main);
+  transition:border-color 0.2s,box-shadow 0.2s;
+  outline:none;
+}
+input::placeholder{color:var(--text-muted);}
+input:focus{border-color:var(--border-focus);box-shadow:0 0 0 3px var(--blue-glow);}
+
+.btn{
+  width:100%;padding:13px;margin-top:8px;
+  background:var(--blue);
+  color:#fff;font-size:14px;font-weight:600;font-family:var(--font-main);
+  border:none;border-radius:10px;cursor:pointer;
+  transition:all 0.2s;letter-spacing:0.2px;
+}
+.btn:hover{background:var(--blue-bright);transform:translateY(-1px);box-shadow:0 8px 24px var(--blue-glow);}
+.btn:active{transform:translateY(0);}
+.btn:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
+
+.error{
+  background:rgba(255,77,109,0.12);border:1px solid rgba(255,77,109,0.3);
+  border-radius:8px;padding:10px 14px;font-size:13px;color:#ff8097;
+  margin-top:12px;display:none;
+}
+.error.show{display:block;}
+
+.divider{display:flex;align-items:center;gap:12px;margin:20px 0;color:var(--text-muted);font-size:12px;}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border);}
+
+.alt-link{text-align:center;font-size:13px;color:var(--text-muted);}
+.alt-link a{color:var(--blue);text-decoration:none;font-weight:500;}
+.alt-link a:hover{color:var(--blue-bright);}
+
+.loading{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:spin 0.6s linear infinite;vertical-align:middle;margin-right:6px;}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="card">
+    <div class="logo">
+      <div class="logo-icon">N</div>
+      <div>
+        <div class="logo-text">NexusCRM</div>
+        <div class="logo-sub">AI-Powered Support</div>
+      </div>
+    </div>
+    <h1>Welcome back</h1>
+    <p class="subtitle">Sign in to your account to continue</p>
+
+    <div class="role-tabs">
+      <button class="role-tab active" onclick="setRole('customer')">Customer</button>
+      <button class="role-tab" onclick="setRole('agent')">Agent</button>
+      <button class="role-tab" onclick="setRole('admin')">Admin</button>
+    </div>
+
+    <div class="field">
+      <label>Email Address</label>
+      <input type="email" id="email" placeholder="you@company.com" autocomplete="email"/>
+    </div>
+    <div class="field">
+      <label>Password</label>
+      <input type="password" id="password" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()"/>
+    </div>
+
+    <button class="btn" id="loginBtn" onclick="doLogin()">Sign In</button>
+    <div class="error" id="err"></div>
+
+    <div class="divider">or</div>
+    <div class="alt-link" id="altLink">
+      New customer? <a href="register.html">Create an account</a>
+    </div>
+  </div>
+</div>
+<script>
+let currentRole = 'customer';
+function setRole(role) {
+  currentRole = role;
+  document.querySelectorAll('.role-tab').forEach((t,i)=>{
+    t.classList.toggle('active', ['customer','agent','admin'][i]===role);
+  });
+  document.getElementById('altLink').innerHTML = role==='customer'
+    ? 'New customer? <a href="register.html">Create an account</a>'
+    : role==='agent' ? 'Contact your admin to get access.' : '';
+}
+async function doLogin() {
+  const email = document.getElementById('email').value.trim();
+  const pw = document.getElementById('password').value;
+  const err = document.getElementById('err');
+  const btn = document.getElementById('loginBtn');
+  err.classList.remove('show');
+  if (!email||!pw) { err.textContent='Please fill in all fields.'; err.classList.add('show'); return; }
+  btn.disabled=true; btn.innerHTML='<span class="loading"></span>Signing in...';
+  try {
+    const ep = currentRole==='customer' ? '/customer/login' : currentRole==='agent' ? '/agent/login' : '/admin/login';
+    const r = await fetch(ep,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,password:pw})});
+    const d = await r.json();
+    if (!r.ok) throw new Error(d.detail||'Login failed');
+    localStorage.setItem('token', d.token);
+    localStorage.setItem('user', JSON.stringify({...d, role: currentRole}));
+    window.location.href = currentRole==='customer' ? 'customer.html' : currentRole==='agent' ? 'agent.html' : 'admin.html';
+  } catch(e) {
+    err.textContent = e.message; err.classList.add('show');
+    btn.disabled=false; btn.textContent='Sign In';
+  }
+}
+// If already logged in, redirect
+const u = localStorage.getItem('user');
+if(u){const ud=JSON.parse(u);if(ud.token||localStorage.getItem('token')){const r=ud.role;window.location.href=r==='customer'?'customer.html':r==='agent'?'agent.html':'admin.html';}}
+</script>
+</body>
+</html>

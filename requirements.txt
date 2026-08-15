@@ -1,0 +1,43 @@
+# ── Core API ──────────────────────────────────────────────────────────────
+fastapi
+uvicorn
+python-multipart
+python-dotenv
+
+# ── ML — Phase 1 (Active) ─────────────────────────────────────────────────
+scikit-learn
+joblib
+textblob
+spacy
+numpy
+pandas
+
+# ── ML — Phase 2 (BERT Fine-tune) ────────────────────────────────────────
+# Uncomment when switching to bert_triage.py
+torch
+transformers>=4.35.0
+accelerate
+
+# ── Dataset download ──────────────────────────────────────────────────────
+datasets
+huggingface_hub
+
+# ── Self-learning / Auto-retrain ──────────────────────────────────────────
+apscheduler
+
+# ── RAG / Vector DB ───────────────────────────────────────────────────────
+chromadb
+google-generativeai
+
+# ── Auth & Security ───────────────────────────────────────────────────────
+bcrypt
+pyjwt
+
+# ── Dev / Testing ─────────────────────────────────────────────────────────
+pytest
+pytest-asyncio
+requests
+black
+flake8
+pytest coverage
+openpyxl

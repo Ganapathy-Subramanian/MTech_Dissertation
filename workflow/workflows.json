@@ -1,0 +1,126 @@
+{
+  "Claims": {
+    "auto_actions": [
+      "create_claim_ticket",
+      "notify_claims_adjuster",
+      "send_claim_acknowledgement",
+      "request_supporting_documents"
+    ],
+    "escalation_time": 1800,
+    "priority": "High",
+    "department": "Claims Department",
+    "salesforce_queue": "Claims_Queue",
+    "sla_hours": 4
+  },
+  "Policy & Coverage": {
+    "auto_actions": [
+      "retrieve_policy_details",
+      "send_coverage_summary",
+      "schedule_agent_callback"
+    ],
+    "escalation_time": 3600,
+    "priority": "Medium",
+    "department": "Policy Services",
+    "salesforce_queue": "Policy_Queue",
+    "sla_hours": 8
+  },
+  "Billing & Payments": {
+    "auto_actions": [
+      "send_payment_link",
+      "retrieve_billing_history",
+      "schedule_followup"
+    ],
+    "escalation_time": 3600,
+    "priority": "High",
+    "department": "Finance",
+    "salesforce_queue": "Billing_Queue",
+    "sla_hours": 4
+  },
+  "Complaints & Feedback": {
+    "auto_actions": [
+      "escalate_to_supervisor",
+      "schedule_urgent_callback",
+      "create_complaint_case",
+      "notify_compliance_team"
+    ],
+    "escalation_time": 600,
+    "priority": "Critical",
+    "department": "Management",
+    "salesforce_queue": "Complaints_Queue",
+    "sla_hours": 1
+  },
+  "General Inquiry": {
+    "auto_actions": [
+      "send_faq_response",
+      "offer_agent_callback"
+    ],
+    "escalation_time": 7200,
+    "priority": "Low",
+    "department": "Support",
+    "salesforce_queue": "General_Queue",
+    "sla_hours": 24
+  },
+  "Account & Password": {
+    "auto_actions": [
+      "send_password_reset",
+      "verify_identity",
+      "unlock_account"
+    ],
+    "escalation_time": 900,
+    "priority": "Medium",
+    "department": "Support",
+    "salesforce_queue": "Account_Queue",
+    "sla_hours": 2
+  },
+  "Technical Support": {
+    "auto_actions": [
+      "create_support_ticket",
+      "notify_engineering",
+      "send_troubleshooting_guide"
+    ],
+    "escalation_time": 1800,
+    "priority": "High",
+    "department": "Engineering",
+    "salesforce_queue": "Tech_Queue",
+    "sla_hours": 4
+  },
+  "Policy Changes": {
+    "auto_actions": [
+      "retrieve_policy_details",
+      "initiate_endorsement_request",
+      "notify_underwriting",
+      "schedule_agent_callback"
+    ],
+    "escalation_time": 3600,
+    "priority": "Medium",
+    "department": "Policy Services",
+    "salesforce_queue": "PolicyChange_Queue",
+    "sla_hours": 8
+  },
+  "Emergency Services": {
+    "auto_actions": [
+      "dispatch_emergency_team",
+      "notify_24hr_claims_hotline",
+      "create_emergency_claim",
+      "send_emergency_contacts",
+      "escalate_immediately"
+    ],
+    "escalation_time": 300,
+    "priority": "Critical",
+    "department": "Emergency Response",
+    "salesforce_queue": "Emergency_Queue",
+    "sla_hours": 0.25
+  },
+  "Refund & Returns": {
+    "auto_actions": [
+      "initiate_refund_process",
+      "retrieve_payment_history",
+      "schedule_callback"
+    ],
+    "escalation_time": 7200,
+    "priority": "Medium",
+    "department": "Customer Success",
+    "salesforce_queue": "Refund_Queue",
+    "sla_hours": 8
+  }
+}

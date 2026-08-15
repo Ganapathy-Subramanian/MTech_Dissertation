@@ -1,0 +1,2338 @@
+{
+  "tickets": [
+    {
+      "timestamp": "2026-04-22T14:09:33.445169",
+      "text": "billing",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-22T14:21:55.914090",
+      "text": "billing",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-22T14:23:18.789721",
+      "text": "billing",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-22T14:29:25.385450",
+      "text": "billing",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-22T14:30:11.738493",
+      "text": "billing",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-22T14:31:52.048777",
+      "text": "billing",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-22T14:36:39.837723",
+      "text": "billing",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-22T14:38:42.857771",
+      "text": "billing issue",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-22T14:51:18.114572",
+      "text": "billing",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-22T14:52:04.022096",
+      "text": "billing",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-22T14:52:16.307963",
+      "text": "billing",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-22T15:00:15.483111",
+      "text": "billing",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-22T15:04:03.154122",
+      "text": "billing",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-22T15:17:35.598233",
+      "text": "billing",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-22T15:30:19.417708",
+      "text": "billing",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-22T15:40:35.911863",
+      "text": "billing",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-22T16:00:34.641365",
+      "text": "billing",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-22T16:17:57.286116",
+      "text": "billing",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-22T16:22:31.507395",
+      "text": "billing",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-22T16:33:52.670567",
+      "text": "billing issue",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-22T16:45:12.671635",
+      "text": "billing issue",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-24T09:24:08.076649",
+      "text": "billing",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-24T09:40:28.088993",
+      "text": "billing issue",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-24T09:52:15.082794",
+      "text": "billing",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-24T10:07:37.601462",
+      "text": "billing",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-24T10:10:15.716782",
+      "text": "billing issue",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-24T10:20:43.643157",
+      "text": "billing issue",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-24T10:41:03.299285",
+      "text": "billing",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-24T10:58:09.042129",
+      "text": "billing",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-24T11:41:02.167010",
+      "text": "billing",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-24T11:55:31.556510",
+      "text": "passowrd reset",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-24T13:36:07.455131",
+      "text": "password reset",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-24T13:40:47.003511",
+      "text": "password reset",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-24T13:43:32.612336",
+      "text": "password reset",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-24T13:44:20.945815",
+      "text": "password reset",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-24T13:44:32.487159",
+      "text": "billing",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-24T13:44:54.739351",
+      "text": "billing",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-24T13:45:36.362293",
+      "text": "billing",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-24T13:51:00.148926",
+      "text": "billing",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-24T13:51:34.623992",
+      "text": "password reset",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-24T13:51:50.879992",
+      "text": "billing",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-24T13:55:58.445567",
+      "text": "billing issue",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-24T13:56:15.117229",
+      "text": "password reset",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-24T13:59:32.168517",
+      "text": "billing",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-24T14:03:20.761798",
+      "text": "billing",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-24T14:09:36.839563",
+      "text": "billing",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-24T14:10:39.156632",
+      "text": "billing",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-24T14:17:16.135374",
+      "text": "billing",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-24T14:18:02.675806",
+      "text": "billing",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-24T14:19:12.230072",
+      "text": "billing",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-24T14:21:39.959650",
+      "text": "billing",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-24T14:24:13.910849",
+      "text": "billing",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-24T14:25:34.147494",
+      "text": "billing",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-24T14:31:46.003176",
+      "text": "billing",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-24T14:33:05.676956",
+      "text": "billing",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-24T14:33:57.537911",
+      "text": "billing",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-24T14:38:05.797077",
+      "text": "password reset",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-24T14:38:24.679907",
+      "text": "billing",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-24T14:43:43.474143",
+      "text": "billing",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-24T14:47:47.199081",
+      "text": "i want refund",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-24T14:59:22.628688",
+      "text": "refund",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-24T15:00:42.985140",
+      "text": "i want refund",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-24T15:07:33.743386",
+      "text": "i want reset my password",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-04-24T15:27:17.125103",
+      "text": "billing",
+      "customer_id": "CUST_004",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-05-26T18:58:56.858592",
+      "text": "I forgot my login password, can you help me reset it?",
+      "customer_id": "CUST_001",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-05-26T19:14:41.730124",
+      "text": "My claim was denied and I need to know why.",
+      "customer_id": "CUST_001",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-05-26T19:16:24.502687",
+      "text": "The accident caused severe injuries, I want a lawyer now!",
+      "customer_id": "CUST_001",
+      "channel": "web",
+      "priority": "medium"
+    },
+    {
+      "timestamp": "2026-06-02T19:25:03.368003",
+      "text": "i forget my password",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-06-02T19:33:21.319898",
+      "text": "i forget password",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-06-02T21:18:36.356907",
+      "text": "i want reset my password",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-06-02T21:21:19.931207",
+      "text": "i want reset my password",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-06-02T21:34:45.260968",
+      "text": "i want reset my password",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-06-02T21:56:26.491641",
+      "text": "i want reset my password",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-06-02T22:02:25.799037",
+      "text": "i want reset my password",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-06-02T22:20:47.974899",
+      "text": "account password forget",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-06-03T10:04:34.813771",
+      "text": "Test ticket",
+      "customer_id": "test_customer",
+      "channel": "web",
+      "priority": "Medium"
+    },
+    {
+      "timestamp": "2026-06-03T10:36:46.127654",
+      "text": "i want refund",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-06-03T12:02:31.236031",
+      "text": "i forget my password",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-06-03T18:33:17.136713",
+      "text": "What does my comprehensive coverage include?",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-06-03T18:33:50.203332",
+      "text": "What does my comprehensive coverage include?",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-06-03T18:45:15.884208",
+      "text": "What does my comprehensive coverage include?",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-06-03T18:45:55.955833",
+      "text": "What does my comprehensive coverage include?",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-06-03T19:09:22.276892",
+      "text": "What does my comprehensive coverage include?",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-06-04T09:37:22.445585",
+      "text": "I need to file a car accident claim",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-06-04T09:43:38.832653",
+      "text": "Two-factor authentication not working",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-06-04T09:43:55.532112",
+      "text": "i forget my password",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-06-04T16:56:43.478689",
+      "text": "I cancelled my policy but haven't received money",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-06-05T16:58:41.768861",
+      "text": "I was involved in an accident and need assistance",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-06-05T17:01:57.266099",
+      "text": "i  forget my password",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-06-21T16:36:05.035416",
+      "text": "Test ticket",
+      "customer_id": "test_customer",
+      "channel": "web",
+      "priority": "Medium"
+    },
+    {
+      "timestamp": "2026-06-21T16:47:01.376133",
+      "text": "Test ticket",
+      "customer_id": "test_customer",
+      "channel": "web",
+      "priority": "Medium"
+    },
+    {
+      "timestamp": "2026-06-21T17:10:55.036650",
+      "text": "Test ticket",
+      "customer_id": "test_customer",
+      "channel": "web",
+      "priority": "Medium"
+    },
+    {
+      "timestamp": "2026-06-21T17:13:09.200629",
+      "text": "Test ticket",
+      "customer_id": "test_customer",
+      "channel": "web",
+      "priority": "Medium"
+    },
+    {
+      "timestamp": "2026-06-22T12:51:57.669131",
+      "text": "i forget my password",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-06-29T11:15:25.701531",
+      "text": "i need my passwordd",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-07-02T15:04:13.903344",
+      "text": "jhftddgfjffiyfyfr",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-07-02T15:12:36.667397",
+      "text": "My car was damaged during flooding, but the engine also has mechanical issues. Which damages will be covered under my comprehensive policy?",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-07-02T15:14:01.011433",
+      "text": "My car was damaged during flooding, but the engine also has mechanical issues. Which damages will be covered under my comprehensive policy?",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-07-02T15:14:36.468549",
+      "text": "My car was damaged during flooding, but the engine also has mechanical issues. Which damages will be covered under my comprehensive policy?",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-07-02T15:16:01.903361",
+      "text": "hgf,hrd,jfjdjtj",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-07-02T15:46:57.368654",
+      "text": "My car was damaged during flooding, but the engine also has mechanical issues. Which damages will be covered under my comprehensive policy?",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-07-02T15:47:46.357926",
+      "text": "My vehicle was declared a total loss after an accident. How is the settlement amount calculated?",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-07-02T15:50:45.004320",
+      "text": "How do I transfer ownership of my vehicle insurance after selling my car?",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-07-02T15:51:12.037246",
+      "text": "Can I convert my individual health insurance into a family floater without losing accumulated benefits?",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-07-02T15:51:46.029451",
+      "text": "I recently changed my legal name after marriage. What documents are required to update all my policies?",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-07-02T15:52:11.528461",
+      "text": "Can I change the nominee while my claim is already under review?",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-07-02T15:52:54.666903",
+      "text": "My claim was rejected because of non-disclosure. I honestly forgot to mention an old surgery. Can I appeal?",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-07-03T10:27:19.252119",
+      "text": "How do I add my newborn baby to my health insurance policy?",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-07-03T10:43:21.472676",
+      "text": "How do I add my newborn baby to my health insurance policy?",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-07-03T10:51:56.037513",
+      "text": "my car was hit last week",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-07-17T13:12:53.272794",
+      "text": "Test ticket",
+      "customer_id": "test_customer",
+      "channel": "web",
+      "priority": "Medium"
+    },
+    {
+      "timestamp": "2026-07-17T13:16:55.802007",
+      "text": "Test ticket",
+      "customer_id": "test_customer",
+      "channel": "web",
+      "priority": "Medium"
+    },
+    {
+      "timestamp": "2026-07-17T20:50:18.471873",
+      "text": "I can't log into my account",
+      "customer_id": null,
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-07-17T20:50:24.323050",
+      "text": "Test ticket",
+      "customer_id": "test_customer",
+      "channel": "web",
+      "priority": "Medium"
+    },
+    {
+      "timestamp": "2026-07-17T21:24:05.190214",
+      "text": "I can't log into my account",
+      "customer_id": null,
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-07-17T21:24:11.569750",
+      "text": "Test ticket",
+      "customer_id": "test_customer",
+      "channel": "web",
+      "priority": "Medium"
+    },
+    {
+      "timestamp": "2026-07-17T21:25:44.294310",
+      "text": "I can't log into my account",
+      "customer_id": null,
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-07-17T21:25:50.268182",
+      "text": "Test ticket",
+      "customer_id": "test_customer",
+      "channel": "web",
+      "priority": "Medium"
+    },
+    {
+      "timestamp": "2026-07-17T21:30:17.989946",
+      "text": "I can't log into my account",
+      "customer_id": null,
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-07-17T21:30:24.199491",
+      "text": "Test ticket",
+      "customer_id": "test_customer",
+      "channel": "web",
+      "priority": "Medium"
+    },
+    {
+      "timestamp": "2026-07-17T21:36:59.608906",
+      "text": "I can't log into my account",
+      "customer_id": null,
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-07-17T21:37:05.989767",
+      "text": "Test ticket",
+      "customer_id": "test_customer",
+      "channel": "web",
+      "priority": "Medium"
+    },
+    {
+      "timestamp": "2026-07-17T21:39:06.216057",
+      "text": "I can't log into my account",
+      "customer_id": null,
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-07-17T21:39:11.737424",
+      "text": "Test ticket",
+      "customer_id": "test_customer",
+      "channel": "web",
+      "priority": "Medium"
+    },
+    {
+      "timestamp": "2026-07-17T21:40:18.599415",
+      "text": "I can't log into my account",
+      "customer_id": null,
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-07-17T21:40:24.273173",
+      "text": "Test ticket",
+      "customer_id": "test_customer",
+      "channel": "web",
+      "priority": "Medium"
+    },
+    {
+      "timestamp": "2026-07-17T21:43:21.038646",
+      "text": "I can't log into my account",
+      "customer_id": null,
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-07-17T21:43:26.867729",
+      "text": "Test ticket",
+      "customer_id": "test_customer",
+      "channel": "web",
+      "priority": "Medium"
+    },
+    {
+      "timestamp": "2026-07-17T21:46:21.784016",
+      "text": "I can't log into my account",
+      "customer_id": null,
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-07-17T21:46:27.624903",
+      "text": "Test ticket",
+      "customer_id": "test_customer",
+      "channel": "web",
+      "priority": "Medium"
+    },
+    {
+      "timestamp": "2026-07-17T22:43:10.181315",
+      "text": "I need help configuring my API keys.",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-07-17T22:43:41.659136",
+      "text": "How do I clear the cache? Please help.",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-07-17T22:44:24.414025",
+      "text": "How do I cancel my subscription?",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-07-17T22:44:53.557510",
+      "text": "I love your new feature! ASAP.",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-07-17T22:45:31.203401",
+      "text": "You should add a dark mode. ASAP.",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-07-17T22:46:15.952057",
+      "text": "I waited on hold for an hour. ASAP.",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-07-17T22:46:51.939657",
+      "text": "I want to speak to a manager.",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-07-17T22:49:39.880153",
+      "text": "How do I cancel my subscription?",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-08-13T18:30:29.488793",
+      "text": "i forget my password",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-08-13T18:32:37.386475",
+      "text": "i forgot my pasword",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-08-13T18:34:45.460752",
+      "text": "i forgot my password",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-08-13T18:38:17.501937",
+      "text": "i forgotmy password",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-08-13T18:42:58.277576",
+      "text": "i forgot my pasword",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-08-13T18:48:22.995296",
+      "text": "i forget my password",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-08-13T18:51:18.070066",
+      "text": "i forgot my password",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-08-13T18:59:45.763531",
+      "text": "i forgot my passworddd",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-08-13T18:59:59.695048",
+      "text": "i need my pass",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-08-13T19:00:16.067868",
+      "text": "i forget my credentia",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-08-13T19:16:37.342664",
+      "text": "i forget my credentia",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-08-14T20:39:21.721739",
+      "text": "dfgdfgsdgds",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-08-14T20:45:48.978441",
+      "text": "pas i wa",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-08-14T20:54:28.042738",
+      "text": "i wa pa",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    },
+    {
+      "timestamp": "2026-08-15T14:43:32.840541",
+      "text": "ghhsdgsvsdgsdg",
+      "customer_id": "CUST_005",
+      "channel": "web",
+      "priority": null
+    }
+  ],
+  "resolutions": [
+    {
+      "timestamp": "2026-04-22T14:09:33.446166",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Billing",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-04-22T14:21:55.916088",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Billing",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-04-22T14:23:18.790718",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Billing",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-04-22T14:29:25.386427",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Billing",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-04-22T14:30:11.750464",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Billing",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-04-22T14:31:52.049759",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Billing",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-04-22T14:36:40.095856",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Password Reset",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-04-22T14:38:43.060618",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Billing",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-04-22T14:51:18.789499",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Billing",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-04-22T14:52:04.703371",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Billing",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-04-22T14:52:16.824077",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Billing",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-04-22T15:00:16.429638",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Billing",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-04-22T15:04:03.159113",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Billing",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-04-22T15:17:35.613193",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Billing",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-04-22T15:30:19.441644",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Billing",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-04-22T15:40:35.938792",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Billing",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-04-22T16:00:34.663306",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Billing",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-04-22T16:17:57.982306",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Billing",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-04-22T16:22:32.274090",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Billing",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-04-22T16:34:01.181728",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Billing",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-04-22T16:45:13.482006",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Billing",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-04-24T09:24:08.903914",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Billing",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-04-24T09:40:28.758749",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Billing",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-04-24T09:52:16.742313",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Billing",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-04-24T10:07:38.463374",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Billing",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-04-24T10:10:16.765952",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Billing",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-04-24T10:20:44.233133",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Billing",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-04-24T10:41:04.375796",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Billing",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-04-24T10:58:09.664288",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Billing",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-04-24T11:41:03.013999",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Billing",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-04-24T11:55:31.999480",
+      "source": "Gemini LLM (Escalated)",
+      "category": "Complex / Contextual",
+      "confidence": "N/A",
+      "sentiment": {
+        "polarity": 0.0,
+        "subjectivity": 0.0,
+        "compound": 0.0
+      },
+      "priority": "Low",
+      "response_time": 2.5
+    },
+    {
+      "timestamp": "2026-04-24T13:36:08.401105",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Password Reset",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-04-24T13:40:47.659850",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Password Reset",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-04-24T13:43:33.162971",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Password Reset",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-04-24T13:44:21.501788",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Password Reset",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-04-24T13:44:33.065374",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Password Reset",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-04-24T13:44:55.955831",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Password Reset",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-04-24T13:45:36.929301",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Password Reset",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-04-24T13:51:35.262929",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Password Reset",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-04-24T13:51:51.377207",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Billing",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-04-24T13:55:59.009716",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Billing",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-04-24T13:56:15.641129",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Password Reset",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-04-24T14:33:06.412596",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Billing & Payments",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-04-24T14:33:58.015325",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Billing & Payments",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-04-24T14:38:06.366885",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Password Reset",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-04-24T14:38:25.673277",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Billing & Payments",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-04-24T14:43:44.118178",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Billing & Payments",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-04-24T14:47:47.593085",
+      "source": "Gemini LLM (Escalated)",
+      "category": "Complex / Contextual",
+      "confidence": "N/A",
+      "sentiment": {
+        "polarity": 0.0,
+        "subjectivity": 0.0,
+        "compound": 0.0
+      },
+      "priority": "Low",
+      "response_time": 2.5
+    },
+    {
+      "timestamp": "2026-04-24T14:59:23.564438",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Refund & Returns",
+      "confidence": 0.7560690492391586,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-04-24T15:00:43.587860",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Refund & Returns",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-04-24T15:07:36.433398",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Password Reset",
+      "confidence": 0.76183220744133,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-04-24T15:27:24.175906",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Billing",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-05-26T18:58:56.880542",
+      "source": "Local Triage Layer",
+      "category": "Account & Password",
+      "confidence": 1.0,
+      "sentiment": {
+        "polarity": 0.0,
+        "subjectivity": 0.0,
+        "compound": 0.0
+      },
+      "priority": "Medium",
+      "response_time": 0.15
+    },
+    {
+      "timestamp": "2026-05-26T19:14:41.754252",
+      "source": "Local Triage Layer",
+      "category": "Complaints & Feedback",
+      "confidence": 0.81,
+      "sentiment": {
+        "polarity": 0.0,
+        "subjectivity": 0.0,
+        "compound": 0.0
+      },
+      "priority": "Low",
+      "response_time": 0.15
+    },
+    {
+      "timestamp": "2026-05-26T19:16:24.522723",
+      "source": "Gemini LLM (Escalated)",
+      "category": "Complex / Contextual",
+      "confidence": "N/A",
+      "sentiment": {
+        "polarity": 0.0,
+        "subjectivity": 0.0,
+        "compound": 0.0
+      },
+      "priority": "High",
+      "response_time": 2.5
+    },
+    {
+      "timestamp": "2026-06-02T19:25:07.799197",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Account & Password",
+      "confidence": 0.9388771653175354,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-06-02T19:33:26.331475",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Account & Password",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-06-02T21:18:38.753339",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Account & Password",
+      "confidence": 0.8251124173402786,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-06-02T21:21:21.482817",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Account & Password",
+      "confidence": 0.8251124173402786,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-06-02T21:34:46.825279",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Account & Password",
+      "confidence": 0.8251124173402786,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-06-02T21:56:28.800204",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Account & Password",
+      "confidence": 0.8251124173402786,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-06-02T22:02:27.494261",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Account & Password",
+      "confidence": 0.8251124173402786,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-06-02T22:20:49.929476",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Account & Password",
+      "confidence": 0.7028380930423737,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-06-03T10:36:47.459847",
+      "source": "Gemini LLM (Escalated)",
+      "category": "Complex / Contextual",
+      "confidence": "N/A",
+      "sentiment": {
+        "polarity": 0.0,
+        "subjectivity": 0.0,
+        "compound": 0.0
+      },
+      "priority": "Medium",
+      "response_time": 2.5
+    },
+    {
+      "timestamp": "2026-06-03T12:02:32.950500",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Account & Password",
+      "confidence": 0.9388771653175354,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-06-03T18:33:18.576145",
+      "source": "Gemini LLM (Escalated)",
+      "category": "Complex / Contextual",
+      "confidence": "N/A",
+      "sentiment": {
+        "polarity": 0.0,
+        "subjectivity": 0.0,
+        "compound": 0.0
+      },
+      "priority": "Low",
+      "response_time": 2.5
+    },
+    {
+      "timestamp": "2026-06-03T18:33:51.241694",
+      "source": "Gemini LLM (Escalated)",
+      "category": "Complex / Contextual",
+      "confidence": "N/A",
+      "sentiment": {
+        "polarity": 0.0,
+        "subjectivity": 0.0,
+        "compound": 0.0
+      },
+      "priority": "Low",
+      "response_time": 2.5
+    },
+    {
+      "timestamp": "2026-06-03T18:45:16.900040",
+      "source": "Gemini LLM (Escalated)",
+      "category": "Complex / Contextual",
+      "confidence": "N/A",
+      "sentiment": {
+        "polarity": 0.0,
+        "subjectivity": 0.0,
+        "compound": 0.0
+      },
+      "priority": "Low",
+      "response_time": 2.5
+    },
+    {
+      "timestamp": "2026-06-03T18:45:57.027458",
+      "source": "Gemini LLM (Escalated)",
+      "category": "Complex / Contextual",
+      "confidence": "N/A",
+      "sentiment": {
+        "polarity": 0.0,
+        "subjectivity": 0.0,
+        "compound": 0.0
+      },
+      "priority": "Low",
+      "response_time": 2.5
+    },
+    {
+      "timestamp": "2026-06-03T19:09:23.902623",
+      "source": "Local Triage Layer",
+      "category": "Policy & Coverage",
+      "confidence": 0.8,
+      "sentiment": {
+        "polarity": 0.0,
+        "subjectivity": 0.0,
+        "compound": 0.0
+      },
+      "priority": "Low",
+      "response_time": 0.15
+    },
+    {
+      "timestamp": "2026-06-04T09:37:24.247806",
+      "source": "Local Triage Layer",
+      "category": "Emergency Services",
+      "confidence": 0.85,
+      "sentiment": {
+        "polarity": 0.0,
+        "subjectivity": 0.0,
+        "compound": 0.0
+      },
+      "priority": "High",
+      "response_time": 0.15
+    },
+    {
+      "timestamp": "2026-06-04T09:43:40.430835",
+      "source": "Local Triage Layer",
+      "category": "Account & Password",
+      "confidence": 0.99,
+      "sentiment": {
+        "polarity": 0.0,
+        "subjectivity": 0.0,
+        "compound": 0.0
+      },
+      "priority": "Medium",
+      "response_time": 0.15
+    },
+    {
+      "timestamp": "2026-06-04T09:43:57.334747",
+      "source": "Local Triage Layer",
+      "category": "Account & Password",
+      "confidence": 1.0,
+      "sentiment": {
+        "polarity": 0.0,
+        "subjectivity": 0.0,
+        "compound": 0.0
+      },
+      "priority": "Medium",
+      "response_time": 0.15
+    },
+    {
+      "timestamp": "2026-06-04T16:56:45.777389",
+      "source": "Local Triage Layer",
+      "category": "Policy Changes",
+      "confidence": 0.71,
+      "sentiment": {
+        "polarity": 0.0,
+        "subjectivity": 0.0,
+        "compound": 0.0
+      },
+      "priority": "High",
+      "response_time": 0.15
+    },
+    {
+      "timestamp": "2026-06-05T16:58:44.840885",
+      "source": "Local Triage Layer",
+      "category": "Emergency Services",
+      "confidence": 0.99,
+      "sentiment": {
+        "polarity": 0.0,
+        "subjectivity": 0.0,
+        "compound": 0.0
+      },
+      "priority": "High",
+      "response_time": 0.15
+    },
+    {
+      "timestamp": "2026-06-05T17:01:59.321839",
+      "source": "Local Triage Layer",
+      "category": "Account & Password",
+      "confidence": 1.0,
+      "sentiment": {
+        "polarity": 0.0,
+        "subjectivity": 0.0,
+        "compound": 0.0
+      },
+      "priority": "Medium",
+      "response_time": 0.15
+    },
+    {
+      "timestamp": "2026-06-22T12:51:59.789286",
+      "source": "Local Triage Layer",
+      "category": "Account & Password",
+      "confidence": 0.72,
+      "sentiment": {
+        "polarity": 0.0,
+        "subjectivity": 0.0,
+        "compound": 0.0
+      },
+      "priority": "Medium",
+      "response_time": 0.15
+    },
+    {
+      "timestamp": "2026-06-29T11:15:27.555742",
+      "source": "Local Triage Layer",
+      "category": "Account & Password",
+      "confidence": 0.85,
+      "sentiment": {
+        "polarity": 0.0,
+        "subjectivity": 0.0,
+        "compound": 0.0
+      },
+      "priority": "Medium",
+      "response_time": 0.15
+    },
+    {
+      "timestamp": "2026-07-02T15:04:15.378996",
+      "source": "Gemini LLM (Escalated)",
+      "category": "Complex / Contextual",
+      "confidence": "N/A",
+      "sentiment": {
+        "polarity": 0.0,
+        "subjectivity": 0.0,
+        "compound": 0.0
+      },
+      "priority": "Low",
+      "response_time": 2.5
+    },
+    {
+      "timestamp": "2026-07-02T15:12:38.367247",
+      "source": "Local Triage Layer",
+      "category": "Emergency Services",
+      "confidence": 0.84,
+      "sentiment": {
+        "polarity": 0.0,
+        "subjectivity": 0.0,
+        "compound": 0.0
+      },
+      "priority": "Critical",
+      "response_time": 0.15
+    },
+    {
+      "timestamp": "2026-07-02T15:14:02.889651",
+      "source": "Local Triage Layer",
+      "category": "Emergency Services",
+      "confidence": 0.82,
+      "sentiment": {
+        "polarity": 0.0,
+        "subjectivity": 0.0,
+        "compound": 0.0
+      },
+      "priority": "Critical",
+      "response_time": 0.15
+    },
+    {
+      "timestamp": "2026-07-02T15:14:43.471589",
+      "source": "Local Triage Layer",
+      "category": "Emergency Services",
+      "confidence": 0.72,
+      "sentiment": {
+        "polarity": 0.0,
+        "subjectivity": 0.0,
+        "compound": 0.0
+      },
+      "priority": "Critical",
+      "response_time": 0.15
+    },
+    {
+      "timestamp": "2026-07-02T15:16:03.252441",
+      "source": "Gemini LLM (Escalated)",
+      "category": "Complex / Contextual",
+      "confidence": "N/A",
+      "sentiment": {
+        "polarity": 0.0,
+        "subjectivity": 0.0,
+        "compound": 0.0
+      },
+      "priority": "Low",
+      "response_time": 2.5
+    },
+    {
+      "timestamp": "2026-07-02T15:47:01.409842",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Policy & Coverage",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-07-02T15:47:48.535295",
+      "source": "Gemini LLM (Escalated)",
+      "category": "Complex / Contextual",
+      "confidence": "N/A",
+      "sentiment": {
+        "polarity": 0.0,
+        "subjectivity": 0.75,
+        "compound": 0.0
+      },
+      "priority": "High",
+      "response_time": 2.5
+    },
+    {
+      "timestamp": "2026-07-02T15:50:51.035724",
+      "source": "Local Triage Layer",
+      "category": "Policy Changes",
+      "confidence": 0.85,
+      "sentiment": {
+        "polarity": 0.0,
+        "subjectivity": 0.0,
+        "compound": 0.0
+      },
+      "priority": "Low",
+      "response_time": 0.15
+    },
+    {
+      "timestamp": "2026-07-02T15:51:16.967476",
+      "source": "Local Triage Layer",
+      "category": "Policy & Coverage",
+      "confidence": 0.76,
+      "sentiment": {
+        "polarity": 0.0,
+        "subjectivity": 0.4,
+        "compound": 0.0
+      },
+      "priority": "Low",
+      "response_time": 0.15
+    },
+    {
+      "timestamp": "2026-07-02T15:51:51.330325",
+      "source": "Local Triage Layer",
+      "category": "Policy Changes",
+      "confidence": 0.8,
+      "sentiment": {
+        "polarity": 0.1,
+        "subjectivity": 0.225,
+        "compound": 0.1
+      },
+      "priority": "High",
+      "response_time": 0.15
+    },
+    {
+      "timestamp": "2026-07-02T15:52:17.882785",
+      "source": "Local Triage Layer",
+      "category": "Claims",
+      "confidence": 0.81,
+      "sentiment": {
+        "polarity": 0.0,
+        "subjectivity": 0.0,
+        "compound": 0.0
+      },
+      "priority": "Low",
+      "response_time": 0.15
+    },
+    {
+      "timestamp": "2026-07-02T15:52:59.942714",
+      "source": "Local Triage Layer",
+      "category": "Claims",
+      "confidence": 0.75,
+      "sentiment": {
+        "polarity": 0.35,
+        "subjectivity": 0.55,
+        "compound": 0.35
+      },
+      "priority": "High",
+      "response_time": 0.15
+    },
+    {
+      "timestamp": "2026-07-03T10:27:20.948447",
+      "source": "Local Triage Layer",
+      "category": "Policy Changes",
+      "confidence": 0.95,
+      "sentiment": {
+        "polarity": 0.0,
+        "subjectivity": 0.0,
+        "compound": 0.0
+      },
+      "priority": "Low",
+      "response_time": 0.15
+    },
+    {
+      "timestamp": "2026-07-03T10:43:23.192313",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Policy & Coverage",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-07-03T10:51:57.571944",
+      "source": "Local Triage Layer",
+      "category": "Emergency Services",
+      "confidence": 0.97,
+      "sentiment": {
+        "polarity": 0.0,
+        "subjectivity": 0.06666666666666667,
+        "compound": 0.0
+      },
+      "priority": "Low",
+      "response_time": 0.15
+    },
+    {
+      "timestamp": "2026-07-17T20:50:18.492170",
+      "source": "Local Triage Layer",
+      "category": "Account & Password",
+      "confidence": 1.0,
+      "sentiment": {
+        "polarity": 0.0,
+        "subjectivity": 0.0,
+        "compound": 0.0
+      },
+      "priority": "Medium",
+      "response_time": 0.15
+    },
+    {
+      "timestamp": "2026-07-17T22:43:13.192001",
+      "source": "Local Triage Layer",
+      "category": "Account & Password",
+      "confidence": 0.67,
+      "sentiment": {
+        "polarity": 0.0,
+        "subjectivity": 0.0,
+        "compound": 0.0
+      },
+      "priority": "Medium",
+      "response_time": 0.15
+    },
+    {
+      "timestamp": "2026-07-17T22:43:46.363252",
+      "source": "Local Triage Layer",
+      "category": "Technical Support",
+      "confidence": 0.71,
+      "sentiment": {
+        "polarity": 0.09999999999999999,
+        "subjectivity": 0.3833333333333333,
+        "compound": 0.09999999999999999
+      },
+      "priority": "Medium",
+      "response_time": 0.15
+    },
+    {
+      "timestamp": "2026-07-17T22:44:27.508151",
+      "source": "Local Triage Layer",
+      "category": "Policy Changes",
+      "confidence": 0.77,
+      "sentiment": {
+        "polarity": 0.0,
+        "subjectivity": 0.0,
+        "compound": 0.0
+      },
+      "priority": "High",
+      "response_time": 0.15
+    },
+    {
+      "timestamp": "2026-07-17T22:44:54.880092",
+      "source": "Gemini LLM (Escalated)",
+      "category": "Complex / Contextual",
+      "confidence": "N/A",
+      "sentiment": {
+        "polarity": 0.3352272727272727,
+        "subjectivity": 0.5272727272727272,
+        "compound": 0.3352272727272727
+      },
+      "priority": "High",
+      "response_time": 2.5
+    },
+    {
+      "timestamp": "2026-07-17T22:45:33.578533",
+      "source": "Local Triage Layer",
+      "category": "Technical Support",
+      "confidence": 0.72,
+      "sentiment": {
+        "polarity": -0.15,
+        "subjectivity": 0.4,
+        "compound": -0.15
+      },
+      "priority": "High",
+      "response_time": 0.15
+    },
+    {
+      "timestamp": "2026-07-17T22:46:17.495544",
+      "source": "Gemini LLM (Escalated)",
+      "category": "Complex / Contextual",
+      "confidence": "N/A",
+      "sentiment": {
+        "polarity": 0.0,
+        "subjectivity": 0.0,
+        "compound": 0.0
+      },
+      "priority": "High",
+      "response_time": 2.5
+    },
+    {
+      "timestamp": "2026-07-17T22:46:53.545376",
+      "source": "Gemini LLM (Escalated)",
+      "category": "Complex / Contextual",
+      "confidence": "N/A",
+      "sentiment": {
+        "polarity": 0.0,
+        "subjectivity": 0.0,
+        "compound": 0.0
+      },
+      "priority": "Low",
+      "response_time": 2.5
+    },
+    {
+      "timestamp": "2026-07-17T22:49:42.630180",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Billing & Payments",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-08-13T18:30:30.834665",
+      "source": "Local Triage Layer",
+      "category": "Technical Support",
+      "confidence": 0.68,
+      "sentiment": {
+        "polarity": 0.0,
+        "subjectivity": 0.0,
+        "compound": 0.0
+      },
+      "priority": "Medium",
+      "response_time": 0.15
+    },
+    {
+      "timestamp": "2026-08-13T18:32:39.145416",
+      "source": "Gemini LLM (Escalated)",
+      "category": "Complex / Contextual",
+      "confidence": "N/A",
+      "sentiment": {
+        "polarity": 0.0,
+        "subjectivity": 0.0,
+        "compound": 0.0
+      },
+      "priority": "Low",
+      "response_time": 2.5
+    },
+    {
+      "timestamp": "2026-08-13T18:34:47.121220",
+      "source": "Local Triage Layer",
+      "category": "Account & Password",
+      "confidence": 0.97,
+      "sentiment": {
+        "polarity": 0.0,
+        "subjectivity": 0.0,
+        "compound": 0.0
+      },
+      "priority": "Medium",
+      "response_time": 0.15
+    },
+    {
+      "timestamp": "2026-08-13T18:38:21.370441",
+      "source": "Local Triage Layer",
+      "category": "Account & Password",
+      "confidence": 0.98,
+      "sentiment": {
+        "polarity": 0.0,
+        "subjectivity": 0.0,
+        "compound": 0.0
+      },
+      "priority": "Medium",
+      "response_time": 0.15
+    },
+    {
+      "timestamp": "2026-08-13T18:43:08.592174",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Account & Password",
+      "confidence": 1.0,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-08-13T18:48:24.256330",
+      "source": "Local Triage Layer",
+      "category": "Technical Support",
+      "confidence": 0.69,
+      "sentiment": {
+        "polarity": 0.0,
+        "subjectivity": 0.0,
+        "compound": 0.0
+      },
+      "priority": "Medium",
+      "response_time": 0.15
+    },
+    {
+      "timestamp": "2026-08-13T18:51:20.060670",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Account & Password",
+      "confidence": 0.8665415644645691,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-08-13T18:59:47.121892",
+      "source": "Local Triage Layer",
+      "category": "Account & Password",
+      "confidence": 0.87,
+      "sentiment": {
+        "polarity": 0.0,
+        "subjectivity": 0.0,
+        "compound": 0.0
+      },
+      "priority": "Medium",
+      "response_time": 0.15
+    },
+    {
+      "timestamp": "2026-08-13T19:00:01.038690",
+      "source": "Local Triage Layer",
+      "category": "Account & Password",
+      "confidence": 0.69,
+      "sentiment": {
+        "polarity": 0.0,
+        "subjectivity": 0.0,
+        "compound": 0.0
+      },
+      "priority": "Low",
+      "response_time": 0.15
+    },
+    {
+      "timestamp": "2026-08-13T19:00:16.883924",
+      "source": "Gemini LLM (Escalated)",
+      "category": "Complex / Contextual",
+      "confidence": "N/A",
+      "sentiment": {
+        "polarity": 0.0,
+        "subjectivity": 0.0,
+        "compound": 0.0
+      },
+      "priority": "Low",
+      "response_time": 2.5
+    },
+    {
+      "timestamp": "2026-08-13T19:16:38.961926",
+      "source": "Adaptive Memory (RAG)",
+      "category": "Account & Password",
+      "confidence": 0.9072535336017609,
+      "sentiment": null,
+      "priority": null,
+      "response_time": 0.05
+    },
+    {
+      "timestamp": "2026-08-14T20:39:28.543811",
+      "source": "Gemini LLM (Escalated)",
+      "category": "Complex / Contextual",
+      "confidence": "N/A",
+      "sentiment": {
+        "polarity": 0.0,
+        "subjectivity": 0.0,
+        "compound": 0.0
+      },
+      "priority": "Low",
+      "response_time": 2.5
+    },
+    {
+      "timestamp": "2026-08-14T20:45:55.096581",
+      "source": "Gemini LLM (Escalated)",
+      "category": "Complex / Contextual",
+      "confidence": "N/A",
+      "sentiment": {
+        "polarity": 0.0,
+        "subjectivity": 0.0,
+        "compound": 0.0
+      },
+      "priority": "Low",
+      "response_time": 2.5
+    },
+    {
+      "timestamp": "2026-08-14T20:54:28.072703",
+      "source": "Gemini LLM (Escalated)",
+      "category": "Billing & Payments",
+      "confidence": 0.45,
+      "sentiment": {
+        "polarity": 0.0,
+        "subjectivity": 0.0,
+        "compound": 0.0
+      },
+      "priority": "Low",
+      "response_time": 2.5
+    },
+    {
+      "timestamp": "2026-08-15T14:43:32.867322",
+      "source": "Gemini LLM (Escalated)",
+      "category": "Policy & Coverage",
+      "confidence": 0.49,
+      "sentiment": {
+        "polarity": 0.0,
+        "subjectivity": 0.0,
+        "compound": 0.0
+      },
+      "priority": "Low",
+      "response_time": 2.5
+    }
+  ]
+}

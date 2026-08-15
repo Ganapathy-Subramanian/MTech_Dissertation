@@ -1,0 +1,95 @@
+================================================================================
+COMPREHENSIVE EVALUATION REPORT: 10-CLASS INSURANCE TRIAGE
+================================================================================
+
+SUMMARY METRICS
+────────────────────────────────────────────────────────────────────────────────
+Total Tickets Evaluated:        4,215
+Overall Accuracy:               0.9910 (99.10%)
+Macro F1 Score:                 0.9833
+Weighted F1 Score:              0.9910
+
+CONFUSION MATRIX (Predicted vs Actual)
+────────────────────────────────────────────────────────────────────────────────
+                                      Claims     Policy & Coverage    Billing & Payments Complaints & Feedback       General Inquiry    Account & Password     Technical Support        Policy Changes    Emergency Services      Refund & Returns 
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+Claims                                 1200                     1                     6                     1                     1                     0                     1                     0                     1                     0 
+Policy & Coverage                         1                  1606                     0                     0                     5                     0                     1                     1                     1                     0 
+Billing & Payments                        0                     0                   420                     0                     0                     0                     1                     0                     0                     0 
+Complaints & Feedback                     8                     0                     1                   415                     0                     1                     3                     0                     0                     0 
+General Inquiry                           0                     0                     0                     0                    83                     0                     0                     0                     0                     0 
+Account & Password                        0                     0                     0                     0                     1                    96                     0                     1                     0                     0 
+Technical Support                         0                     0                     0                     0                     0                     1                    99                     0                     0                     0 
+Policy Changes                            0                     0                     0                     0                     0                     0                     0                    83                     0                     0 
+Emergency Services                        0                     0                     0                     0                     0                     0                     0                     0                    80                     0 
+Refund & Returns                          0                     0                     0                     0                     1                     0                     0                     0                     0                    95 
+
+PER-CATEGORY PERFORMANCE
+────────────────────────────────────────────────────────────────────────────────
+Category                   Precision     Recall         F1    Support
+────────────────────────────────────────────────────────────────────────────────
+Claims                        0.9926     0.9909     0.9917       1211
+Policy & Coverage             0.9994     0.9944     0.9969       1615
+Billing & Payments            0.9836     0.9976     0.9906        421
+Complaints & Feedback         0.9976     0.9696     0.9834        428
+General Inquiry               0.9121     1.0000     0.9540         83
+Account & Password            0.9796     0.9796     0.9796         98
+Technical Support             0.9429     0.9900     0.9659        100
+Policy Changes                0.9765     1.0000     0.9881         83
+Emergency Services            0.9756     1.0000     0.9877         80
+Refund & Returns              1.0000     0.9896     0.9948         96
+
+BUSINESS-ORIENTED METRICS
+────────────────────────────────────────────────────────────────────────────────
+Correct Routing (Tickets):      4,177
+Total Routing Rewards:          417.7000
+Total Routing Penalties:        70.5000
+Business Score:                 347.2000
+Normalized Business Score:      0.082372
+  (per ticket, accounting for operational cost)
+
+COMPLEX QUERY ANALYSIS
+────────────────────────────────────────────────────────────────────────────────
+No complex queries tracked in this evaluation
+
+AUTOMATION & OPERATIONAL EFFICIENCY
+────────────────────────────────────────────────────────────────────────────────
+Auto-Routing Threshold:         0.70 confidence
+Auto-Routed Tickets:            4,037 (95.78%)
+  → Correct auto-routes:        4,028 (1.00%)
+Human-Handled Tickets:          178 (4.22%)
+  → Correct after human review: 149 (0.84%)
+
+CONFIDENCE DISTRIBUTION
+────────────────────────────────────────────────────────────────────────────────
+Mean Confidence:                0.9265
+Median Confidence:              0.9588
+Std Dev:                        0.1024
+Range:                          0.1683 - 1.0000
+
+BUSINESS IMPACT MODEL: SLA RISK FACTORS
+────────────────────────────────────────────────────────────────────────────────
+Category                        Risk Factor
+────────────────────────────────────────────────────────────────────────────────
+Claims                         2.5×
+Policy & Coverage              1.2×
+Billing & Payments             1.3×
+Complaints & Feedback          2.0×
+General Inquiry                1.0×
+Account & Password             1.1×
+Technical Support              1.5×
+Policy Changes                 1.8×
+Emergency Services             3.0×
+Refund & Returns               1.2×
+
+METHODOLOGY NOTES
+────────────────────────────────────────────────────────────────────────────────
+• This is a STRICT 10-CLASS CLASSIFICATION evaluation
+• NO catch-all or contextual category used
+• Every ticket is assigned to one of 10 departments
+• Complex/ambiguous tickets are INCLUDED in the primary benchmark
+• LLM escalation (if applicable) is tracked separately
+• Business metrics reflect operational impact of misrouting
+• Accuracy formula: Correct predictions / Total tickets
+
+================================================================================

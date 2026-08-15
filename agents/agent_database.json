@@ -1,0 +1,206 @@
+{
+  "AGENT_004": {
+    "name": "Robert Vance",
+    "email": "r.vance@company.com",
+    "team": "Complaints & Feedback",
+    "status": "available",
+    "skills": [
+      "\"Complaints & Feedback\"",
+      "\"Compliance Management\"",
+      "\"De-escalation\""
+    ],
+    "active_tickets": 5,
+    "resolved_tickets": 2,
+    "rating": 5.0,
+    "rating_count": 0,
+    "total_rating_sum": 0,
+    "joined_date": "2026-07-03",
+    "salesforce_contact_id": "003dM000024dNB7QAM",
+    "salesforce_username": "r.vance@company.com",
+    "hashed_password": "$2b$12$tY/eFhtukuG22u.zj6tmj.6cFHIa7HRWx4mWUf0439DXZSFsRJqIu"
+  },
+  "AGENT_005": {
+    "name": "Chloe Dubois",
+    "email": "c.dubois@company.com",
+    "team": "General Inquiry",
+    "status": "available",
+    "skills": [
+      "\"General Inquiry\"",
+      "\"Identity Verification\""
+    ],
+    "active_tickets": 5,
+    "resolved_tickets": 0,
+    "rating": 5.0,
+    "rating_count": 0,
+    "total_rating_sum": 0,
+    "joined_date": "2026-07-03",
+    "salesforce_contact_id": "003dM000024dOlVQAU",
+    "salesforce_username": "c.dubois@company.com",
+    "hashed_password": "$2b$12$29Wo.Gl8IyWwjhwCHomcbOEtj2TOGhKehcQdJ3lP4Cx3GxBvaRGGq"
+  },
+  "AGENT_007": {
+    "name": "Olivia Martinez",
+    "email": "o.martinez@company.com",
+    "team": "Technical Support",
+    "status": "available",
+    "skills": [
+      "\"Technical Support\"",
+      "\"IT Troubleshooting\"",
+      "\"Engineering Escalations\""
+    ],
+    "active_tickets": 6,
+    "resolved_tickets": 0,
+    "rating": 5.0,
+    "rating_count": 0,
+    "total_rating_sum": 0,
+    "joined_date": "2026-07-03",
+    "salesforce_contact_id": "003dM000024dPG9QAM",
+    "salesforce_username": "o.martinez@company.com",
+    "hashed_password": "$2b$12$EhHthkTLXF.1.i4h42/dd.YvcYe3hSEd/DK064H8p4coqEk6.Z.Su"
+  },
+  "AGENT_010": {
+    "name": "Aisha Patel",
+    "email": "a.patel@company.com",
+    "team": "Policy Changes",
+    "status": "available",
+    "skills": [
+      "\"Policy Changes\"",
+      "\"Billing & Payments\"",
+      "\"Endorsement Processing\""
+    ],
+    "active_tickets": 4,
+    "resolved_tickets": 1,
+    "rating": 5.0,
+    "rating_count": 0,
+    "total_rating_sum": 0,
+    "joined_date": "2026-07-03",
+    "salesforce_contact_id": "003dM000024dLzbQAE",
+    "salesforce_username": "a.patel@company.com",
+    "hashed_password": "$2b$12$aL.fgHzeaph85yef1KprBuVd.7iBXW8zhRRBCQWnoqwnPD0qC8bDS"
+  },
+  "AGENT_011": {
+    "name": "Liam O'Connor",
+    "email": "l.oconnor@company.com",
+    "team": "Emergency Services",
+    "status": "available",
+    "skills": [
+      "\"Claims\"",
+      "\"Emergency Services\"",
+      "\"High-Priority Escalations\""
+    ],
+    "active_tickets": 3,
+    "resolved_tickets": 1,
+    "rating": 5.0,
+    "rating_count": 4,
+    "total_rating_sum": 20,
+    "joined_date": "2026-08-12",
+    "salesforce_id": "005dM00000gNyRVQA0",
+    "salesforce_contact_id": "003dM00002FUnXtQAL",
+    "salesforce_username": "l.oconnor@company.com",
+    "hashed_password": "$2b$12$FtLj0JK1jV/EMdkYNwVAje2YFMrKyPlAKcbtFoJEDTwgwuip4UZFq"
+  },
+  "AGENT_012": {
+    "name": "Saarah Jenkins",
+    "email": "ss.jenkins@company.com",
+    "team": "Claims",
+    "status": "available",
+    "skills": [
+      "\"Claims\"",
+      "\"Claim Ticket Creation\"",
+      "\"Adjuster Coordination\""
+    ],
+    "active_tickets": 10,
+    "resolved_tickets": 1,
+    "rating": 4.7,
+    "rating_count": 7,
+    "total_rating_sum": 33,
+    "joined_date": "2026-08-12",
+    "salesforce_id": "005dM00000gOlgjQAC",
+    "salesforce_contact_id": "003dM00002FYa94QAD",
+    "salesforce_username": "ss.jenkins@company.com",
+    "hashed_password": "$2b$12$wJqeRUoDjk1MIU6OkpuhguRG4UYiQ9.AXqO9bePTR3wXgAgTNlv7S"
+  },
+  "AGENT_013": {
+    "name": "Jamal Washington",
+    "email": "j.washington@company.com",
+    "team": "Account & Password",
+    "status": "available",
+    "skills": [
+      "\"Account & Password\"",
+      "\"Identity Verification\""
+    ],
+    "active_tickets": 3,
+    "resolved_tickets": 0,
+    "rating": 5.0,
+    "rating_count": 0,
+    "total_rating_sum": 0,
+    "joined_date": "2026-08-14",
+    "salesforce_id": "005dM00000gc5BNQAY",
+    "salesforce_contact_id": "003dM00002HIC38QAH",
+    "salesforce_username": "j.washington@company.com",
+    "hashed_password": "$2b$12$4wBxDOkvXwUOvGn982XLweuDIlEJuQWbNDjzCe2pAvWnbQSbxOwma"
+  },
+  "AGENT_014": {
+    "name": "David Park",
+    "email": "d.park@company.com",
+    "team": "Refund & Returns",
+    "status": "available",
+    "skills": [
+      "\"Refund & Returns\"",
+      "\"Customer Success\"",
+      "\"Payment Refunds\""
+    ],
+    "active_tickets": 11,
+    "resolved_tickets": 0,
+    "rating": 4.3,
+    "rating_count": 6,
+    "total_rating_sum": 26,
+    "joined_date": "2026-08-14",
+    "salesforce_id": "005dM00000gc5g1QAA",
+    "salesforce_contact_id": "003dM00002HIdT7QAL",
+    "salesforce_username": "d.park@company.com",
+    "hashed_password": "$2b$12$Kk6OAhgz/nDjqvAHxh3PCeFyQ1QRcb6uaLdkd3TIqUASFt36q7V4K"
+  },
+  "AGENT_015": {
+    "name": "Marcus Trevino",
+    "email": "m.trevino@company.com",
+    "team": "Policy & Coverage",
+    "status": "available",
+    "skills": [
+      "\"Policy & Coverage\"",
+      "\"Policy Changes\"",
+      "\"Underwriting Liaison\""
+    ],
+    "active_tickets": 2,
+    "resolved_tickets": 0,
+    "rating": 4.0,
+    "rating_count": 2,
+    "total_rating_sum": 8,
+    "joined_date": "2026-08-14",
+    "salesforce_id": "005dM00000gc70HQAQ",
+    "salesforce_contact_id": "003dM00002HIk6PQAT",
+    "salesforce_username": "m.trevino@company.com",
+    "hashed_password": "$2b$12$/GNXHW5/1RCqgLGs1i9kIukf/AnFUbJgQGVPpP/NyButaigLrhuV6"
+  },
+  "AGENT_016": {
+    "name": "Emily Chen",
+    "email": "e.chen@company.com",
+    "team": "Billing & Payments",
+    "status": "available",
+    "skills": [
+      "\"Billing & Payments\"",
+      "\"Finance\"",
+      "\"Payment History Analysis\""
+    ],
+    "active_tickets": 18,
+    "resolved_tickets": 0,
+    "rating": 4.6,
+    "rating_count": 14,
+    "total_rating_sum": 64,
+    "joined_date": "2026-08-14",
+    "salesforce_id": "005dM00000gbwckQAA",
+    "salesforce_contact_id": "003dM00002HIkZRQA1",
+    "salesforce_username": "e.chen@company.com",
+    "hashed_password": "$2b$12$4T/c3GUoajsEQ3A.kIutM.DB2a3oYAmeEEFU.iu78qDo5ztCQE//u"
+  }
+}

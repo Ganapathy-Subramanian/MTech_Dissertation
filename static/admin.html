@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NexusCRM — Admin Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg-void:#060a12;--bg-card:#111827;--bg-input:#0a1020;--border:#1e2d45;--border-focus:#2a7fff;--blue:#2a7fff;--blue-bright:#4d9fff;--blue-glow:rgba(42,127,255,0.25);--green:#10d88e;--orange:#f59e0b;--red:#ff4d6d;--purple:#a78bfa;--text-primary:#f0f4ff;--text-secondary:#8899b4;--text-muted:#4a5a74;--font-main:'Sora',sans-serif;--font-mono:'JetBrains Mono',monospace;}
+html,body{height:100%;font-family:var(--font-main);background:var(--bg-void);color:var(--text-primary);overflow:hidden;}
+.layout{display:flex;height:100vh;}
+.sidebar{width:220px;min-width:220px;background:var(--bg-card);border-right:1px solid var(--border);display:flex;flex-direction:column;}
+.sidebar-logo{padding:18px 20px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border);}
+.logo-icon{width:32px;height:32px;background:linear-gradient(135deg,#2a7fff,#10d88e);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;color:#fff;}
+.logo-text{font-size:16px;font-weight:700;letter-spacing:-0.3px;}
+.sidebar-nav{flex:1;padding:12px 10px;overflow-y:auto;}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;cursor:pointer;color:var(--text-secondary);font-size:13px;font-weight:500;transition:all 0.15s;margin-bottom:2px;}
+.nav-item:hover{background:rgba(42,127,255,0.08);color:var(--text-primary);}
+.nav-item.active{background:rgba(42,127,255,0.15);color:var(--blue);}
+.nav-icon{font-size:16px;width:20px;text-align:center;}
+.sidebar-footer{padding:12px 10px;border-top:1px solid var(--border);}
+.user-info{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:8px;cursor:pointer;transition:background 0.15s;}
+.user-info:hover{background:rgba(255,255,255,0.04);}
+.avatar{width:30px;height:30px;background:linear-gradient(135deg,#a78bfa,#ef4444);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;}
+.user-name{font-size:13px;font-weight:500;}
+.user-role{font-size:11px;color:var(--text-muted);}
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;}
+.topbar{height:60px;background:var(--bg-card);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 24px;flex-shrink:0;}
+.topbar-title{font-size:16px;font-weight:600;}
+.topbar-right{display:flex;gap:10px;}
+.btn{padding:8px 14px;border:none;border-radius:8px;font-family:var(--font-main);font-size:13px;font-weight:600;cursor:pointer;transition:all 0.2s;}
+.btn-primary{background:var(--blue);color:#fff;}
+.btn-primary:hover{background:var(--blue-bright);}
+.btn-ghost{background:transparent;color:var(--text-secondary);border:1px solid var(--border);}
+.btn-ghost:hover{color:var(--text-primary);background:rgba(255,255,255,0.04);}
+.btn-danger{background:rgba(255,77,109,0.12);color:var(--red);border:1px solid rgba(255,77,109,0.2);}
+.btn-danger:hover{background:rgba(255,77,109,0.22);}
+.btn-sm{padding:5px 10px;font-size:12px;border-radius:6px;}
+.badge{display:inline-flex;align-items:center;min-width:20px;height:20px;border-radius:10px;font-size:11px;font-weight:600;padding:0 6px;}
+.badge-blue{background:rgba(42,127,255,0.2);color:var(--blue);}
+.badge-green{background:rgba(16,216,142,0.15);color:var(--green);}
+.badge-orange{background:rgba(245,158,11,0.15);color:var(--orange);}
+.badge-red{background:rgba(255,77,109,0.15);color:var(--red);}
+.badge-gray{background:rgba(255,255,255,0.08);color:var(--text-secondary);}
+.content{flex:1;overflow-y:auto;padding:24px;}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:24px;}
+.stat-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:16px 18px;position:relative;overflow:hidden;}
+.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent,var(--blue));}
+.stat-label{font-size:11px;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-muted);margin-bottom:8px;}
+.stat-value{font-size:24px;font-weight:700;font-family:var(--font-mono);letter-spacing:-1px;}
+.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:10px;}
+.section-title{font-size:15px;font-weight:600;}
+.data-table{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;overflow:hidden;overflow-x:auto;}
+.tr{display:grid;align-items:center;padding:13px 18px;border-bottom:1px solid var(--border);transition:background 0.15s;gap:12px;}
+.tr:last-child{border-bottom:none;}
+.tr.clickable{cursor:pointer;}
+.tr.clickable:hover{background:rgba(42,127,255,0.05);}
+.tr.header{background:rgba(255,255,255,0.02);cursor:default;}
+.th{font-size:11px;text-transform:uppercase;letter-spacing:0.7px;color:var(--text-muted);}
+.name{font-size:13px;font-weight:500;}
+.sub{font-size:11px;font-family:var(--font-mono);color:var(--text-muted);margin-top:2px;}
+.empty-state{padding:48px;text-align:center;color:var(--text-muted);}
+.empty-icon{font-size:40px;margin-bottom:12px;opacity:0.5;}
+/* Modal */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);backdrop-filter:blur(4px);z-index:100;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity 0.25s;}
+#rerouteModal{z-index:120;}
+.overlay.open{opacity:1;pointer-events:all;}
+.modal{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;width:100%;max-width:540px;max-height:90vh;display:flex;flex-direction:column;box-shadow:0 32px 64px rgba(0,0,0,0.8);transform:scale(0.96);transition:transform 0.25s;}
+.overlay.open .modal{transform:scale(1);}
+.modal-header{padding:20px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+.modal-title{font-size:15px;font-weight:600;}
+.modal-close{background:rgba(255,255,255,0.07);border:1px solid var(--border);color:var(--text-secondary);width:30px;height:30px;border-radius:7px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all 0.15s;}
+.modal-close:hover{background:rgba(255,77,109,0.15);color:var(--red);}
+.modal-body{flex:1;overflow-y:auto;padding:20px 24px;}
+.modal-footer{padding:16px 24px;border-top:1px solid var(--border);display:flex;gap:10px;justify-content:flex-end;flex-shrink:0;}
+.field{margin-bottom:14px;}
+label{display:block;font-size:12px;font-weight:500;color:var(--text-secondary);margin-bottom:5px;text-transform:uppercase;letter-spacing:0.7px;}
+input,select{width:100%;padding:10px 12px;background:var(--bg-input);border:1px solid var(--border);border-radius:8px;color:var(--text-primary);font-size:13px;font-family:var(--font-main);outline:none;transition:border-color 0.2s;}
+input:focus,select:focus{border-color:var(--border-focus);}
+input::placeholder{color:var(--text-muted);}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.form-error{font-size:12px;color:var(--red);margin-top:8px;display:none;}
+.form-error.show{display:block;}
+.form-success{font-size:12px;color:var(--green);margin-top:8px;display:none;}
+.form-success.show{display:block;}
+/* Ticket modal */
+.tmodal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);backdrop-filter:blur(4px);z-index:110;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity 0.25s;}
+.tmodal-overlay.open{opacity:1;pointer-events:all;}
+.tmodal{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;width:100%;max-width:660px;max-height:90vh;display:flex;flex-direction:column;box-shadow:0 32px 64px rgba(0,0,0,0.8);transform:scale(0.96);transition:transform 0.25s;}
+.tmodal-overlay.open .tmodal{transform:scale(1);}
+.modal-body2{flex:1;overflow-y:auto;padding:20px 24px;}
+.modal-footer2{padding:16px 24px;border-top:1px solid var(--border);display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;flex-shrink:0;}
+.modal-footer2 textarea{flex:1;min-width:180px;padding:10px;background:var(--bg-input);border:1px solid var(--border);border-radius:8px;color:var(--text-primary);font-size:13px;font-family:var(--font-main);resize:none;height:70px;outline:none;transition:border-color 0.2s;}
+.modal-footer2 textarea:focus{border-color:var(--border-focus);}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
+.info-item{background:var(--bg-input);border:1px solid var(--border);border-radius:8px;padding:10px 12px;}
+.info-item .lbl{font-size:10px;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-muted);display:block;margin-bottom:3px;}
+.info-item .val{font-size:13px;font-weight:500;}
+.conv-title{font-size:11px;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-muted);margin-bottom:10px;}
+.messages{display:flex;flex-direction:column;gap:9px;}
+.msg{padding:11px 13px;border-radius:9px;font-size:13px;line-height:1.6;}
+.msg.customer{background:rgba(42,127,255,0.1);border:1px solid rgba(42,127,255,0.18);}
+.msg.agent{background:rgba(16,216,142,0.08);border:1px solid rgba(16,216,142,0.15);}
+.msg-meta{font-size:11px;color:var(--text-muted);margin-bottom:4px;display:flex;gap:6px;}
+.msg-from{font-weight:600;}
+.msg-from.customer{color:var(--blue);}
+.msg-from.agent{color:var(--green);}
+.msg-body{color:var(--text-secondary);}
+.status-select{background:var(--bg-input);border:1px solid var(--border);color:var(--text-primary);padding:7px 10px;border-radius:7px;font-size:13px;font-family:var(--font-main);outline:none;}
+.spinner{width:20px;height:20px;border:2px solid var(--border);border-top-color:var(--blue);border-radius:50%;animation:spin 0.6s linear infinite;margin:0 auto;}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(max-width:768px){.sidebar{display:none;}.stats{grid-template-columns:1fr 1fr;}.info-grid{grid-template-columns:1fr;}.row2{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-icon">N</div>
+      <div class="logo-text">NexusCRM</div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-item active" onclick="setSection('overview',this)"><span class="nav-icon">📊</span>Overview</div>
+      <div class="nav-item" onclick="setSection('tickets',this)"><span class="nav-icon">🎫</span>All Tickets</div>
+      <div class="nav-item" onclick="setSection('agents',this)"><span class="nav-icon">👥</span>Agents</div>
+      <div class="nav-item" onclick="window.location.href='system-throughput.html'"><span class="nav-icon">📈</span>System Throughput</div>
+      <!-- <div class="nav-item" onclick="window.location.href='test-coverage.html'"><span class="nav-icon">✅</span>Test Coverage</div> -->
+      <div class="nav-item" onclick="window.location.href='memory-growth.html'"><span class="nav-icon">🧠</span>Memory Growth</div>
+      <div class="nav-item" onclick="setSection('points',this)"><span class="nav-icon">🏅</span>Points</div>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="user-info" onclick="logout()">
+        <div class="avatar">A</div>
+        <div>
+          <div class="user-name" id="sidebarName">Admin</div>
+          <div class="user-role">Administrator</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <main class="main">
+    <header class="topbar">
+      <div class="topbar-title" id="pageTitle">Overview</div>
+      <div class="topbar-right">
+        <button class="btn btn-ghost" onclick="logout()">Sign Out</button>
+      </div>
+    </header>
+    <div class="content" id="mainContent">
+      <div style="text-align:center;padding:60px;"><div class="spinner"></div></div>
+    </div>
+  </main>
+</div>
+
+<!-- Add Agent Modal -->
+<div class="overlay" id="agentModal" onclick="closeAgentModal(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Add New Agent</div>
+      <button class="modal-close" onclick="document.getElementById('agentModal').classList.remove('open')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="row2">
+        <div class="field"><label>Full Name</label><input id="agentName" placeholder="Jane Smith"/></div>
+        <div class="field"><label>Email</label><input id="agentEmail" type="email" placeholder="jane@company.com"/></div>
+      </div>
+      <div class="row2">
+        <div class="field"><label>Team</label>
+          <select id="agentTeam">
+            <option value="Claims">Claims</option>
+            <option value="Policy & Coverage">Policy & Coverage</option>
+            <option value="Billing & Payments">Billing & Payments</option>
+            <option value="Complaints & Feedback">Complaints & Feedback</option>
+            <option value="General Inquiry">General Inquiry</option>
+            <option value="Account & Password">Account & Password</option>
+            <option value="Technical Support">Technical Support</option>
+            <option value="Policy Changes">Policy Changes</option>
+            <option value="Emergency Services">Emergency Services</option>
+            <option value="Refund & Returns">Refund & Returns</option>
+          </select>
+        </div>
+        <div class="field"><label>Skills (comma-separated)</label><input id="agentSkills" placeholder="billing, refunds"/></div>
+      </div>
+      <div class="form-error" id="agentErr"></div>
+      <div class="form-success" id="agentSucc"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="document.getElementById('agentModal').classList.remove('open')">Cancel</button>
+      <button class="btn btn-primary" id="addAgentBtn" onclick="submitAgent()">Add Agent</button>
+    </div>
+  </div>
+</div>
+
+<!-- Ticket Detail Modal -->
+<div class="tmodal-overlay" id="ticketOverlay" onclick="closeTModal(event)">
+  <div class="tmodal">
+    <div class="modal-header">
+      <div>
+        <div class="modal-title" id="tModalTitle">Ticket Details</div>
+        <div style="font-size:12px;color:var(--text-muted);margin-top:3px;" id="tModalSub"></div>
+      </div>
+      <button class="modal-close" onclick="document.getElementById('ticketOverlay').classList.remove('open')">✕</button>
+    </div>
+    <div class="modal-body2" id="tModalBody"><div style="text-align:center;padding:40px;"><div class="spinner"></div></div></div>
+    <div class="modal-footer2">
+      <div style="display:flex;flex-direction:column;gap:8px;flex:1;">
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+          <span style="font-size:12px;color:var(--text-muted)">Status:</span>
+          <select class="status-select" id="tStatusSelect">
+            <option value="keep-status">— Keep —</option>
+            <option value="New">New</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Resolved">Resolved</option>
+            <option value="Closed">Closed</option>
+          </select>
+        </div>
+        <textarea id="tReplyText" placeholder="Add admin note or response..."></textarea>
+      </div>
+      <button class="btn btn-ghost btn-sm" onclick="openRerouteModal()">Reroute</button>
+      <button class="btn btn-primary" onclick="sendAdminReply()">Send</button>
+      <button class="btn btn-danger btn-sm" onclick="deleteTicket()">Delete</button>
+    </div>
+  </div>
+</div>
+
+<!-- Reroute Modal -->
+<div class="overlay" id="rerouteModal" onclick="closeRerouteModal(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Reroute Ticket</div>
+      <button class="modal-close" onclick="document.getElementById('rerouteModal').classList.remove('open')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="field"><label>Target Agent ID (optional)</label><input id="rerouteAgentId" placeholder="AGENT_002"/></div>
+      <div class="field"><label>New Category (optional)</label>
+        <select id="rerouteCategory">
+          <option value="">— Keep Current —</option>
+          <option>Claims</option>
+          <option>Policy &amp; Coverage</option>
+          <option>Billing &amp; Payments</option>
+          <option>Complaints &amp; Feedback</option>
+          <option>General Inquiry</option>
+          <option>Account &amp; Password</option>
+          <option>Technical Support</option>
+          <option>Policy Changes</option>
+          <option>Emergency Services</option>
+          <option>Refund &amp; Returns</option>
+        </select>
+      </div>
+      <div class="field"><label>Ticket Text (used for learning)</label><textarea id="rerouteText" style="height:100px" placeholder="Optional: original customer text"></textarea></div>
+      <div class="form-error" id="rerouteErr"></div>
+      <div class="form-success" id="rerouteSucc"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="document.getElementById('rerouteModal').classList.remove('open')">Cancel</button>
+      <button class="btn btn-primary" onclick="submitReroute()">Reroute Ticket</button>
+    </div>
+  </div>
+</div>
+
+<!-- Agent toast -->
+<div id="agentToast" style="position:fixed;right:18px;bottom:18px;padding:10px 14px;border-radius:6px;background:var(--bg-success, #10d88e);color:#fff;box-shadow:0 6px 18px rgba(0,0,0,0.12);display:none;z-index:9999;font-weight:600"></div>
+
+<script>
+// Reroute modal functions and submission
+function openRerouteModal(){
+  document.getElementById('rerouteAgentId').value='';
+  document.getElementById('rerouteCategory').value='';
+  document.getElementById('rerouteText').value='';
+  document.getElementById('rerouteErr').classList.remove('show');
+  document.getElementById('rerouteSucc').classList.remove('show');
+  document.getElementById('rerouteModal').classList.add('open');
+}
+function closeRerouteModal(e){if(e && e.target !== document.getElementById('rerouteModal')) return;document.getElementById('rerouteModal').classList.remove('open');}
+async function submitReroute(){
+  const agentId=document.getElementById('rerouteAgentId').value.trim();
+  const category=document.getElementById('rerouteCategory').value;
+  const text=document.getElementById('rerouteText').value.trim();
+  const err=document.getElementById('rerouteErr'),succ=document.getElementById('rerouteSucc');err.classList.remove('show');succ.classList.remove('show');
+  if(!currentTicketId){err.textContent='No ticket selected.';err.classList.add('show');return;}
+  try{
+    const payload={};
+    if(agentId) payload.to_agent_id=agentId;
+    if(category) payload.new_category=category;
+    if(text) payload.ticket_text=text;
+    const r=await fetch(`/ticket/${currentTicketId}/reroute`,{method:'POST',headers:authHeader(),body:JSON.stringify(payload)});
+    const d=await r.json();
+    if(!r.ok) throw new Error(d.detail||JSON.stringify(d));
+    succ.textContent='Ticket rerouted successfully.';succ.classList.add('show');
+    showAgentToast('Agent list updated');
+    setTimeout(()=>{document.getElementById('rerouteModal').classList.remove('open');openTicket(currentTicketId);loadAgents();},1000);
+  }catch(e){err.textContent=e.message;err.classList.add('show');}
+}
+</script>
+<script>
+let token=null,currentTicketId=null;
+
+async function init(){
+  let u=localStorage.getItem('user');token=localStorage.getItem('token');
+  if(!u||!token){
+    // try development autologin
+    try{const r=await fetch('/admin/autologin'); if(r.ok){const d=await r.json();localStorage.setItem('token',d.token);localStorage.setItem('user',d.email);token=d.token;u=d.email;document.getElementById('sidebarName').textContent=u||'Admin';loadOverview();return;}}catch(e){}
+    window.location.href='login.html';return;
+  }
+  document.getElementById('sidebarName').textContent=u.name||'Admin';
+  loadOverview();
+}
+
+function showAgentToast(msg){
+  const t=document.getElementById('agentToast');t.textContent=msg;t.style.display='block';t.style.opacity='1';
+  setTimeout(()=>{t.style.transition='opacity 300ms';t.style.opacity='0';setTimeout(()=>t.style.display='none',300);},2500);
+}
+function authHeader(){return{'Authorization':`Bearer ${token}`,'Content-Type':'application/json'};}
+function logout(){localStorage.clear();window.location.href='login.html';}
+function setSection(s,el){document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));el.classList.add('active');
+  const titles = {overview:'Overview',tickets:'All Tickets',agents:'Agents',points:'Points'};
+  document.getElementById('pageTitle').textContent = titles[s] || 'Admin';
+  if(s==='overview') loadOverview();
+  else if(s==='tickets') loadAllTickets();
+  else if(s==='agents') loadAgents();
+  else if(s==='points') loadPoints();
+}
+
+async function loadPoints(){
+  const c=document.getElementById('mainContent');
+  c.innerHTML='<div style="text-align:center;padding:60px;"><div class="spinner"></div></div>';
+  try{
+    const r=await fetch('/analytics/points',{headers:authHeader()});
+    const d=await r.json();
+    const pts = d.points||{};
+    const rows = Object.keys(pts).sort((a,b)=>pts[b].points-pts[a].points).map(k=>{
+      const p = pts[k];
+      return `<div class="tr" style="grid-template-columns:1fr 120px 180px;"><div><div class="name">${esc(k)}</div></div><div style="font-family:var(--font-mono);font-size:15px">${p.points}</div><div style="display:flex;gap:8px;"><button class="btn btn-ghost btn-sm" onclick="adjustPoint('${esc(k)}',1)">+1</button><button class="btn btn-danger btn-sm" onclick="adjustPoint('${esc(k)}',-1)">-1</button></div></div>`;
+    }).join('')||'<div class="tr"><div class="empty-state">No points recorded yet.</div></div>';
+    c.innerHTML=`<div class="section-header"><div class="section-title">Category Points</div></div><div class="data-table"><div class="tr header" style="grid-template-columns:1fr 120px 180px;"><div class="th">Category</div><div class="th">Points</div><div class="th">Actions</div></div>${rows}</div>`;
+  }catch(e){c.innerHTML='<div class="empty-state"><div class="empty-icon">⚠️</div><p>Error loading points</p></div>'}
+}
+
+async function adjustPoint(category,delta){
+  try{
+    const r=await fetch('/analytics/points/adjust',{method:'POST',headers:authHeader(),body:JSON.stringify({category,delta})});
+    if(!r.ok)throw new Error('Failed');
+    loadPoints();
+  }catch(e){alert('Error: '+e.message)}
+}
+
+async function loadOverview(){
+  const c=document.getElementById('mainContent');
+  c.innerHTML='<div style="text-align:center;padding:60px;"><div class="spinner"></div></div>';
+  try{
+    const r=await fetch('/salesforce/dashboard',{headers:authHeader()});
+    const d=await r.json();
+    const tickets=d.tickets||[];
+    c.innerHTML=`
+      <div class="stats">
+        <div class="stat-card" style="--accent:#2a7fff"><div class="stat-label">Total Tickets</div><div class="stat-value">${d.total_tickets||tickets.length}</div></div>
+        <div class="stat-card" style="--accent:#f59e0b"><div class="stat-label">Open</div><div class="stat-value">${d.open_tickets||0}</div></div>
+        <div class="stat-card" style="--accent:#10d88e"><div class="stat-label">Resolved</div><div class="stat-value">${d.resolved_tickets||0}</div></div>
+        <div class="stat-card" style="--accent:#ff4d6d"><div class="stat-label">Escalated</div><div class="stat-value">${d.escalated_tickets||0}</div></div>
+      </div>
+      <div class="section-header"><div class="section-title">Recent Tickets</div><button class="btn btn-ghost btn-sm" onclick="setSection('tickets',document.querySelectorAll('.nav-item')[1])">View All</button></div>
+      ${renderTicketTable(tickets.slice(0,8))}`;
+  }catch(e){c.innerHTML='<div class="empty-state"><div class="empty-icon">⚠️</div><p>Error loading dashboard</p></div>';}
+}
+
+async function loadAllTickets(){
+  const c=document.getElementById('mainContent');
+  c.innerHTML='<div style="text-align:center;padding:60px;"><div class="spinner"></div></div>';
+  try{
+    const r=await fetch('/salesforce/dashboard',{headers:authHeader()});
+    const d=await r.json();
+    const tickets=d.tickets||[];
+    c.innerHTML=`<div class="section-header"><div class="section-title">All Tickets <span class="badge badge-blue">${tickets.length}</span></div></div>${renderTicketTable(tickets)}`;
+  }catch(e){c.innerHTML='<div class="empty-state"><div class="empty-icon">⚠️</div><p>Error</p></div>';}
+}
+
+function renderTicketTable(tickets){
+  if(!tickets.length)return`<div class="data-table"><div class="empty-state"><div class="empty-icon">📭</div><p>No tickets found.</p></div></div>`;
+  return`<div class="data-table">
+    <div class="tr header" style="grid-template-columns:1fr 130px 100px 100px 80px;">
+      <div class="th">Subject</div><div class="th">Category</div><div class="th">Status</div><div class="th">Priority</div><div class="th">Date</div>
+    </div>
+    ${tickets.map(t=>`<div class="tr clickable" style="grid-template-columns:1fr 130px 100px 100px 80px;" onclick="openTicket('${t.id}')">
+      <div><div class="name">${esc(t.subject||'Ticket')}</div><div class="sub">${t.id}</div></div>
+      <div style="font-size:12px;color:var(--text-secondary)">${esc(t.category||'—')}</div>
+      <div>${statusBadge(t.status)}</div>
+      <div>${priorityBadge(t.priority)}</div>
+      <div style="font-size:12px;color:var(--text-muted)">${formatDate(t.created_date || t.created)}</div>
+    </div>`).join('')}
+  </div>`;
+}
+
+async function loadAgents(){
+  const c=document.getElementById('mainContent');
+  c.innerHTML='<div style="text-align:center;padding:60px;"><div class="spinner"></div></div>';
+  try{
+    const r=await fetch('/admin/agents',{headers:authHeader()});
+    const d=await r.json();
+    const agents=d.agents||[];
+    c.innerHTML=`
+      <div class="section-header">
+        <div class="section-title">Agents <span class="badge badge-blue">${agents.length}</span></div>
+        <button class="btn btn-primary btn-sm" onclick="openAddAgentModal()">+ Add Agent</button>
+      </div>
+      <div class="data-table">
+        <div class="tr header" style="grid-template-columns:1fr 100px 100px 80px 80px 80px;">
+          <div class="th">Agent</div><div class="th">Team</div><div class="th">Status</div><div class="th">Tickets</div><div class="th">Rating</div><div class="th">Actions</div>
+        </div>
+        ${agents.map(a=>`<div class="tr" style="grid-template-columns:1fr 100px 100px 80px 80px 80px;">
+          <div><div class="name">${esc(a.name)}</div><div class="sub">${esc(a.email)}</div></div>
+          <div style="font-size:12px">${esc(a.team||'—')}</div>
+          <div>${statusBadge(a.status)}</div>
+          <div><span class="badge badge-blue">${a.active_tickets||0}</span></div>
+          <div style="font-size:13px;font-family:var(--font-mono);">⭐ ${(a.rating||5).toFixed(1)}</div>
+          <div style="display:flex;gap:4px;">
+             <button class="btn btn-ghost btn-sm" onclick="editAgent('${a.agent_id}','${esc(a.name)}','${esc(a.email)}','${esc(a.team)}','${esc(a.skills?a.skills.join(','):'')}');">Edit</button>
+             <button class="btn btn-danger btn-sm" onclick="deleteAgent('${a.agent_id}')">Del</button>
+          </div>
+        </div>`).join('')}
+      </div>`;
+  }catch(e){c.innerHTML='<div class="empty-state"><div class="empty-icon">⚠️</div><p>Error</p></div>';}
+}
+
+function statusBadge(s){const cls={new:'badge-blue',open:'badge-orange','in progress':'badge-orange',resolved:'badge-green',closed:'badge-gray',escalated:'badge-red',available:'badge-green',busy:'badge-orange',offline:'badge-gray',on_break:'badge-red'}[(s||'').toLowerCase()]||'badge-gray';return`<span class="badge ${cls}">${s||'—'}</span>`;}
+function priorityBadge(p){const cls={high:'badge-red',medium:'badge-orange',low:'badge-green'}[(p||'').toLowerCase()]||'badge-gray';return`<span class="badge ${cls}">${p||'—'}</span>`;}
+function formatDate(d){if(!d)return'—';try{return new Date(d).toLocaleDateString('en-US',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});}catch{return d;}}
+function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML;}
+
+let editAgentId = null;
+function openAddAgentModal() {
+  editAgentId = null;
+  document.getElementById('agentModal').classList.add('open');
+  document.querySelector('#agentModal .modal-title').textContent = 'Add New Agent';
+  document.getElementById('agentName').value = '';
+  document.getElementById('agentEmail').value = '';
+  document.getElementById('agentTeam').value = 'Claims';
+  document.getElementById('agentSkills').value = '';
+  document.getElementById('addAgentBtn').textContent = 'Add Agent';
+}
+
+function editAgent(id, name, email, team, skills) {
+  editAgentId = id;
+  document.getElementById('agentModal').classList.add('open');
+  document.querySelector('#agentModal .modal-title').textContent = 'Edit Agent';
+  document.getElementById('agentName').value = name;
+  document.getElementById('agentEmail').value = email;
+  document.getElementById('agentTeam').value = team;
+  document.getElementById('agentSkills').value = skills;
+  document.getElementById('addAgentBtn').textContent = 'Save Changes';
+}
+
+async function submitAgent(){
+  const name=document.getElementById('agentName').value.trim();
+  const email=document.getElementById('agentEmail').value.trim();
+  const team=document.getElementById('agentTeam').value;
+  const skills=document.getElementById('agentSkills').value.split(',').map(s=>s.trim()).filter(Boolean);
+  const err=document.getElementById('agentErr'),succ=document.getElementById('agentSucc'),btn=document.getElementById('addAgentBtn');
+  err.classList.remove('show');succ.classList.remove('show');
+  if(!name||!email){err.textContent='Name and email required.';err.classList.add('show');return;}
+  btn.disabled=true;btn.textContent='Saving...';
+  try{
+    let r;
+    if (editAgentId) {
+      r=await fetch(`/admin/agents/${editAgentId}`,{method:'PUT',headers:authHeader(),body:JSON.stringify({name,email,team,skills})});
+    } else {
+      r=await fetch('/admin/agents',{method:'POST',headers:authHeader(),body:JSON.stringify({name,email,team,skills})});
+    }
+    const d=await r.json();
+    if(!r.ok)throw new Error(d.detail||'Failed');
+    if (!editAgentId && d.generated_credentials) {
+      succ.innerHTML = `Agent ${name} added successfully.<br>Login Email: <b>${d.generated_credentials.salesforce_username}</b><br>Password: <b>${d.generated_credentials.salesforce_password}</b><br><i>Please copy these credentials now.</i>`;
+      succ.classList.add('show');
+      // Give them 10 seconds to copy it before closing
+      setTimeout(()=>{document.getElementById('agentModal').classList.remove('open');loadAgents();}, 10000);
+    } else {
+      succ.textContent=editAgentId ? 'Agent updated successfully.' : `Agent ${name} added successfully.`;
+      succ.classList.add('show');
+      setTimeout(()=>{document.getElementById('agentModal').classList.remove('open');loadAgents();}, 1500);
+    }
+  }catch(e){err.textContent=e.message;err.classList.add('show');}
+  btn.disabled=false;btn.textContent=editAgentId?'Save Changes':'Add Agent';
+}
+
+async function deleteAgent(id) {
+  if(!confirm('Are you sure you want to delete this agent?')) return;
+  try {
+    const r=await fetch(`/admin/agents/${id}`,{method:'DELETE',headers:authHeader()});
+    if(!r.ok) throw new Error('Failed to delete agent');
+    loadAgents();
+  } catch(e){alert('Error: '+e.message);}
+}
+
+async function openTicket(id){
+  currentTicketId=id;
+  document.getElementById('ticketOverlay').classList.add('open');
+  document.getElementById('tModalTitle').textContent=`Ticket: ${id}`;
+  document.getElementById('tModalBody').innerHTML='<div style="text-align:center;padding:40px;"><div class="spinner"></div></div>';
+  document.getElementById('tStatusSelect').value='keep-status';
+  try{
+    const r=await fetch(`/salesforce/ticket/${id}`,{headers:authHeader()});
+    const t=await r.json();
+    renderTModal(t);
+  }catch(e){document.getElementById('tModalBody').innerHTML='<div class="empty-state">Could not load.</div>';}
+}
+
+function renderTModal(t){
+  document.getElementById('tModalSub').innerHTML=`${statusBadge(t.status)} &nbsp; ${priorityBadge(t.priority)}`;
+  const msgs=t.messages||[];
+  document.getElementById('tModalBody').innerHTML=`
+    <div class="info-grid">
+      <div class="info-item"><span class="lbl">Subject</span><div class="val">${esc(t.subject||'—')}</div></div>
+      <div class="info-item"><span class="lbl">Category</span><div class="val">${esc(t.category||'—')}</div></div>
+      <div class="info-item"><span class="lbl">Customer</span><div class="val">${esc(t.customer||t.customer_id||'—')}</div></div>
+      <div class="info-item"><span class="lbl">Priority</span><div class="val">${esc(t.priority||'—')}</div></div>
+    </div>
+    <div class="conv-title">Conversation History</div>
+    <div class="messages" id="msgCont">
+      ${msgs.length?msgs.map(m=>`<div class="msg ${(m.from||'agent').toLowerCase()==='customer'?'customer':'agent'}">
+        <div class="msg-meta"><span class="msg-from ${(m.from||'agent').toLowerCase()==='customer'?'customer':'agent'}" style="font-weight:600">${(m.from||'agent').toLowerCase()==='customer'?'Customer':'Agent'}</span><span>·</span><span>${formatDate(m.time)}</span></div>
+        <div class="msg-body">${esc(m.text||'')}</div></div>`).join('')
+        :'<div style="color:var(--text-muted);font-size:13px;text-align:center;padding:20px;">No messages yet.</div>'}
+    </div>`;
+  setTimeout(()=>{const el=document.getElementById('msgCont');if(el)el.scrollTop=el.scrollHeight;},50);
+}
+
+async function sendAdminReply(){
+  const txt=document.getElementById('tReplyText').value.trim();
+  const status=document.getElementById('tStatusSelect').value;
+  if(!txt&&status==='keep-status')return;
+  const btn=document.querySelector('.modal-footer2 .btn-primary');
+  btn.disabled=true;btn.textContent='Sending...';
+  try{
+    const r=await fetch(`/ticket/${currentTicketId}/respond`,{method:'POST',headers:authHeader(),body:JSON.stringify({text:txt||'[Status updated]',status:status==='keep-status'?undefined:status})});
+    if(!r.ok)throw new Error('Failed');
+    document.getElementById('tReplyText').value='';document.getElementById('tStatusSelect').value='keep-status';
+    const tr=await fetch(`/salesforce/ticket/${currentTicketId}`,{headers:authHeader()});
+    renderTModal(await tr.json());
+  }catch(e){alert('Error: '+e.message);}
+  btn.disabled=false;btn.textContent='Send';
+}
+
+async function deleteTicket(){
+  if(!currentTicketId||!confirm(`Delete ticket ${currentTicketId}?`))return;
+  try{
+    const r=await fetch(`/ticket/${currentTicketId}`,{method:'DELETE',headers:authHeader()});
+    if(!r.ok)throw new Error('Failed');
+    document.getElementById('ticketOverlay').classList.remove('open');
+    loadAllTickets();
+  }catch(e){alert('Error: '+e.message);}
+}
+
+function closeAgentModal(e){if(e.target===document.getElementById('agentModal'))document.getElementById('agentModal').classList.remove('open');}
+function closeTModal(e){if(e.target===document.getElementById('ticketOverlay'))document.getElementById('ticketOverlay').classList.remove('open');}
+
+init();
+</script>
+</body>
+</html>

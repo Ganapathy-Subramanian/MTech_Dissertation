@@ -1,0 +1,310 @@
+{
+  "Account & Password": {
+    "points": 0,
+    "history": [
+      {
+        "delta": -2
+      },
+      {
+        "delta": 1
+      },
+      {
+        "delta": -1
+      },
+      {
+        "delta": 1
+      },
+      {
+        "delta": -1
+      },
+      {
+        "delta": -2
+      },
+      {
+        "delta": -2
+      },
+      {
+        "delta": -2
+      },
+      {
+        "delta": 1
+      },
+      {
+        "delta": -2
+      },
+      {
+        "delta": 1
+      },
+      {
+        "delta": 1
+      },
+      {
+        "delta": -2
+      },
+      {
+        "delta": -2
+      },
+      {
+        "delta": -2
+      },
+      {
+        "delta": -2
+      },
+      {
+        "delta": -2
+      },
+      {
+        "delta": 1
+      },
+      {
+        "delta": 1
+      },
+      {
+        "delta": 1
+      },
+      {
+        "delta": 1
+      },
+      {
+        "delta": 1
+      },
+      {
+        "delta": 1
+      },
+      {
+        "delta": 1
+      },
+      {
+        "delta": 1
+      },
+      {
+        "delta": 1
+      },
+      {
+        "delta": 1
+      },
+      {
+        "delta": 1
+      },
+      {
+        "delta": 1
+      },
+      {
+        "delta": 1
+      },
+      {
+        "delta": 1
+      },
+      {
+        "delta": 1
+      },
+      {
+        "delta": 1
+      },
+      {
+        "delta": 1
+      }
+    ]
+  },
+  "Emergency Services": {
+    "points": 0,
+    "history": [
+      {
+        "delta": 1
+      },
+      {
+        "delta": 1
+      },
+      {
+        "delta": 1
+      },
+      {
+        "delta": -1
+      },
+      {
+        "delta": -1
+      },
+      {
+        "delta": -1
+      },
+      {
+        "delta": -1
+      },
+      {
+        "delta": 1
+      }
+    ]
+  },
+  "Complex / Contextual": {
+    "points": 0,
+    "history": [
+      {
+        "delta": -2
+      },
+      {
+        "delta": -2
+      },
+      {
+        "delta": -2
+      },
+      {
+        "delta": 1
+      },
+      {
+        "delta": 1
+      },
+      {
+        "delta": 1
+      },
+      {
+        "delta": 1
+      },
+      {
+        "delta": 1
+      },
+      {
+        "delta": 1
+      }
+    ]
+  },
+  "Technical Support": {
+    "points": 0,
+    "history": [
+      {
+        "delta": -2
+      },
+      {
+        "delta": -1
+      },
+      {
+        "delta": -1
+      },
+      {
+        "delta": -1
+      },
+      {
+        "delta": -1
+      },
+      {
+        "delta": 1
+      },
+      {
+        "delta": 1
+      },
+      {
+        "delta": 1
+      },
+      {
+        "delta": 1
+      },
+      {
+        "delta": 1
+      },
+      {
+        "delta": 1
+      }
+    ]
+  },
+  "Billing & Payments": {
+    "points": 0,
+    "history": [
+      {
+        "delta": -2
+      },
+      {
+        "delta": -1
+      },
+      {
+        "delta": -1
+      },
+      {
+        "delta": -1
+      },
+      {
+        "delta": 1
+      },
+      {
+        "delta": 1
+      },
+      {
+        "delta": 1
+      },
+      {
+        "delta": 1
+      },
+      {
+        "delta": 1
+      }
+    ]
+  },
+  "Policy Changes": {
+    "points": 0,
+    "history": [
+      {
+        "delta": -2
+      },
+      {
+        "delta": -1
+      },
+      {
+        "delta": -1
+      },
+      {
+        "delta": -1
+      },
+      {
+        "delta": 1
+      },
+      {
+        "delta": 1
+      },
+      {
+        "delta": 1
+      },
+      {
+        "delta": 1
+      },
+      {
+        "delta": 1
+      }
+    ]
+  },
+  "Policy & Coverage": {
+    "points": 0,
+    "history": [
+      {
+        "delta": -2
+      },
+      {
+        "delta": 1
+      },
+      {
+        "delta": 1
+      },
+      {
+        "delta": -1
+      },
+      {
+        "delta": -1
+      },
+      {
+        "delta": -1
+      },
+      {
+        "delta": 1
+      },
+      {
+        "delta": 1
+      },
+      {
+        "delta": 1
+      },
+      {
+        "delta": 1
+      },
+      {
+        "delta": -1
+      }
+    ]
+  }
+}

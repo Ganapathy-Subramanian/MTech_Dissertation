@@ -1,0 +1,389 @@
+{
+  "total_tickets": 4215,
+  "accuracy": 0.9909845788849347,
+  "macro_f1": 0.9832592675644953,
+  "weighted_f1": 0.9910317919923729,
+  "confusion_matrix": [
+    [
+      1200,
+      1,
+      6,
+      1,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0
+    ],
+    [
+      1,
+      1606,
+      0,
+      0,
+      5,
+      0,
+      1,
+      1,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      420,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      8,
+      0,
+      1,
+      415,
+      0,
+      1,
+      3,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      83,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      1,
+      96,
+      0,
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      99,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      83,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      80,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      95
+    ]
+  ],
+  "confusion_matrix_labels": [
+    "Claims",
+    "Policy & Coverage",
+    "Billing & Payments",
+    "Complaints & Feedback",
+    "General Inquiry",
+    "Account & Password",
+    "Technical Support",
+    "Policy Changes",
+    "Emergency Services",
+    "Refund & Returns"
+  ],
+  "per_category_metrics": {
+    "Claims": {
+      "precision": 0.9925558312655087,
+      "recall": 0.990916597853014,
+      "f1": 0.9917355371900827,
+      "support": 1211,
+      "correct": 1200
+    },
+    "Policy & Coverage": {
+      "precision": 0.9993777224642191,
+      "recall": 0.9944272445820433,
+      "f1": 0.9968963376784605,
+      "support": 1615,
+      "correct": 1606
+    },
+    "Billing & Payments": {
+      "precision": 0.9836065573770492,
+      "recall": 0.997624703087886,
+      "f1": 0.9905660377358491,
+      "support": 421,
+      "correct": 420
+    },
+    "Complaints & Feedback": {
+      "precision": 0.9975961538461539,
+      "recall": 0.969626168224299,
+      "f1": 0.9834123222748815,
+      "support": 428,
+      "correct": 415
+    },
+    "General Inquiry": {
+      "precision": 0.9120879120879121,
+      "recall": 1.0,
+      "f1": 0.9540229885057471,
+      "support": 83,
+      "correct": 83
+    },
+    "Account & Password": {
+      "precision": 0.9795918367346939,
+      "recall": 0.9795918367346939,
+      "f1": 0.9795918367346939,
+      "support": 98,
+      "correct": 96
+    },
+    "Technical Support": {
+      "precision": 0.9428571428571428,
+      "recall": 0.99,
+      "f1": 0.9658536585365853,
+      "support": 100,
+      "correct": 99
+    },
+    "Policy Changes": {
+      "precision": 0.9764705882352941,
+      "recall": 1.0,
+      "f1": 0.9880952380952381,
+      "support": 83,
+      "correct": 83
+    },
+    "Emergency Services": {
+      "precision": 0.975609756097561,
+      "recall": 1.0,
+      "f1": 0.9876543209876543,
+      "support": 80,
+      "correct": 80
+    },
+    "Refund & Returns": {
+      "precision": 1.0,
+      "recall": 0.9895833333333334,
+      "f1": 0.9947643979057592,
+      "support": 96,
+      "correct": 95
+    }
+  },
+  "reward_penalty_matrix": {
+    "matrix": [
+      [
+        0.1,
+        -2.5,
+        -2.5,
+        -2.5,
+        -2.5,
+        -2.5,
+        -2.5,
+        -2.5,
+        -2.5,
+        -2.5
+      ],
+      [
+        -1.2,
+        0.1,
+        -1.2,
+        -1.2,
+        -1.2,
+        -1.2,
+        -1.2,
+        -1.2,
+        -1.2,
+        -1.2
+      ],
+      [
+        -1.3,
+        -1.3,
+        0.1,
+        -1.3,
+        -1.3,
+        -1.3,
+        -1.3,
+        -1.3,
+        -1.3,
+        -1.3
+      ],
+      [
+        -2.0,
+        -2.0,
+        -2.0,
+        0.1,
+        -2.0,
+        -2.0,
+        -2.0,
+        -2.0,
+        -2.0,
+        -2.0
+      ],
+      [
+        -1.0,
+        -1.0,
+        -1.0,
+        -1.0,
+        0.1,
+        -1.0,
+        -1.0,
+        -1.0,
+        -1.0,
+        -1.0
+      ],
+      [
+        -1.1,
+        -1.1,
+        -1.1,
+        -1.1,
+        -1.1,
+        0.1,
+        -1.1,
+        -1.1,
+        -1.1,
+        -1.1
+      ],
+      [
+        -1.5,
+        -1.5,
+        -1.5,
+        -1.5,
+        -1.5,
+        -1.5,
+        0.1,
+        -1.5,
+        -1.5,
+        -1.5
+      ],
+      [
+        -1.8,
+        -1.8,
+        -1.8,
+        -1.8,
+        -1.8,
+        -1.8,
+        -1.8,
+        0.1,
+        -1.8,
+        -1.8
+      ],
+      [
+        -3.0,
+        -3.0,
+        -3.0,
+        -3.0,
+        -3.0,
+        -3.0,
+        -3.0,
+        -3.0,
+        0.1,
+        -3.0
+      ],
+      [
+        -1.2,
+        -1.2,
+        -1.2,
+        -1.2,
+        -1.2,
+        -1.2,
+        -1.2,
+        -1.2,
+        -1.2,
+        0.1
+      ]
+    ],
+    "labels": [
+      "Claims",
+      "Policy & Coverage",
+      "Billing & Payments",
+      "Complaints & Feedback",
+      "General Inquiry",
+      "Account & Password",
+      "Technical Support",
+      "Policy Changes",
+      "Emergency Services",
+      "Refund & Returns"
+    ],
+    "sla_factors": {
+      "Emergency Services": 3.0,
+      "Claims": 2.5,
+      "Complaints & Feedback": 2.0,
+      "Policy Changes": 1.8,
+      "Technical Support": 1.5,
+      "Billing & Payments": 1.3,
+      "Policy & Coverage": 1.2,
+      "Refund & Returns": 1.2,
+      "Account & Password": 1.1,
+      "General Inquiry": 1.0
+    },
+    "routing_efficiency": 0.1
+  },
+  "total_correct": 4177,
+  "total_reward": 417.70000000000005,
+  "total_penalty": 70.5,
+  "business_score": 347.20000000000005,
+  "normalized_business_score": 0.08237247924080665,
+  "complex_query_analysis": {
+    "total_complex": 0,
+    "percentage_of_total": 0.0,
+    "analysis": "No complex queries flagged in this evaluation"
+  },
+  "auto_routing_analysis": {
+    "auto_threshold": 0.7,
+    "auto_routed_tickets": 4037,
+    "human_handled_tickets": 178,
+    "auto_routed_percentage": 95.77698695136418,
+    "human_handled_percentage": 4.223013048635824,
+    "auto_routed_correct": 4028,
+    "auto_routed_accuracy": 0.9977706217488234,
+    "human_handled_correct": 149,
+    "human_handled_accuracy": 0.8370786516853933
+  },
+  "confidence_stats": {
+    "mean": 0.9264751835681618,
+    "median": 0.9588158664392517,
+    "std": 0.10239341186341029,
+    "min": 0.16826656196112227,
+    "max": 0.9999966357180653
+  }
+}

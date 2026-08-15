@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NexusCRM — Agent Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg-void:#060a12;--bg-surface:#0b1120;--bg-card:#111827;--bg-input:#0a1020;
+  --border:#1e2d45;--border-focus:#2a7fff;
+  --blue:#2a7fff;--blue-bright:#4d9fff;--blue-glow:rgba(42,127,255,0.25);
+  --green:#10d88e;--orange:#f59e0b;--red:#ff4d6d;--purple:#a78bfa;
+  --text-primary:#f0f4ff;--text-secondary:#8899b4;--text-muted:#4a5a74;
+  --font-main:'Sora',sans-serif;--font-mono:'JetBrains Mono',monospace;
+  --sidebar:220px;
+}
+html,body{height:100%;font-family:var(--font-main);background:var(--bg-void);color:var(--text-primary);overflow:hidden;}
+.layout{display:flex;height:100vh;}
+.sidebar{width:var(--sidebar);min-width:var(--sidebar);background:var(--bg-card);border-right:1px solid var(--border);display:flex;flex-direction:column;}
+.sidebar-logo{padding:18px 20px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border);}
+.logo-icon{width:32px;height:32px;background:linear-gradient(135deg,#2a7fff,#10d88e);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;color:#fff;flex-shrink:0;}
+.logo-text{font-size:16px;font-weight:700;letter-spacing:-0.3px;}
+.sidebar-nav{flex:1;padding:12px 10px;overflow-y:auto;}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;cursor:pointer;color:var(--text-secondary);font-size:13px;font-weight:500;transition:all 0.15s;margin-bottom:2px;}
+.nav-item:hover{background:rgba(42,127,255,0.08);color:var(--text-primary);}
+.nav-item.active{background:rgba(42,127,255,0.15);color:var(--blue);}
+.nav-icon{font-size:16px;flex-shrink:0;width:20px;text-align:center;}
+.sidebar-footer{padding:12px 10px;border-top:1px solid var(--border);}
+.user-info{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:8px;cursor:pointer;transition:background 0.15s;}
+.user-info:hover{background:rgba(255,255,255,0.04);}
+.avatar{width:30px;height:30px;background:linear-gradient(135deg,#f59e0b,#ef4444);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;flex-shrink:0;}
+.user-name{font-size:13px;font-weight:500;}
+.user-role{font-size:11px;color:var(--text-muted);}
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;}
+.topbar{height:60px;background:var(--bg-card);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 24px;gap:16px;flex-shrink:0;}
+.topbar-title{font-size:16px;font-weight:600;}
+.topbar-right{display:flex;align-items:center;gap:10px;}
+.btn{padding:8px 14px;border:none;border-radius:8px;font-family:var(--font-main);font-size:13px;font-weight:600;cursor:pointer;transition:all 0.2s;}
+.btn-primary{background:var(--blue);color:#fff;}
+.btn-primary:hover{background:var(--blue-bright);}
+.btn-ghost{background:transparent;color:var(--text-secondary);border:1px solid var(--border);}
+.btn-ghost:hover{color:var(--text-primary);background:rgba(255,255,255,0.04);}
+.btn-success{background:rgba(16,216,142,0.15);color:var(--green);border:1px solid rgba(16,216,142,0.2);}
+.btn-success:hover{background:rgba(16,216,142,0.25);}
+.btn-sm{padding:5px 10px;font-size:12px;border-radius:6px;}
+.badge{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;border-radius:10px;font-size:11px;font-weight:600;padding:0 6px;}
+.badge-blue{background:rgba(42,127,255,0.2);color:var(--blue);}
+.badge-green{background:rgba(16,216,142,0.15);color:var(--green);}
+.badge-orange{background:rgba(245,158,11,0.15);color:var(--orange);}
+.badge-red{background:rgba(255,77,109,0.15);color:var(--red);}
+.badge-gray{background:rgba(255,255,255,0.08);color:var(--text-secondary);}
+.content{flex:1;overflow-y:auto;padding:24px;}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:24px;}
+.stat-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:16px 18px;position:relative;overflow:hidden;}
+.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent,var(--blue));}
+.stat-label{font-size:11px;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-muted);margin-bottom:8px;}
+.stat-value{font-size:24px;font-weight:700;font-family:var(--font-mono);letter-spacing:-1px;}
+.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.section-title{font-size:15px;font-weight:600;}
+.ticket-list{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.ticket-row{display:grid;grid-template-columns:1fr 130px 100px 100px 120px;align-items:center;padding:13px 18px;border-bottom:1px solid var(--border);cursor:pointer;transition:background 0.15s;gap:12px;}
+.ticket-row:last-child{border-bottom:none;}
+.ticket-row:hover{background:rgba(42,127,255,0.05);}
+.header-row{background:rgba(255,255,255,0.02);cursor:default!important;}
+.header-row:hover{background:rgba(255,255,255,0.02)!important;}
+.col-header{font-size:11px;text-transform:uppercase;letter-spacing:0.7px;color:var(--text-muted);}
+.ticket-subject{font-size:13px;font-weight:500;}
+.ticket-id{font-size:11px;font-family:var(--font-mono);color:var(--text-muted);margin-top:2px;}
+.ticket-cat{font-size:12px;color:var(--text-secondary);}
+.ticket-date{font-size:12px;color:var(--text-muted);}
+.empty-state{padding:48px;text-align:center;color:var(--text-muted);}
+.empty-icon{font-size:40px;margin-bottom:12px;opacity:0.5;}
+/* Modal */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);backdrop-filter:blur(4px);z-index:100;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity 0.25s;}
+.overlay.open{opacity:1;pointer-events:all;}
+.modal{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;width:100%;max-width:660px;max-height:90vh;display:flex;flex-direction:column;box-shadow:0 32px 64px rgba(0,0,0,0.8);transform:scale(0.96);transition:transform 0.25s;}
+.overlay.open .modal{transform:scale(1);}
+.modal-header{padding:20px 24px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;flex-shrink:0;}
+.modal-title{font-size:16px;font-weight:600;}
+.modal-sub{font-size:12px;color:var(--text-muted);margin-top:3px;}
+.modal-close{background:rgba(255,255,255,0.07);border:1px solid var(--border);color:var(--text-secondary);width:30px;height:30px;border-radius:7px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all 0.15s;}
+.modal-close:hover{background:rgba(255,77,109,0.15);color:var(--red);}
+.modal-body{flex:1;overflow-y:auto;padding:20px 24px;}
+.modal-footer{padding:16px 24px;border-top:1px solid var(--border);display:flex;gap:10px;align-items:flex-end;flex-shrink:0;flex-wrap:wrap;}
+.modal-footer textarea{flex:1;min-width:200px;padding:10px 12px;background:var(--bg-input);border:1px solid var(--border);border-radius:8px;color:var(--text-primary);font-size:13px;font-family:var(--font-main);resize:none;height:70px;outline:none;transition:border-color 0.2s;}
+.modal-footer textarea:focus{border-color:var(--border-focus);}
+.modal-footer textarea::placeholder{color:var(--text-muted);}
+.modal-actions{display:flex;gap:8px;flex-wrap:wrap;}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px;}
+.info-item{background:var(--bg-input);border:1px solid var(--border);border-radius:8px;padding:10px 12px;}
+.info-item label{font-size:10px;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-muted);display:block;margin-bottom:3px;}
+.info-item .val{font-size:13px;font-weight:500;}
+.conv-title{font-size:11px;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-muted);margin-bottom:10px;font-weight:500;}
+.messages{display:flex;flex-direction:column;gap:9px;}
+.msg{padding:11px 13px;border-radius:9px;font-size:13px;line-height:1.6;}
+.msg.customer{background:rgba(42,127,255,0.1);border:1px solid rgba(42,127,255,0.18);}
+.msg.agent{background:rgba(16,216,142,0.08);border:1px solid rgba(16,216,142,0.15);}
+.msg-meta{font-size:11px;color:var(--text-muted);margin-bottom:4px;display:flex;gap:6px;align-items:center;}
+.msg-from.customer{color:var(--blue);}
+.msg-from.agent{color:var(--green);}
+.msg-body{color:var(--text-secondary);}
+.status-select{background:var(--bg-input);border:1px solid var(--border);color:var(--text-primary);padding:7px 10px;border-radius:7px;font-size:13px;font-family:var(--font-main);outline:none;cursor:pointer;}
+.spinner{width:20px;height:20px;border:2px solid var(--border);border-top-color:var(--blue);border-radius:50%;animation:spin 0.6s linear infinite;margin:0 auto;}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(max-width:768px){.sidebar{display:none;}.ticket-row{grid-template-columns:1fr 90px 80px;}.col4,.col5{display:none;}.stats{grid-template-columns:1fr 1fr;}}
+</style>
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-icon">N</div>
+      <div class="logo-text">NexusCRM</div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-item active" onclick="setSection('overview',this)"><span class="nav-icon">📊</span>Overview</div>
+      <div class="nav-item" onclick="setSection('tickets',this)"><span class="nav-icon">🎫</span>My Tickets</div>
+      <div class="nav-item" onclick="setSection('team',this)"><span class="nav-icon">👥</span>Team</div>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="user-info" onclick="logout()">
+        <div class="avatar" id="sidebarAvatar">A</div>
+        <div>
+          <div class="user-name" id="sidebarName">Agent</div>
+          <div class="user-role" id="sidebarTeam">Support Team</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <main class="main">
+    <header class="topbar">
+      <div class="topbar-title" id="pageTitle">Overview</div>
+      <div class="topbar-right">
+        <select class="status-select" id="statusSelect" onchange="updateMyStatus(this.value)">
+          <option value="available">🟢 Available</option>
+          <option value="busy">🟡 Busy</option>
+          <option value="on_break">🔴 On Break</option>
+          <option value="offline">⚫ Offline</option>
+        </select>
+        <button class="btn btn-ghost" onclick="logout()">Sign Out</button>
+      </div>
+    </header>
+    <div class="content" id="mainContent">
+      <div style="text-align:center;padding:60px;"><div class="spinner"></div></div>
+    </div>
+  </main>
+</div>
+
+<!-- Ticket Modal -->
+<div class="overlay" id="ticketOverlay" onclick="closeModal(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <div class="modal-title" id="modalTitle">Ticket Details</div>
+        <div class="modal-sub" id="modalSub"></div>
+      </div>
+      <button class="modal-close" onclick="closeTicketModal()">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody"><div style="text-align:center;padding:40px;"><div class="spinner"></div></div></div>
+    <div class="modal-footer">
+      <div style="display:flex;flex-direction:column;gap:8px;flex:1;">
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+          <span style="font-size:12px;color:var(--text-muted);">Status:</span>
+          <select class="status-select" id="ticketStatusSelect">
+            <option value="keep-status">— Keep current —</option>
+            <option value="New">New</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Resolved">Resolved</option>
+            <option value="Closed">Closed</option>
+          </select>
+        </div>
+        <textarea id="replyText" placeholder="Type your response to the customer..."></textarea>
+      </div>
+      <button class="btn btn-primary" onclick="sendAgentReply()">Send Reply</button>
+    </div>
+  </div>
+</div>
+
+<script>
+let userData=null,token=null,agentId=null,currentTicketId=null;
+
+function init(){
+  const u=localStorage.getItem('user');token=localStorage.getItem('token');
+  if(!u||!token){window.location.href='login.html';return;}
+  userData=JSON.parse(u);agentId=userData.agent_id;
+  document.getElementById('sidebarName').textContent=userData.name||'Agent';
+  document.getElementById('sidebarAvatar').textContent=(userData.name||'A')[0].toUpperCase();
+  if(userData.team)document.getElementById('sidebarTeam').textContent=userData.team+' Team';
+  loadOverview();
+}
+function authHeader(){return{'Authorization':`Bearer ${token}`,'Content-Type':'application/json'};}
+function logout(){localStorage.clear();window.location.href='login.html';}
+function setSection(s,el){document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));el.classList.add('active');document.getElementById('pageTitle').textContent={overview:'Overview',tickets:'My Tickets',team:'Team Members'}[s];if(s==='overview')loadOverview();else if(s==='tickets')loadMyTickets();else if(s==='team')loadTeam();}
+
+async function loadOverview(){
+  const c=document.getElementById('mainContent');
+  c.innerHTML='<div style="text-align:center;padding:60px;"><div class="spinner"></div></div>';
+  try{
+    const [metrics,tickets]=await Promise.all([
+      fetch(`/agent/${agentId}/live-metrics`,{headers:authHeader()}).then(r=>r.json()),
+      fetch(`/agent/${agentId}/assigned-tickets`,{headers:authHeader()}).then(r=>r.json())
+    ]);
+    const t=tickets.tickets||[];
+    c.innerHTML=`
+      <div class="stats">
+        <div class="stat-card" style="--accent:#f59e0b"><div class="stat-label">Pending</div><div class="stat-value">${metrics.pending||0}</div></div>
+        <div class="stat-card" style="--accent:#2a7fff"><div class="stat-label">In Progress</div><div class="stat-value">${metrics.in_progress||0}</div></div>
+        <div class="stat-card" style="--accent:#10d88e"><div class="stat-label">Resolved</div><div class="stat-value">${metrics.resolved||0}</div></div>
+        <div class="stat-card" style="--accent:#ff4d6d"><div class="stat-label">Escalated</div><div class="stat-value">${metrics.escalated||0}</div></div>
+      </div>
+      <div class="section-header"><div class="section-title">My Assigned Tickets <span class="badge badge-blue">${t.length}</span></div></div>
+      ${renderTickets(t.slice(0,10))}`;
+  }catch(e){c.innerHTML=`<div class="empty-state"><div class="empty-icon">⚠️</div><p>Error loading data</p></div>`;}
+}
+
+async function loadMyTickets(){
+  const c=document.getElementById('mainContent');
+  c.innerHTML='<div style="text-align:center;padding:60px;"><div class="spinner"></div></div>';
+  try{
+    const r=await fetch(`/agent/${agentId}/assigned-tickets`,{headers:authHeader()});
+    const d=await r.json();
+    const t=d.tickets||[];
+    c.innerHTML=`<div class="section-header"><div class="section-title">Assigned Tickets <span class="badge badge-blue">${t.length}</span></div></div>${renderTickets(t)}`;
+  }catch(e){c.innerHTML='<div class="empty-state"><div class="empty-icon">⚠️</div><p>Error</p></div>';}
+}
+
+async function loadTeam(){
+  const c=document.getElementById('mainContent');
+  c.innerHTML='<div style="text-align:center;padding:60px;"><div class="spinner"></div></div>';
+  try{
+    const r=await fetch(`/agent/${agentId}/team-members`,{headers:authHeader()});
+    const d=await r.json();
+    const members=d.members||[];
+    c.innerHTML=`<div class="section-header"><div class="section-title">Team Members <span class="badge badge-blue">${members.length}</span></div></div>
+      <div class="ticket-list">
+        <div class="ticket-row header-row"><div class="col-header">Agent</div><div class="col-header">Status</div><div class="col-header">Active Tickets</div></div>
+        ${members.map(m=>`<div class="ticket-row" style="cursor:default;grid-template-columns:1fr 120px 120px;">
+          <div><div class="ticket-subject">${esc(m.name)}</div><div class="ticket-id">${esc(m.team||'')}</div></div>
+          <div>${statusDot(m.status)}</div>
+          <div><span class="badge badge-blue">${m.active_tickets||0}</span></div>
+        </div>`).join('')}
+      </div>`;
+  }catch(e){c.innerHTML='<div class="empty-state"><div class="empty-icon">⚠️</div><p>Error</p></div>';}
+}
+
+function statusDot(s){const c={available:'badge-green',busy:'badge-orange',on_break:'badge-red',offline:'badge-gray'}[(s||'').toLowerCase()]||'badge-gray';return `<span class="badge ${c}">${s||'Unknown'}</span>`;}
+
+function renderTickets(tickets){
+  if(!tickets.length)return`<div class="ticket-list"><div class="empty-state"><div class="empty-icon">📭</div><p>No tickets assigned.</p></div></div>`;
+  return`<div class="ticket-list">
+    <div class="ticket-row header-row">
+      <div class="col-header">Subject</div>
+      <div class="col-header col4">Category</div>
+      <div class="col-header">Status</div>
+      <div class="col-header col5">Priority</div>
+      <div class="col-header">Date</div>
+    </div>
+    ${tickets.map(t=>`<div class="ticket-row" onclick="openTicket('${t.id}')">
+      <div><div class="ticket-subject">${esc(t.subject||'Ticket')}</div><div class="ticket-id">${t.id}</div></div>
+      <div class="ticket-cat col4">${esc(t.category||'—')}</div>
+      <div>${statusBadge(t.status)}</div>
+      <div class="col5">${priorityBadge(t.priority)}</div>
+      <div class="ticket-date">${formatDate(t.created_date)}</div>
+    </div>`).join('')}
+  </div>`;
+}
+
+function statusBadge(s){const cls={new:'badge-blue',open:'badge-orange','in progress':'badge-orange',resolved:'badge-green',closed:'badge-gray',escalated:'badge-red'}[(s||'').toLowerCase()]||'badge-gray';return`<span class="badge ${cls}">${s||'—'}</span>`;}
+function priorityBadge(p){const cls={high:'badge-red',medium:'badge-orange',low:'badge-green'}[(p||'').toLowerCase()]||'badge-gray';return`<span class="badge ${cls}">${p||'—'}</span>`;}
+function formatDate(d){if(!d)return'—';try{return new Date(d).toLocaleDateString('en-US',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});}catch{return d;}}
+function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML;}
+
+async function openTicket(id){
+  currentTicketId=id;
+  document.getElementById('ticketOverlay').classList.add('open');
+  document.getElementById('modalTitle').textContent=`Ticket: ${id}`;
+  document.getElementById('modalSub').textContent='';
+  document.getElementById('modalBody').innerHTML='<div style="text-align:center;padding:40px;"><div class="spinner"></div></div>';
+  document.getElementById('ticketStatusSelect').value='keep-status';
+  try{
+    const r=await fetch(`/salesforce/ticket/${id}`,{headers:authHeader()});
+    const t=await r.json();
+    renderModal(t);
+  }catch(e){document.getElementById('modalBody').innerHTML='<div class="empty-state">Could not load.</div>';}
+}
+
+function renderModal(t){
+  document.getElementById('modalSub').innerHTML=`${statusBadge(t.status)} &nbsp; ${priorityBadge(t.priority)}`;
+  const msgs=t.messages||[];
+  document.getElementById('modalBody').innerHTML=`
+    <div class="info-grid">
+      <div class="info-item"><label>Subject</label><div class="val">${esc(t.subject||'—')}</div></div>
+      <div class="info-item"><label>Category</label><div class="val">${esc(t.category||'General')}</div></div>
+      <div class="info-item"><label>Customer</label><div class="val">${esc(t.customer||t.customer_id||'—')}</div></div>
+      <div class="info-item"><label>Created</label><div class="val">${formatDate(t.created_date)}</div></div>
+    </div>
+    <div class="conv-title">Conversation History</div>
+    <div class="messages" id="msgContainer">
+      ${msgs.length?msgs.map(m=>renderMsg(m)).join(''):'<div style="color:var(--text-muted);font-size:13px;text-align:center;padding:20px;">No messages yet.</div>'}
+    </div>`;
+  setTimeout(()=>{const el=document.getElementById('msgContainer');if(el)el.scrollTop=el.scrollHeight;},50);
+}
+
+function renderMsg(m){
+  const role=(m.from||'agent').toLowerCase();
+  const cls=role==='customer'?'customer':'agent';
+  const label=role==='customer'?'Customer':'Agent';
+  return`<div class="msg ${cls}"><div class="msg-meta"><span class="msg-from ${cls}" style="font-weight:600">${label}</span><span>·</span><span>${formatDate(m.time)}</span></div><div class="msg-body">${esc(m.text||'')}</div></div>`;
+}
+
+async function sendAgentReply(){
+  const txt=document.getElementById('replyText').value.trim();
+  const status=document.getElementById('ticketStatusSelect').value;
+  if(!txt&&status==='keep-status')return;
+  const btn=document.querySelector('.modal-footer .btn-primary');
+  btn.disabled=true;btn.textContent='Sending...';
+  try{
+    const r=await fetch(`/ticket/${currentTicketId}/respond`,{method:'POST',headers:authHeader(),body:JSON.stringify({text:txt||'[Status updated]',status:status==='keep-status'?undefined:status})});
+    if(!r.ok)throw new Error('Failed');
+    document.getElementById('replyText').value='';
+    document.getElementById('ticketStatusSelect').value='keep-status';
+    const tr=await fetch(`/salesforce/ticket/${currentTicketId}`,{headers:authHeader()});
+    renderModal(await tr.json());
+  }catch(e){alert('Error: '+e.message);}
+  btn.disabled=false;btn.textContent='Send Reply';
+}
+
+async function updateMyStatus(s){
+  try{await fetch(`/agent/${agentId}/status`,{method:'PUT',headers:authHeader(),body:JSON.stringify({status:s})});}
+  catch(e){console.error(e);}
+}
+
+function closeModal(e){if(e.target===document.getElementById('ticketOverlay'))closeTicketModal();}
+function closeTicketModal(){document.getElementById('ticketOverlay').classList.remove('open');currentTicketId=null;}
+
+init();
+</script>
+</body>
+</html>

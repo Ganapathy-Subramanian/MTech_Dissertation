@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NexusCRM — Test Coverage Summary</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg-void:#060a12;--bg-card:#111827;--bg-input:#0a1020;
+  --border:#1e2d45;--border-soft:rgba(255,255,255,.06);
+  --blue:#2a7fff;--blue-bright:#4d9fff;--blue-glow:rgba(42,127,255,.14);
+  --green:#10d88e;--green-glow:rgba(16,216,142,.14);
+  --orange:#f59e0b;--orange-glow:rgba(245,158,11,.14);
+  --red:#ff4d6d;--red-glow:rgba(255,77,109,.14);--purple:#a78bfa;
+  --text-primary:#f0f4ff;--text-secondary:#8899b4;--text-muted:#57678a;
+  --font-main:'Sora',sans-serif;--font-mono:'JetBrains Mono',monospace;
+  --radius:16px;--radius-sm:10px;
+}
+html,body{min-height:100%;font-family:var(--font-main);background:
+  radial-gradient(circle at 15% 0%, #0b1224 0%, var(--bg-void) 45%) fixed;color:var(--text-primary);}
+body{padding-bottom:40px;}
+.page{max-width:1440px;margin:0 auto;padding:24px 24px 8px;}
+
+.topbar{display:flex;flex-wrap:wrap;align-items:center;gap:16px;justify-content:space-between;
+  background:linear-gradient(135deg,#0e1c3a 0%,var(--bg-card) 60%);
+  border:1px solid var(--border);border-radius:var(--radius);padding:20px 24px;margin-bottom:20px;
+  box-shadow:0 8px 30px rgba(0,0,0,.25);}
+.back-link{color:var(--text-muted);font-size:12.5px;text-decoration:none;}
+.back-link:hover{color:var(--blue-bright);}
+.topbar-title{font-size:21px;font-weight:700;letter-spacing:-.3px;margin-top:6px;}
+.topbar-sub{font-size:12.5px;color:var(--text-secondary);margin-top:3px;}
+.chips{display:flex;flex-wrap:wrap;gap:10px;align-items:center;}
+.chip{display:flex;align-items:center;gap:10px;background:var(--bg-input);border:1px solid var(--border);
+  border-radius:var(--radius-sm);padding:9px 14px;font-size:12px;min-width:120px;}
+.chip-icon{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+.chip .lbl{color:var(--text-muted);display:block;font-size:10px;text-transform:uppercase;letter-spacing:.6px;margin-bottom:2px;}
+.chip .val{font-weight:700;font-family:var(--font-mono);font-size:13.5px;}
+.chip.date .chip-icon{background:var(--blue-glow);color:var(--blue-bright);}
+.chip.target .chip-icon{background:var(--orange-glow);color:var(--orange);}
+.chip.status .chip-icon{background:var(--green-glow);color:var(--green);}
+.btn{padding:9px 16px;border:none;border-radius:10px;font-family:var(--font-main);font-size:13px;
+  font-weight:600;cursor:pointer;transition:all .2s;background:var(--blue);color:#fff;}
+.btn:hover{background:var(--blue-bright);}
+.btn:disabled{opacity:.6;cursor:not-allowed;}
+
+.grid{display:grid;grid-template-columns:2fr 1fr;gap:18px;margin-bottom:18px;align-items:start;}
+@media (max-width:1080px){.grid{grid-template-columns:1fr;}}
+.card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:20px 22px;}
+.card-title{font-size:15px;font-weight:700;margin-bottom:16px;letter-spacing:.3px;}
+
+/* module coverage rows */
+.module-row{display:grid;grid-template-columns:190px 1fr 60px 78px;align-items:center;gap:14px;
+  padding:12px 4px;border-bottom:1px solid var(--border-soft);}
+.module-row:last-child{border-bottom:none;}
+.module-row .mname{font-size:13px;font-weight:600;}
+.module-row .msub{font-size:10.5px;color:var(--text-muted);margin-top:1px;}
+.bar-track{background:var(--bg-input);border-radius:8px;height:20px;position:relative;overflow:hidden;
+  border:1px solid var(--border-soft);}
+.bar-fill{height:100%;border-radius:8px 0 0 8px;display:flex;align-items:center;justify-content:flex-end;
+  padding-right:8px;font-size:10.5px;font-weight:700;color:#06110a;transition:width .5s ease;}
+.target-line{position:absolute;top:-2px;bottom:-2px;width:2px;background:repeating-linear-gradient(
+  to bottom, var(--green), var(--green) 4px, transparent 4px, transparent 8px);}
+.module-row .pct{text-align:right;font-family:var(--font-mono);font-weight:700;font-size:13px;}
+.status-pill{font-size:10.5px;font-weight:700;padding:4px 10px;border-radius:20px;text-align:center;}
+.status-pill.PASS{background:var(--green-glow);color:var(--green);}
+.status-pill.FAIL{background:var(--red-glow);color:var(--red);}
+.status-pill.N\/A{background:var(--bg-input);color:var(--text-muted);}
+
+.legend-strip{display:flex;flex-wrap:wrap;gap:16px;margin-top:16px;padding-top:14px;border-top:1px solid var(--border-soft);
+  font-size:11px;color:var(--text-muted);}
+.legend-strip span{display:flex;align-items:center;gap:6px;}
+.legend-strip .sw{width:10px;height:10px;border-radius:3px;}
+
+/* summary side card */
+.summary-row{display:flex;align-items:center;justify-content:space-between;padding:11px 0;
+  border-bottom:1px solid var(--border-soft);font-size:12.5px;}
+.summary-row:last-child{border-bottom:none;}
+.summary-row .name{display:flex;align-items:center;gap:10px;color:var(--text-secondary);}
+.icon-badge{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;}
+.summary-row .v{font-weight:700;font-family:var(--font-mono);font-size:14px;}
+
+.overall-card{background:linear-gradient(135deg,var(--orange-glow),transparent);border:1px solid rgba(245,158,11,.3);
+  border-radius:var(--radius-sm);padding:18px;text-align:center;margin-top:16px;}
+.overall-card .lbl{font-size:11px;text-transform:uppercase;letter-spacing:.6px;color:var(--text-muted);margin-bottom:6px;}
+.overall-card .big{font-size:34px;font-weight:700;font-family:var(--font-mono);color:var(--orange);}
+.overall-card .status-pill{display:inline-block;margin-top:8px;}
+
+.insights-card ul{list-style:none;margin-top:10px;display:flex;flex-direction:column;gap:10px;}
+.insights-card li{font-size:12.5px;color:var(--text-secondary);display:flex;gap:8px;}
+.insights-card li .dot{color:var(--blue-bright);flex-shrink:0;}
+
+.state-msg{text-align:center;padding:60px 20px;color:var(--text-muted);font-size:13.5px;display:flex;flex-direction:column;gap:14px;align-items:center;}
+.spinner{width:28px;height:28px;border:3px solid var(--border);border-top-color:var(--blue);
+  border-radius:50%;animation:spin .8s linear infinite;margin:60px auto;}
+@keyframes spin{to{transform:rotate(360deg);}}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="topbar">
+    <div class="topbar-left">
+      <a class="back-link" href="admin.html">← Back to Admin</a>
+      <div class="topbar-title">Figure 7.1: Test Coverage Summary</div>
+      <div class="topbar-sub">Real Line Coverage (pytest + coverage.py) Across System Modules</div>
+    </div>
+    <div class="chips" id="topChips">
+      <button class="btn" id="runBtn" onclick="runCoverage()">▶ Run Coverage Analysis</button>
+    </div>
+  </div>
+
+  <div id="loading" class="spinner"></div>
+  <div id="content" style="display:none">
+    <div class="grid">
+      <div class="card">
+        <div class="card-title">Test Coverage by Module</div>
+        <div id="moduleRows"></div>
+        <div class="legend-strip">
+          <span><span class="sw" style="background:var(--green)"></span>Coverage achieved</span>
+          <span><span class="sw" style="background:repeating-linear-gradient(to bottom,var(--green) 0 2px,transparent 2px 4px)"></span>Target line (85%)</span>
+        </div>
+        <div class="insight" style="margin-top:14px;background:var(--blue-glow);border:1px solid rgba(42,127,255,.25);border-radius:10px;padding:11px 15px;font-size:12px;color:var(--text-secondary)">
+          Note: this project's test suite isn't yet split into unit / integration / e2e tiers, so each bar shows real overall <b>line coverage</b> per module rather than a 3-way breakdown. Add <code>@pytest.mark.unit</code> etc. to get that split.
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Coverage Summary</div>
+        <div id="summaryRows"></div>
+        <div class="overall-card">
+          <div class="lbl">Overall Project Coverage</div>
+          <div class="big" id="overallPct">0%</div>
+          <div class="status-pill" id="overallStatus"></div>
+        </div>
+      </div>
+    </div>
+    <div class="card insights-card">
+      <div class="card-title">Coverage Insights</div>
+      <ul id="insightsList"></ul>
+    </div>
+  </div>
+</div>
+
+<script>
+let token = localStorage.getItem('token');
+function authHeader(){ return {'Authorization': `Bearer ${token}`, 'Content-Type':'application/json'}; }
+function getCss(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+function colorFor(pct, target){ return pct >= target ? getCss('--green') : (pct >= target*0.7 ? getCss('--orange') : getCss('--red')); }
+
+async function loadCoverage(){
+  try{
+    const r = await fetch('/analytics/test-coverage', { headers: authHeader() });
+    if(!r.ok) throw new Error('request failed: ' + r.status);
+    const d = await r.json();
+    if(d.status === 'no_data'){
+      document.getElementById('loading').outerHTML =
+        `<div class="state-msg"><div>${d.message}</div></div>`;
+      return;
+    }
+    render(d);
+  }catch(e){
+    document.getElementById('loading').outerHTML =
+      `<div class="state-msg">Couldn't load coverage data (${e.message}). Make sure you're logged in as admin.</div>`;
+  }
+}
+
+async function runCoverage(){
+  const btn = document.getElementById('runBtn');
+  btn.disabled = true; btn.textContent = '⏳ Running pytest + coverage…';
+  try{
+    const r = await fetch('/analytics/test-coverage/run', { method:'POST', headers: authHeader() });
+    if(!r.ok){ const e = await r.json().catch(()=>({})); throw new Error(e.detail || r.status); }
+    const d = await r.json();
+    const loadingEl = document.getElementById('loading');
+    if (loadingEl) loadingEl.style.display = 'none';
+    document.getElementById('content').style.display = 'block';
+    render(d);
+  }catch(e){
+    alert('Coverage run failed: ' + e.message);
+  }finally{
+    btn.disabled = false; btn.textContent = '▶ Run Coverage Analysis';
+  }
+}
+
+function render(d){
+  const loadingEl = document.getElementById('loading');
+  if (loadingEl) loadingEl.style.display = 'none';
+  document.getElementById('content').style.display = 'block';
+
+  const reportDate = new Date(d.generated_at).toLocaleString();
+  document.querySelector('.topbar-sub').textContent = `Real Line Coverage (pytest + coverage.py) — Generated ${reportDate}`;
+
+  const modules = d.modules || [];
+  document.getElementById('moduleRows').innerHTML = modules.map(m => `
+    <div class="module-row">
+      <div><div class="mname">${m.name}</div><div class="msub">${m.lines_covered}/${m.lines_total} lines</div></div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:${Math.max(m.coverage,3)}%;background:${colorFor(m.coverage, d.target)}">${m.coverage >= 12 ? m.coverage+'%' : ''}</div>
+        <div class="target-line" style="left:${d.target}%"></div>
+      </div>
+      <div class="pct">${m.coverage}%</div>
+      <div class="status-pill ${m.status}">${m.status}</div>
+    </div>`).join('');
+
+  const passCount = modules.filter(m => m.status === 'PASS').length;
+  const trackedCount = modules.filter(m => m.status !== 'N/A').length;
+  const best = modules.reduce((a,b)=> b.coverage > (a?.coverage ?? -1) ? b : a, null);
+  const worst = modules.filter(m=>m.lines_total>0).reduce((a,b)=> b.coverage < (a?.coverage ?? 101) ? b : a, null);
+
+  document.getElementById('summaryRows').innerHTML = `
+    <div class="summary-row"><span class="name"><span class="icon-badge" style="background:var(--blue-glow);color:var(--blue-bright)">Σ</span>Modules Tracked</span><span class="v">${trackedCount}</span></div>
+    <div class="summary-row"><span class="name"><span class="icon-badge" style="background:var(--green-glow);color:var(--green)">✓</span>Modules Passing 85%</span><span class="v">${passCount}/${trackedCount}</span></div>
+    <div class="summary-row"><span class="name"><span class="icon-badge" style="background:var(--orange-glow);color:var(--orange)">↑</span>Highest Coverage</span><span class="v" style="font-size:12px">${best ? best.name+' ('+best.coverage+'%)' : '—'}</span></div>
+    <div class="summary-row"><span class="name"><span class="icon-badge" style="background:var(--red-glow);color:var(--red)">↓</span>Needs Attention</span><span class="v" style="font-size:12px">${worst ? worst.name+' ('+worst.coverage+'%)' : '—'}</span></div>`;
+
+  document.getElementById('overallPct').textContent = d.overall_coverage + '%';
+  document.getElementById('overallPct').style.color = colorFor(d.overall_coverage, d.target);
+  document.getElementById('overallStatus').textContent = d.overall_status;
+  document.getElementById('overallStatus').className = 'status-pill ' + d.overall_status;
+
+  document.getElementById('insightsList').innerHTML = `
+    <li><span class="dot">●</span>${passCount} out of ${trackedCount} tracked modules meet the ${d.target}% target.</li>
+    <li><span class="dot">●</span>${best ? best.name + ' has the highest coverage (' + best.coverage + '%).' : 'No coverage data yet.'}</li>
+    <li><span class="dot">●</span>${worst ? worst.name + ' needs the most attention (' + worst.coverage + '%).' : ''}</li>
+    <li><span class="dot">●</span>Overall project coverage is ${d.overall_coverage}%, which is ${d.overall_status === 'PASS' ? 'above' : 'below'} the ${d.target}% target.</li>`;
+}
+
+if(!token){
+  document.getElementById('loading').outerHTML =
+    `<div class="state-msg">Please <a href="login.html" style="color:var(--blue-bright)">log in as admin</a> to view this dashboard.</div>`;
+} else {
+  loadCoverage();
+}
+</script>
+</body>
+</html>

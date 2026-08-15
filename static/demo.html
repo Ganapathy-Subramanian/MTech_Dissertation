@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NexusCRM AI · Triage Intelligence Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0A0F1E;--paper:#F4F6FB;--surface:#FFFFFF;--surface2:#F0F3FA;
+  --border:#DDE3F0;--border-strong:#B8C4DE;
+  --blue:#0057FF;--blue-light:#E8EFFE;--blue-mid:#4D84FF;
+  --green:#00B87A;--green-light:#E6F9F3;
+  --amber:#F59E0B;--amber-light:#FEF3C7;
+  --red:#E8304A;--red-light:#FEECEF;
+  --purple:#7C3AED;--purple-light:#EDE9FE;
+  --muted:#6B7A99;--muted-light:#9BA8C0;
+  --font:'DM Sans',sans-serif;--mono:'DM Mono',monospace;
+  --r:12px;--r-sm:8px;--r-lg:16px;
+  --shadow:0 2px 12px rgba(0,60,180,0.07);
+  --shadow-lg:0 8px 32px rgba(0,60,180,0.12);
+}
+html,body{font-family:var(--font);background:var(--paper);color:var(--ink);min-height:100vh;font-size:14px;}
+
+/* ── HEADER ── */
+.header{background:var(--surface);border-bottom:1px solid var(--border);padding:0 32px;height:60px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;box-shadow:var(--shadow);}
+.logo{display:flex;align-items:center;gap:10px;}
+.logo-mark{width:34px;height:34px;background:linear-gradient(135deg,#0057FF,#00B87A);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:15px;flex-shrink:0;}
+.logo-name{font-size:17px;font-weight:700;letter-spacing:-0.5px;}
+.logo-name span{color:var(--blue);}
+.header-badges{display:flex;gap:8px;align-items:center;}
+.hbadge{padding:4px 10px;border-radius:20px;font-size:11px;font-weight:600;letter-spacing:0.3px;}
+.hbadge-green{background:var(--green-light);color:var(--green);}
+.hbadge-blue{background:var(--blue-light);color:var(--blue);}
+.hbadge-pulse{animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.6}}
+
+/* ── LAYOUT ── */
+.container{max-width:1200px;margin:0 auto;padding:28px 24px;}
+.hero{text-align:center;margin-bottom:32px;}
+.hero h1{font-size:28px;font-weight:700;letter-spacing:-0.8px;line-height:1.2;}
+.hero h1 span{color:var(--blue);}
+.hero p{color:var(--muted);margin-top:8px;font-size:15px;}
+.main-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+@media(max-width:900px){.main-grid{grid-template-columns:1fr;}}
+
+/* ── CARDS ── */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:22px;box-shadow:var(--shadow);}
+.card-title{font-size:12px;text-transform:uppercase;letter-spacing:1px;font-weight:600;color:var(--muted);margin-bottom:16px;display:flex;align-items:center;gap:6px;}
+.card-title .dot{width:7px;height:7px;border-radius:50%;}
+.dot-blue{background:var(--blue);}
+.dot-green{background:var(--green);}
+.dot-amber{background:var(--amber);}
+.dot-red{background:var(--red);}
+
+/* ── INPUT PANEL ── */
+.input-section{grid-column:1/-1;}
+.ticket-label{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+.ticket-textarea{width:100%;padding:14px 16px;border:1.5px solid var(--border);border-radius:var(--r);font-family:var(--font);font-size:14px;color:var(--ink);background:var(--surface);resize:vertical;min-height:90px;line-height:1.6;transition:border-color 0.2s,box-shadow 0.2s;outline:none;}
+.ticket-textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,87,255,0.1);}
+.ticket-textarea::placeholder{color:var(--muted-light);}
+.input-row{display:flex;gap:10px;margin-top:12px;align-items:center;flex-wrap:wrap;}
+.btn{padding:10px 20px;border:none;border-radius:var(--r-sm);font-family:var(--font);font-size:13px;font-weight:600;cursor:pointer;transition:all 0.18s;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;}
+.btn-primary{background:var(--blue);color:#fff;}
+.btn-primary:hover{background:#0047E0;transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,87,255,0.3);}
+.btn-primary:disabled{background:#99B5FF;cursor:not-allowed;transform:none;box-shadow:none;}
+.btn-secondary{background:var(--surface2);color:var(--ink);border:1px solid var(--border);}
+.btn-secondary:hover{background:var(--border);;}
+.btn-sm{padding:6px 12px;font-size:12px;}
+.sample-pills{display:flex;gap:6px;flex-wrap:wrap;}
+.pill{padding:5px 11px;border-radius:20px;font-size:12px;font-weight:500;background:var(--blue-light);color:var(--blue);cursor:pointer;border:1px solid transparent;transition:all 0.15s;}
+.pill:hover{background:var(--blue);color:#fff;}
+
+/* ── RESULT STATE ── */
+.result-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:240px;color:var(--muted-light);gap:12px;}
+.result-placeholder svg{opacity:0.3;}
+.result-placeholder p{font-size:13px;}
+
+/* ── CASE CARD (Salesforce-style) ── */
+.case-header{display:flex;align-items:flex-start;gap:14px;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--border);}
+.case-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+.case-category{font-size:18px;font-weight:700;letter-spacing:-0.4px;line-height:1.2;}
+.case-id{font-size:12px;color:var(--muted);font-family:var(--mono);margin-top:2px;}
+.case-badges{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap;}
+.badge{padding:3px 9px;border-radius:20px;font-size:11px;font-weight:600;}
+.badge-priority-Critical{background:#FEECEF;color:#E8304A;}
+.badge-priority-High{background:#FEF3C7;color:#D97706;}
+.badge-priority-Medium{background:#EEF2FF;color:#4F46E5;}
+.badge-priority-Low{background:#E6F9F3;color:#00875A;}
+.badge-blue{background:var(--blue-light);color:var(--blue);}
+.badge-purple{background:var(--purple-light);color:var(--purple);}
+
+/* confidence ring */
+.confidence-ring-wrap{display:flex;align-items:center;gap:16px;margin-bottom:20px;}
+.ring-svg{transform:rotate(-90deg);}
+.ring-track{fill:none;stroke:var(--border);stroke-width:8;}
+.ring-fill{fill:none;stroke:var(--blue);stroke-width:8;stroke-linecap:round;transition:stroke-dashoffset 0.8s cubic-bezier(.4,0,.2,1);stroke-dasharray:220;stroke-dashoffset:220;}
+.ring-text{font-size:22px;font-weight:700;font-family:var(--mono);}
+.ring-label{font-size:11px;color:var(--muted);text-align:center;margin-top:2px;}
+.confidence-meta{flex:1;}
+.confidence-meta h3{font-size:14px;font-weight:600;margin-bottom:8px;}
+.meta-row{display:flex;justify-content:space-between;font-size:12px;padding:5px 0;border-bottom:1px solid var(--border);}
+.meta-row:last-child{border-bottom:none;}
+.meta-key{color:var(--muted);}
+.meta-val{font-weight:600;font-family:var(--mono);}
+
+/* ── PROBABILITY BARS ── */
+.prob-list{display:flex;flex-direction:column;gap:8px;}
+.prob-row{display:flex;align-items:center;gap:10px;}
+.prob-label{font-size:12px;font-weight:500;width:160px;flex-shrink:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.prob-bar-wrap{flex:1;height:8px;background:var(--border);border-radius:4px;overflow:hidden;}
+.prob-bar{height:100%;border-radius:4px;transition:width 0.7s cubic-bezier(.4,0,.2,1);min-width:2px;}
+.prob-pct{font-size:12px;font-family:var(--mono);font-weight:600;color:var(--muted);width:46px;text-align:right;}
+
+/* ── ROUTING CARD ── */
+.routing-box{background:var(--surface2);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;margin-bottom:14px;}
+.routing-team{font-size:16px;font-weight:700;margin-bottom:4px;}
+.routing-meta{display:flex;gap:12px;flex-wrap:wrap;}
+.routing-chip{font-size:11px;font-weight:500;color:var(--muted);display:flex;align-items:center;gap:4px;}
+
+/* ── LLM PANEL ── */
+.llm-section{grid-column:1/-1;}
+.llm-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+@media(max-width:700px){.llm-grid{grid-template-columns:1fr;}}
+.llm-box{background:var(--surface2);border:1px solid var(--border);border-radius:var(--r);padding:14px;}
+.llm-box-title{font-size:11px;text-transform:uppercase;letter-spacing:0.8px;font-weight:600;color:var(--muted);margin-bottom:8px;}
+.llm-box-body{font-size:13px;line-height:1.65;color:var(--ink);}
+.llm-action-steps{font-size:13px;line-height:1.7;color:var(--ink);}
+.llm-loading{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:13px;}
+.spin{width:16px;height:16px;border:2px solid var(--border);border-top-color:var(--blue);border-radius:50%;animation:spin 0.7s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ── METRICS PANEL ── */
+.metrics-section{grid-column:1/-1;}
+.metrics-bar-row{margin-bottom:12px;}
+.metrics-bar-header{display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px;}
+.metrics-bar-wrap{height:10px;background:var(--border);border-radius:5px;overflow:hidden;}
+.metrics-bar-fill{height:100%;border-radius:5px;}
+.metrics-stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+@media(max-width:700px){.metrics-stat-grid{grid-template-columns:1fr 1fr;}}
+.mstat{background:var(--surface2);border:1px solid var(--border);border-radius:var(--r-sm);padding:14px;text-align:center;}
+.mstat-val{font-size:26px;font-weight:700;font-family:var(--mono);letter-spacing:-1px;}
+.mstat-label{font-size:11px;color:var(--muted);margin-top:3px;}
+.bench-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);font-size:13px;}
+.bench-row:last-child{border-bottom:none;}
+.bench-label{color:var(--muted);font-weight:500;}
+.bench-vals{display:flex;gap:24px;}
+.bench-val{text-align:right;}
+.bench-val .v{font-size:14px;font-weight:700;font-family:var(--mono);}
+.bench-val .sub{font-size:11px;color:var(--muted-light);}
+.bench-win{color:var(--green);}
+.bench-lose{color:var(--muted);}
+
+.section-divider{grid-column:1/-1;border:none;border-top:1px solid var(--border);margin:4px 0;}
+
+/* ── FOOTER ── */
+.footer{text-align:center;padding:24px;color:var(--muted-light);font-size:12px;margin-top:12px;}
+.footer strong{color:var(--muted);}
+
+/* ── ANIMATION ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.animate-in{animation:fadeUp 0.4s ease forwards;}
+.animate-in-delay{animation:fadeUp 0.5s 0.15s ease both;}
+.animate-in-delay2{animation:fadeUp 0.5s 0.3s ease both;}
+
+/* ── SENTIMENT DOT ── */
+.sentiment-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:4px;}
+
+/* ── REALWORLD WARNING ── */
+.warn-box{background:#FEF9E7;border:1px solid #F7DC6F;border-radius:var(--r);padding:12px 16px;font-size:13px;color:#7D6608;line-height:1.6;}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="logo">
+    <div class="logo-mark">N</div>
+    <div class="logo-name">Nexus<span>CRM</span></div>
+  </div>
+  <div class="header-badges">
+    <span class="hbadge hbadge-green hbadge-pulse">● LIVE MODEL</span>
+    <span class="hbadge hbadge-blue">Phase-2 BERT Ensemble</span>
+    <span class="hbadge" style="background:#EDE9FE;color:#7C3AED;">99.18% Accuracy</span>
+  </div>
+</header>
+
+<!-- MAIN -->
+<div class="container">
+  <div class="hero">
+    <h1>AI <span>Triage Intelligence</span> Demo</h1>
+    <p>Paste any customer ticket below — the model classifies, prioritizes, routes, and recommends actions in real time.</p>
+  </div>
+
+  <div class="main-grid">
+
+    <!-- INPUT -->
+    <div class="card input-section">
+      <div class="card-title"><span class="dot dot-blue"></span>Customer Ticket Input</div>
+      <div class="ticket-label">📩 Customer Message</div>
+      <textarea class="ticket-textarea" id="ticketInput" placeholder="e.g. My car was hit in a parking lot and I need to file a claim immediately. Policy #INS-4892." rows="4"></textarea>
+      <div class="input-row">
+        <button class="btn btn-primary" id="analyzeBtn" onclick="analyze()">
+          <span>⚡</span> Analyze Ticket
+        </button>
+        <button class="btn btn-secondary btn-sm" onclick="clearAll()">Clear</button>
+        <div style="margin-left:auto;display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);">
+          <div id="modelStatus" style="display:flex;align-items:center;gap:4px;"><span style="color:var(--green)">●</span> Model Ready</div>
+        </div>
+      </div>
+      <div style="margin-top:14px;">
+        <div style="font-size:12px;font-weight:600;color:var(--muted);margin-bottom:8px;">TRY SAMPLE TICKETS</div>
+        <div class="sample-pills" id="samplePills"></div>
+      </div>
+    </div>
+
+    <!-- PLACEHOLDER / CASE CARD -->
+    <div class="card" id="caseCard">
+      <div class="card-title"><span class="dot dot-blue"></span>Case Triage Card</div>
+      <div class="result-placeholder" id="resultPlaceholder">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="8" y="10" width="32" height="28" rx="4" stroke="#9BA8C0" stroke-width="2"/><path d="M16 18h16M16 24h10" stroke="#9BA8C0" stroke-width="2" stroke-linecap="round"/></svg>
+        <p>Submit a ticket to see AI triage results</p>
+      </div>
+      <div id="caseResult" style="display:none;"></div>
+    </div>
+
+    <!-- PROBABILITY BARS -->
+    <div class="card" id="probCard">
+      <div class="card-title"><span class="dot dot-green"></span>Category Probability Distribution</div>
+      <div class="result-placeholder" id="probPlaceholder">
+        <p style="font-size:13px;">Confidence breakdown will appear here</p>
+      </div>
+      <div id="probResult" style="display:none;"></div>
+    </div>
+
+    <!-- ROUTING CARD -->
+    <div class="card" id="routingCard">
+      <div class="card-title"><span class="dot dot-amber"></span>Routing &amp; Agent Guidance</div>
+      <div class="result-placeholder" id="routingPlaceholder">
+        <p style="font-size:13px;">Routing recommendation will appear here</p>
+      </div>
+      <div id="routingResult" style="display:none;"></div>
+    </div>
+
+    <!-- LLM SECTION -->
+    <div class="card llm-section" id="llmCard">
+      <div class="card-title"><span class="dot dot-blue"></span>LLM Analysis <span style="font-weight:400;color:var(--muted-light);font-size:11px;text-transform:none;letter-spacing:0;margin-left:4px;">(Groq Llama 3 · Gemini Flash · Local fallback)</span></div>
+      <div class="result-placeholder" id="llmPlaceholder">
+        <p style="font-size:13px;">LLM ticket summary &amp; recommendations will appear here</p>
+      </div>
+      <div id="llmResult" style="display:none;"></div>
+    </div>
+
+    <hr class="section-divider">
+
+    <!-- METRICS SECTION -->
+    <div class="card metrics-section">
+      <div class="card-title"><span class="dot dot-blue"></span>Model Accuracy Dashboard</div>
+      <div id="metricsContent">
+        <div class="result-placeholder" style="min-height:120px;"><div class="spin"></div><p>Loading metrics…</p></div>
+      </div>
+    </div>
+
+  </div><!-- /main-grid -->
+
+  <div class="footer">
+    <strong>NexusCRM AI</strong> · Phase-2 BERT Ensemble · Trained on 20,629 samples · &copy; 2025
+    <br style="margin:4px 0">
+    Demo mode: calls <code>/api/triage</code> → <code>/api/llm-analyze</code> → live model response.
+  </div>
+</div>
+
+<script>
+const API = '';  // same-origin; set to 'http://localhost:8000' if opening as file
+
+const SAMPLES = [
+  {label:"🚗 Claims", text:"I was in a rear-end collision yesterday on the highway. Need to file a claim urgently — policy number INS-78234."},
+  {label:"💳 Billing", text:"I was charged twice in December for my premium. I want a refund for the duplicate charge immediately."},
+  {label:"📋 Policy", text:"Do I have flood coverage under my homeowners plan? My basement flooded last night."},
+  {label:"😡 Complaint", text:"Your agent was extremely rude and dismissive when I called about my claim. I want to escalate this immediately."},
+  {label:"🔑 Account", text:"I can't log in to the portal. My password reset email never arrived. Tried 3 times."},
+  {label:"🚨 Emergency", text:"My house is on fire right now, I need emergency coverage activated immediately!"},
+  {label:"✏️ Change", text:"I just got married and want to add my spouse to my auto insurance policy ASAP."},
+  {label:"🖥️ Tech", text:"The claims submission form keeps crashing with error 500 on Chrome. I cannot submit my claim online."},
+];
+
+function buildSamples(){
+  const c=document.getElementById('samplePills');
+  SAMPLES.forEach(s=>{
+    const p=document.createElement('span');
+    p.className='pill';p.textContent=s.label;
+    p.onclick=()=>{document.getElementById('ticketInput').value=s.text;analyze();};
+    c.appendChild(p);
+  });
+}
+
+function clearAll(){
+  document.getElementById('ticketInput').value='';
+  ['caseResult','probResult','routingResult','llmResult'].forEach(id=>{
+    document.getElementById(id).style.display='none';
+  });
+  ['resultPlaceholder','probPlaceholder','routingPlaceholder','llmPlaceholder'].forEach(id=>{
+    document.getElementById(id).style.display='flex';
+  });
+}
+
+async function analyze(){
+  const text=document.getElementById('ticketInput').value.trim();
+  if(!text){document.getElementById('ticketInput').focus();return;}
+  const btn=document.getElementById('analyzeBtn');
+  btn.disabled=true;btn.innerHTML='<div class="spin"></div> Analyzing…';
+
+  try{
+    const res=await fetch(`${API}/api/triage`,{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({text})
+    });
+    const d=await res.json();
+    renderCaseCard(d, text);
+    renderProbs(d.all_probabilities);
+    renderRouting(d);
+    await renderLLM(text, d);
+  }catch(e){
+    showError('Cannot reach API. Start the server: python main_demo.py', 'caseResult','resultPlaceholder');
+    showError('','probResult','probPlaceholder');
+    showError('','routingResult','routingPlaceholder');
+    showError('','llmResult','llmPlaceholder');
+  }
+
+  btn.disabled=false;btn.innerHTML='<span>⚡</span> Analyze Ticket';
+}
+
+function showError(msg, rid, pid){
+  if(msg){
+    document.getElementById(pid).style.display='none';
+    document.getElementById(rid).style.display='block';
+    document.getElementById(rid).innerHTML=`<div class="warn-box">⚠️ ${msg}</div>`;
+  }
+}
+
+function renderCaseCard(d, text){
+  const pid=document.getElementById('resultPlaceholder');
+  const rid=document.getElementById('caseResult');
+  pid.style.display='none';rid.style.display='block';
+
+  const sentColor=d.sentiment==='Very Negative'||d.sentiment==='Negative'?'#E8304A':
+                  d.sentiment==='Positive'||d.sentiment==='Very Positive'?'#00B87A':'#6B7A99';
+  const caseId='CASE-'+Math.floor(Math.random()*90000+10000);
+
+  // confidence ring
+  const circ=220;
+  const pct=Math.min(d.confidence_raw||d.confidence/100,1);
+  const offset=circ-(circ*pct);
+
+  const priorityBadge=`<span class="badge badge-priority-${d.priority}">${d.priority} Priority</span>`;
+  const sentBadge=`<span class="badge" style="background:${sentColor}18;color:${sentColor}">${d.sentiment_emoji} ${d.sentiment}</span>`;
+
+  rid.className='animate-in';
+  rid.innerHTML=`
+    <div class="case-header">
+      <div class="case-icon" style="background:${d.priority_color}18">${getCategoryIcon(d.category)}</div>
+      <div style="flex:1">
+        <div class="case-category">${d.category}</div>
+        <div class="case-id">${caseId} · ${d.model_version}</div>
+        <div class="case-badges">${priorityBadge}${sentBadge}</div>
+      </div>
+      <div style="text-align:right">
+        <div style="font-size:11px;color:var(--muted);">Latency</div>
+        <div style="font-size:18px;font-weight:700;font-family:var(--mono);color:var(--green);">${d.latency_ms}ms</div>
+      </div>
+    </div>
+
+    <div class="confidence-ring-wrap">
+      <div style="text-align:center">
+        <svg width="80" height="80" viewBox="0 0 80 80" class="ring-svg">
+          <circle class="ring-track" cx="40" cy="40" r="35"/>
+          <circle class="ring-fill" id="ringFill" cx="40" cy="40" r="35"/>
+        </svg>
+        <div style="margin-top:-64px;height:64px;display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(90deg);/* fix */">
+        </div>
+        <div style="font-size:20px;font-weight:700;font-family:var(--mono);margin-top:-74px;position:relative;z-index:1;pointer-events:none;">${d.confidence}%</div>
+        <div style="font-size:10px;color:var(--muted);margin-top:42px;">Confidence</div>
+      </div>
+      <div class="confidence-meta">
+        <div class="meta-row"><span class="meta-key">Category</span><span class="meta-val">${d.category}</span></div>
+        <div class="meta-row"><span class="meta-key">Priority</span><span class="meta-val" style="color:${d.priority_color}">${d.priority}</span></div>
+        <div class="meta-row"><span class="meta-key">Sentiment</span><span class="meta-val" style="color:${sentColor}">${d.sentiment} (${d.sentiment_score})</span></div>
+        <div class="meta-row"><span class="meta-key">SLA Target</span><span class="meta-val">${d.routing.sla}</span></div>
+        <div class="meta-row"><span class="meta-key">Model Latency</span><span class="meta-val" style="color:var(--green)">${d.latency_ms} ms</span></div>
+      </div>
+    </div>
+    <div style="background:var(--surface2);border:1px solid var(--border);border-radius:var(--r-sm);padding:12px;font-size:13px;color:var(--muted);line-height:1.6;">
+      <strong style="color:var(--ink);">Ticket:</strong> ${escHtml(text.slice(0,180))}${text.length>180?'…':''}
+    </div>
+  `;
+
+  // Animate ring after render
+  setTimeout(()=>{
+    const rf=document.getElementById('ringFill');
+    if(rf){
+      rf.style.strokeDashoffset=offset;
+      // colour by confidence
+      rf.style.stroke=pct>=0.9?'#00B87A':pct>=0.7?'#0057FF':pct>=0.5?'#F59E0B':'#E8304A';
+    }
+  },50);
+}
+
+function renderProbs(probs){
+  const pid=document.getElementById('probPlaceholder');
+  const rid=document.getElementById('probResult');
+  pid.style.display='none';rid.style.display='block';
+  rid.className='animate-in-delay';
+
+  const top=probs[0]?.pct||0;
+  const html=probs.map((p,i)=>{
+    const barPct=top>0?Math.round(p.pct/top*100):0;
+    const isTop=i===0;
+    const barColor=isTop?'#0057FF':barPct>30?'#4D84FF':barPct>10?'#9BB8FF':'#D0DEFF';
+    return `<div class="prob-row">
+      <div class="prob-label" title="${escHtml(p.label)}">${isTop?'<strong>':''}${escHtml(p.label)}${isTop?'</strong>':''}</div>
+      <div class="prob-bar-wrap">
+        <div class="prob-bar" style="width:${Math.max(barPct,1)}%;background:${barColor};"></div>
+      </div>
+      <div class="prob-pct" style="color:${isTop?'var(--blue)':'var(--muted)'}">${p.pct.toFixed(1)}%</div>
+    </div>`;
+  }).join('');
+
+  rid.innerHTML=`<div class="prob-list">${html}</div>`;
+}
+
+function renderRouting(d){
+  const pid=document.getElementById('routingPlaceholder');
+  const rid=document.getElementById('routingResult');
+  pid.style.display='none';rid.style.display='block';
+  rid.className='animate-in-delay';
+
+  const escalate=d.priority==='Critical'||d.priority==='High';
+
+  rid.innerHTML=`
+    <div class="routing-box">
+      <div style="font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:6px;">Assigned Team</div>
+      <div class="routing-team">${d.routing.icon} ${d.routing.team}</div>
+      <div class="routing-meta">
+        <div class="routing-chip">📥 Queue: <strong>${d.routing.queue}</strong></div>
+        <div class="routing-chip">⏱ SLA: <strong>${d.routing.sla}</strong></div>
+        ${escalate?'<div class="routing-chip" style="color:#E8304A">⚠️ <strong>ESCALATE</strong></div>':''}
+      </div>
+    </div>
+    <div style="margin-bottom:12px">
+      <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-bottom:6px;">Suggested Agent Action</div>
+      <div style="font-size:13px;line-height:1.7;color:var(--ink);">${escHtml(d.agent_action)}</div>
+    </div>
+    ${escalate?`<div class="warn-box">⚠️ <strong>${d.priority} priority</strong> — escalate to team lead immediately and update the case status.</div>`:''}
+  `;
+}
+
+async function renderLLM(text, d){
+  const pid=document.getElementById('llmPlaceholder');
+  const rid=document.getElementById('llmResult');
+  pid.style.display='none';rid.style.display='block';
+  rid.innerHTML='<div class="llm-loading"><div class="spin"></div> Generating AI analysis…</div>';
+
+  try{
+    const res=await fetch(`${API}/api/llm-analyze`,{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({text,category:d.category,priority:d.priority,sentiment:d.sentiment})
+    });
+    const llm=await res.json();
+    rid.className='animate-in-delay2';
+    rid.innerHTML=`
+      <div class="llm-grid">
+        <div class="llm-box">
+          <div class="llm-box-title">📌 Ticket Summary</div>
+          <div class="llm-box-body">${escHtml(llm.summary||'—')}</div>
+        </div>
+        <div class="llm-box">
+          <div class="llm-box-title">🎯 Recommended Action</div>
+          <div class="llm-action-steps">${escHtml(llm.action||'—')}</div>
+        </div>
+        <div class="llm-box">
+          <div class="llm-box-title">✉️ Draft Customer Reply</div>
+          <div class="llm-box-body">${escHtml(llm.customer_reply||'—')}</div>
+        </div>
+        <div class="llm-box">
+          <div class="llm-box-title">🛣 Resolution Path</div>
+          <div class="llm-box-body">${escHtml(llm.resolution||'—')}
+          ${llm.escalate?'<br><br><span style="color:#E8304A;font-weight:600;font-size:12px;">⚡ ESCALATION RECOMMENDED</span>':''}
+          </div>
+        </div>
+      </div>
+    `;
+  }catch(e){
+    rid.innerHTML='<div class="warn-box">⚠️ LLM endpoint unavailable. Set GROQ_API_KEY or GEMINI_API_KEY in .env</div>';
+  }
+}
+
+async function loadMetrics(){
+  const el=document.getElementById('metricsContent');
+  try{
+    const res=await fetch(`${API}/api/metrics-summary`);
+    const m=await res.json();
+    const p1=m.phase1, rw=m.realworld, bm=m.benchmark;
+
+    el.innerHTML=`
+      <div class="metrics-stat-grid" style="margin-bottom:20px">
+        <div class="mstat">
+          <div class="mstat-val" style="color:var(--green)">${p1.accuracy}%</div>
+          <div class="mstat-label">Holdout Accuracy<br><span style="color:var(--muted-light)">${(p1.samples/1000).toFixed(1)}k held-out samples</span></div>
+        </div>
+        <div class="mstat">
+          <div class="mstat-val" style="color:var(--blue)">${p1.weighted_f1.toFixed(4)}</div>
+          <div class="mstat-label">Weighted F1<br><span style="color:var(--muted-light)">80/20 stratified split</span></div>
+        </div>
+        <div class="mstat">
+          <div class="mstat-val" style="color:var(--amber)">${rw.accuracy}%</div>
+          <div class="mstat-label">Real-World (25-sample)<br><span style="color:var(--muted-light)">Informal/typo tickets</span></div>
+        </div>
+        <div class="mstat">
+          <div class="mstat-val" style="color:var(--purple)">+${bm.delta}%</div>
+          <div class="mstat-label">vs claimsense-ai-v1<br><span style="color:var(--muted-light)">${bm.latency_ours_ms}ms vs ~${bm.latency_theirs_ms}ms</span></div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+        <div>
+          <div style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-bottom:12px;">Per-Category F1 Scores</div>
+          ${m.per_category.map(c=>`
+            <div class="metrics-bar-row">
+              <div class="metrics-bar-header">
+                <span style="font-size:12px;font-weight:500">${c.category}</span>
+                <span style="font-size:12px;font-family:var(--mono);font-weight:600;color:${c.f1>=0.98?'var(--green)':c.f1>=0.95?'var(--blue)':'var(--amber)'}">${(c.f1*100).toFixed(1)}%</span>
+              </div>
+              <div class="metrics-bar-wrap">
+                <div class="metrics-bar-fill" style="width:${c.f1*100}%;background:${c.f1>=0.98?'#00B87A':c.f1>=0.95?'#0057FF':'#F59E0B'}"></div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+        <div>
+          <div style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-bottom:12px;">Benchmark Comparison</div>
+          <div class="bench-row">
+            <span class="bench-label">Metric</span>
+            <div class="bench-vals">
+              <div class="bench-val"><div class="sub">Ours</div></div>
+              <div class="bench-val"><div class="sub">claimsense-ai-v1</div></div>
+            </div>
+          </div>
+          <div class="bench-row">
+            <span class="bench-label">Accuracy</span>
+            <div class="bench-vals">
+              <div class="bench-val bench-win"><div class="v">${bm.our_model}%</div></div>
+              <div class="bench-val bench-lose"><div class="v">~${bm.claimsense_ai_v1}%</div></div>
+            </div>
+          </div>
+          <div class="bench-row">
+            <span class="bench-label">Latency</span>
+            <div class="bench-vals">
+              <div class="bench-val bench-win"><div class="v">&lt;${bm.latency_ours_ms}ms</div></div>
+              <div class="bench-val bench-lose"><div class="v">~${bm.latency_theirs_ms}ms</div></div>
+            </div>
+          </div>
+          <div class="bench-row">
+            <span class="bench-label">Self-learning</span>
+            <div class="bench-vals">
+              <div class="bench-val bench-win"><div class="v">✅ Yes</div></div>
+              <div class="bench-val bench-lose"><div class="v">❌ No</div></div>
+            </div>
+          </div>
+          <div class="bench-row">
+            <span class="bench-label">RAG Memory</span>
+            <div class="bench-vals">
+              <div class="bench-val bench-win"><div class="v">✅ ChromaDB</div></div>
+              <div class="bench-val bench-lose"><div class="v">❌ No</div></div>
+            </div>
+          </div>
+          <div class="bench-row">
+            <span class="bench-label">LLM Escalation</span>
+            <div class="bench-vals">
+              <div class="bench-val bench-win"><div class="v">✅ Groq/Gemini</div></div>
+              <div class="bench-val bench-lose"><div class="v">❌ No</div></div>
+            </div>
+          </div>
+          <div class="bench-row">
+            <span class="bench-label">Domain vocab</span>
+            <div class="bench-vals">
+              <div class="bench-val bench-win"><div class="v">✅ 24 tokens</div></div>
+              <div class="bench-val bench-lose"><div class="v">❌ Generic</div></div>
+            </div>
+          </div>
+
+          <div style="margin-top:16px">
+            <div style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-bottom:8px;">⚠️ Known Limitations</div>
+            <div class="warn-box">
+              <strong>Real-world informal accuracy: 60%</strong> (15/25 handcrafted typo tickets). Common confusions: General Inquiry ↔ Policy &amp; Coverage, Refund ↔ Billing, Complaint ↔ Claims. <strong>Fix:</strong> Add 200+ informal/typo examples per confused category and retrain.
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }catch(e){
+    el.innerHTML='<div class="warn-box">⚠️ Metrics API not available. Start: <code>python main_demo.py</code><br><br><em>Metrics shown here are from evaluate_metrics.py output (static fallback).</em></div>';
+    // Static fallback for offline demo
+    renderStaticMetrics(el);
+  }
+}
+
+function renderStaticMetrics(el){
+  const static_data = {
+    phase1:{accuracy:99.18,weighted_f1:0.9918,samples:4126},
+    realworld:{accuracy:60,samples:25},
+    benchmark:{our_model:99.18,claimsense_ai_v1:93,delta:6.18,latency_ours_ms:2,latency_theirs_ms:200},
+    per_category:[
+      {category:"Claims",f1:0.9925},{category:"Policy & Coverage",f1:0.9960},
+      {category:"Billing & Payments",f1:0.9841},{category:"Complaints & Feedback",f1:0.9926},
+      {category:"General Inquiry",f1:0.9529},{category:"Account & Password",f1:1.0000},
+      {category:"Technical Support",f1:0.9884},{category:"Policy Changes",f1:0.9697},
+      {category:"Emergency Services",f1:0.9875},{category:"Refund & Returns",f1:0.9937},
+    ]
+  };
+  // reuse the same template — just call loadMetrics with mock
+  el.innerHTML='<div style="padding:12px;background:var(--amber-light);border-radius:var(--r-sm);font-size:12px;color:#7D6608;margin-bottom:16px;">⚠️ Showing cached metrics — start server for live data.</div>';
+}
+
+function getCategoryIcon(cat){
+  const m={'Claims':'🔧','Policy & Coverage':'📋','Billing & Payments':'💳',
+    'Complaints & Feedback':'📣','Technical Support':'🖥️','Policy Changes':'✏️',
+    'Emergency Services':'🚨','General Inquiry':'ℹ️','Account & Password':'🔑','Refund & Returns':'↩️'};
+  return m[cat]||'📂';
+}
+
+function escHtml(s){
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// Init
+buildSamples();
+loadMetrics();
+
+// Enter to submit
+document.getElementById('ticketInput').addEventListener('keydown',e=>{
+  if(e.key==='Enter'&&(e.ctrlKey||e.metaKey))analyze();
+});
+</script>
+</body>
+</html>

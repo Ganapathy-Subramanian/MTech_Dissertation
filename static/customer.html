@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NexusCRM — Customer Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg-void:#060a12;--bg-surface:#0b1120;--bg-card:#111827;--bg-input:#0a1020;
+  --border:#1e2d45;--border-focus:#2a7fff;
+  --blue:#2a7fff;--blue-bright:#4d9fff;--blue-glow:rgba(42,127,255,0.25);
+  --green:#10d88e;--orange:#f59e0b;--red:#ff4d6d;--purple:#a78bfa;
+  --text-primary:#f0f4ff;--text-secondary:#8899b4;--text-muted:#4a5a74;
+  --font-main:'Sora',sans-serif;--font-mono:'JetBrains Mono',monospace;
+  --sidebar:240px;--header:60px;
+}
+html,body{height:100%;font-family:var(--font-main);background:var(--bg-void);color:var(--text-primary);overflow:hidden;}
+a{color:var(--blue);text-decoration:none;}
+
+/* Layout */
+.layout{display:flex;height:100vh;}
+
+/* Sidebar */
+.sidebar{
+  width:var(--sidebar);min-width:var(--sidebar);
+  background:var(--bg-card);border-right:1px solid var(--border);
+  display:flex;flex-direction:column;
+  transition:width 0.3s,min-width 0.3s;
+}
+.sidebar-logo{
+  padding:18px 20px;display:flex;align-items:center;gap:10px;
+  border-bottom:1px solid var(--border);flex-shrink:0;
+}
+.logo-icon{width:32px;height:32px;background:linear-gradient(135deg,#2a7fff,#10d88e);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;color:#fff;flex-shrink:0;}
+.logo-text{font-size:16px;font-weight:700;letter-spacing:-0.3px;white-space:nowrap;}
+.sidebar-nav{flex:1;padding:12px 10px;overflow-y:auto;}
+.nav-item{
+  display:flex;align-items:center;gap:10px;
+  padding:9px 12px;border-radius:8px;cursor:pointer;
+  color:var(--text-secondary);font-size:13px;font-weight:500;
+  transition:all 0.15s;margin-bottom:2px;white-space:nowrap;
+}
+.nav-item:hover{background:rgba(42,127,255,0.08);color:var(--text-primary);}
+.nav-item.active{background:rgba(42,127,255,0.15);color:var(--blue);}
+.nav-icon{font-size:16px;flex-shrink:0;width:20px;text-align:center;}
+.sidebar-footer{padding:12px 10px;border-top:1px solid var(--border);}
+.user-info{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:8px;cursor:pointer;transition:background 0.15s;}
+.user-info:hover{background:rgba(255,255,255,0.04);}
+.avatar{width:30px;height:30px;background:linear-gradient(135deg,var(--blue),var(--green));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;flex-shrink:0;}
+.user-name{font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.user-role{font-size:11px;color:var(--text-muted);}
+
+/* Main */
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;}
+.topbar{
+  height:var(--header);min-height:var(--header);
+  background:var(--bg-card);border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 24px;gap:16px;
+}
+.topbar-title{font-size:16px;font-weight:600;}
+.topbar-right{display:flex;align-items:center;gap:12px;}
+.badge{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;border-radius:10px;font-size:11px;font-weight:600;padding:0 6px;}
+.badge-blue{background:rgba(42,127,255,0.2);color:var(--blue);}
+.badge-green{background:rgba(16,216,142,0.15);color:var(--green);}
+.badge-orange{background:rgba(245,158,11,0.15);color:var(--orange);}
+.badge-red{background:rgba(255,77,109,0.15);color:var(--red);}
+.badge-gray{background:rgba(255,255,255,0.08);color:var(--text-secondary);}
+
+.btn{padding:8px 16px;border:none;border-radius:8px;font-family:var(--font-main);font-size:13px;font-weight:600;cursor:pointer;transition:all 0.2s;}
+.btn-primary{background:var(--blue);color:#fff;}
+.btn-primary:hover{background:var(--blue-bright);box-shadow:0 4px 16px var(--blue-glow);}
+.btn-ghost{background:transparent;color:var(--text-secondary);border:1px solid var(--border);}
+.btn-ghost:hover{color:var(--text-primary);background:rgba(255,255,255,0.04);}
+.btn-danger{background:rgba(255,77,109,0.15);color:var(--red);border:1px solid rgba(255,77,109,0.2);}
+.btn-danger:hover{background:rgba(255,77,109,0.25);}
+
+/* Content */
+.content{flex:1;overflow-y:auto;padding:24px;}
+
+/* Stats row */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:24px;}
+.stat-card{
+  background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+  padding:18px 20px;position:relative;overflow:hidden;
+}
+.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent,var(--blue));}
+.stat-label{font-size:11px;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-muted);margin-bottom:8px;}
+.stat-value{font-size:26px;font-weight:700;letter-spacing:-1px;font-family:var(--font-mono);}
+.stat-sub{font-size:12px;color:var(--text-muted);margin-top:4px;}
+
+/* Submit ticket */
+.submit-area{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:24px;}
+.submit-area h2{font-size:15px;font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+.submit-area h2 .emoji{font-size:17px;}
+.submit-form{display:flex;gap:10px;flex-wrap:wrap;}
+.submit-form textarea{
+  flex:1;min-width:200px;
+  padding:12px 14px;background:var(--bg-input);border:1px solid var(--border);
+  border-radius:10px;color:var(--text-primary);font-size:14px;font-family:var(--font-main);
+  resize:none;height:80px;transition:border-color 0.2s,box-shadow 0.2s;outline:none;
+}
+.submit-form textarea:focus{border-color:var(--border-focus);box-shadow:0 0 0 3px var(--blue-glow);}
+.submit-form textarea::placeholder{color:var(--text-muted);}
+.btn-submit{align-self:flex-end;padding:12px 24px;white-space:nowrap;}
+
+/* AI response card */
+.ai-card{
+  background:linear-gradient(135deg,rgba(16,216,142,0.07),rgba(42,127,255,0.07));
+  border:1px solid rgba(16,216,142,0.2);
+  border-radius:12px;padding:20px;margin-bottom:20px;display:none;
+  animation:fadeIn 0.3s ease;
+}
+.ai-card.show{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+.ai-card-header{display:flex;align-items:center;gap:8px;margin-bottom:12px;}
+.ai-badge{font-size:11px;font-family:var(--font-mono);background:rgba(16,216,142,0.15);color:var(--green);border:1px solid rgba(16,216,142,0.25);border-radius:5px;padding:3px 8px;}
+.ai-card-body{font-size:14px;color:var(--text-secondary);line-height:1.6;}
+.ai-ticket-id{font-family:var(--font-mono);font-size:12px;color:var(--text-muted);margin-top:10px;}
+
+/* Tickets table */
+.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.section-title{font-size:15px;font-weight:600;}
+.ticket-list{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.ticket-row{
+  display:grid;grid-template-columns:1fr 130px 100px 100px 80px;
+  align-items:center;padding:14px 18px;border-bottom:1px solid var(--border);
+  cursor:pointer;transition:background 0.15s;gap:12px;
+}
+.ticket-row:last-child{border-bottom:none;}
+.ticket-row:hover{background:rgba(42,127,255,0.05);}
+.ticket-row.header-row{background:rgba(255,255,255,0.02);cursor:default;}
+.ticket-row.header-row:hover{background:rgba(255,255,255,0.02);}
+.col-header{font-size:11px;text-transform:uppercase;letter-spacing:0.7px;color:var(--text-muted);font-weight:500;}
+.ticket-subject{font-size:13px;font-weight:500;color:var(--text-primary);}
+.ticket-id{font-size:11px;font-family:var(--font-mono);color:var(--text-muted);margin-top:2px;}
+.ticket-cat{font-size:12px;color:var(--text-secondary);}
+.ticket-date{font-size:12px;color:var(--text-muted);}
+.empty-state{padding:48px;text-align:center;color:var(--text-muted);}
+.empty-icon{font-size:40px;margin-bottom:12px;opacity:0.5;}
+
+/* Modal */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);backdrop-filter:blur(4px);z-index:100;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity 0.25s;}
+.overlay.open{opacity:1;pointer-events:all;}
+.modal{
+  background:var(--bg-card);border:1px solid var(--border);border-radius:16px;
+  width:100%;max-width:640px;max-height:90vh;display:flex;flex-direction:column;
+  box-shadow:0 32px 64px rgba(0,0,0,0.8);
+  transform:scale(0.96);transition:transform 0.25s;
+}
+.overlay.open .modal{transform:scale(1);}
+.modal-header{padding:20px 24px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;flex-shrink:0;}
+.modal-title{font-size:16px;font-weight:600;}
+.modal-sub{font-size:12px;color:var(--text-muted);margin-top:3px;}
+.modal-close{background:rgba(255,255,255,0.07);border:1px solid var(--border);color:var(--text-secondary);width:30px;height:30px;border-radius:7px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.15s;}
+.modal-close:hover{background:rgba(255,77,109,0.15);color:var(--red);}
+.modal-body{flex:1;overflow-y:auto;padding:20px 24px;}
+.modal-footer{padding:16px 24px;border-top:1px solid var(--border);display:flex;gap:10px;align-items:center;flex-shrink:0;}
+.modal-footer textarea{flex:1;padding:10px 12px;background:var(--bg-input);border:1px solid var(--border);border-radius:8px;color:var(--text-primary);font-size:13px;font-family:var(--font-main);resize:none;height:70px;outline:none;transition:border-color 0.2s;}
+.modal-footer textarea:focus{border-color:var(--border-focus);}
+.modal-footer textarea::placeholder{color:var(--text-muted);}
+
+/* Info grid */
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;}
+.info-item{background:var(--bg-input);border:1px solid var(--border);border-radius:8px;padding:12px 14px;}
+.info-item label{font-size:10px;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-muted);display:block;margin-bottom:4px;}
+.info-item .val{font-size:13px;color:var(--text-primary);font-weight:500;}
+
+/* Conversation */
+.conv-title{font-size:12px;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-muted);margin-bottom:12px;font-weight:500;}
+.messages{display:flex;flex-direction:column;gap:10px;}
+.msg{padding:12px 14px;border-radius:10px;font-size:13px;line-height:1.6;max-width:100%;}
+.msg.customer{background:rgba(42,127,255,0.12);border:1px solid rgba(42,127,255,0.2);}
+.msg.agent{background:rgba(16,216,142,0.08);border:1px solid rgba(16,216,142,0.15);}
+.msg.ai{background:rgba(167,139,250,0.08);border:1px solid rgba(167,139,250,0.15);}
+.msg-meta{font-size:11px;color:var(--text-muted);margin-bottom:5px;display:flex;align-items:center;gap:6px;}
+.msg-from{font-weight:600;font-size:11px;}
+.msg-from.customer{color:var(--blue);}
+.msg-from.agent{color:var(--green);}
+.msg-from.ai{color:var(--purple);}
+.msg-body{color:var(--text-secondary);}
+
+/* Loading spinner */
+.spinner{width:20px;height:20px;border:2px solid var(--border);border-top-color:var(--blue);border-radius:50%;animation:spin 0.6s linear infinite;margin:0 auto;}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Mobile */
+@media(max-width:768px){
+  .sidebar{display:none;}
+  .ticket-row{grid-template-columns:1fr 90px 70px;}
+  .col4,.col5,.td4,.td5{display:none;}
+  .stats{grid-template-columns:1fr 1fr;}
+  .info-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+<div class="layout">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-icon">N</div>
+      <div class="logo-text">NexusCRM</div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-item active" onclick="showSection('dashboard')"><span class="nav-icon">⚡</span>Dashboard</div>
+      <div class="nav-item" onclick="showSection('tickets')"><span class="nav-icon">🎫</span>My Tickets</div>
+      <div class="nav-item" onclick="showSection('new')"><span class="nav-icon">➕</span>New Request</div>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="user-info" onclick="logout()">
+        <div class="avatar" id="sidebarAvatar">?</div>
+        <div>
+          <div class="user-name" id="sidebarName">Loading...</div>
+          <div class="user-role">Customer</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+    <header class="topbar">
+      <div class="topbar-title" id="pageTitle">Dashboard</div>
+      <div class="topbar-right">
+        <button class="btn btn-primary" onclick="showSection('new')">+ New Request</button>
+        <button class="btn btn-ghost" onclick="logout()">Sign Out</button>
+      </div>
+    </header>
+    <div class="content" id="mainContent">
+      <div style="text-align:center;padding:60px;"><div class="spinner"></div></div>
+    </div>
+  </main>
+</div>
+
+<!-- Ticket Detail Modal -->
+<div class="overlay" id="ticketOverlay" onclick="closeModal(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <div class="modal-title" id="modalTitle">Ticket Details</div>
+        <div class="modal-sub" id="modalSub"></div>
+      </div>
+      <button class="modal-close" onclick="closeTicketModal()">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody">
+      <div style="text-align:center;padding:40px;"><div class="spinner"></div></div>
+    </div>
+    <div class="modal-footer">
+      <textarea id="replyText" placeholder="Type your reply to the agent..."></textarea>
+      <button class="btn btn-primary" onclick="sendReply()">Send Reply</button>
+      <button class="btn btn-ghost" style="margin-left:4px;" onclick="openFeedbackModal()">⭐ Feedback</button>
+      <button class="btn btn-danger" style="margin-left:auto;" onclick="deleteTicket()">Delete Ticket</button>
+    </div>
+  </div>
+</div>
+
+<!-- Feedback Modal -->
+<div class="overlay" id="feedbackOverlay" onclick="closeFeedbackModal(event)">
+  <div class="modal" style="max-width:460px;">
+    <div class="modal-header">
+      <div>
+        <div class="modal-title">Rate Your Experience</div>
+        <div class="modal-sub">Help us improve — your feedback trains our AI</div>
+      </div>
+      <button class="modal-close" onclick="closeFeedbackModal()">✕</button>
+    </div>
+    <div class="modal-body" style="display:flex;flex-direction:column;gap:16px;">
+      <div>
+        <label style="font-size:11px;text-transform:uppercase;letter-spacing:.8px;color:var(--text-muted);display:block;margin-bottom:8px;">Rating</label>
+        <div id="starRow" style="display:flex;gap:8px;font-size:28px;cursor:pointer;">
+          <span data-v="1" onclick="setRating(1)">☆</span>
+          <span data-v="2" onclick="setRating(2)">☆</span>
+          <span data-v="3" onclick="setRating(3)">☆</span>
+          <span data-v="4" onclick="setRating(4)">☆</span>
+          <span data-v="5" onclick="setRating(5)">☆</span>
+        </div>
+      </div>
+      <div>
+        <label style="font-size:11px;text-transform:uppercase;letter-spacing:.8px;color:var(--text-muted);display:block;margin-bottom:6px;">Comment (optional)</label>
+        <textarea id="fbComment" style="width:100%;height:80px;background:var(--bg-input);border:1px solid var(--border);border-radius:8px;color:var(--text-primary);font-size:13px;font-family:var(--font-main);resize:none;padding:10px;outline:none;box-sizing:border-box;" placeholder="Tell us what went well or could be improved..."></textarea>
+      </div>
+      <div>
+        <label style="font-size:11px;text-transform:uppercase;letter-spacing:.8px;color:var(--text-muted);display:block;margin-bottom:6px;">Was the category correct? (optional)</label>
+        <select id="fbCategory" style="width:100%;padding:9px 12px;background:var(--bg-input);border:1px solid var(--border);border-radius:8px;color:var(--text-primary);font-size:13px;outline:none;">
+          <option value="">— Yes, category was correct —</option>
+          <option>Claims</option>
+          <option>Policy &amp; Coverage</option>
+          <option>Billing &amp; Payments</option>
+          <option>Complaints &amp; Feedback</option>
+          <option>General Inquiry</option>
+          <option>Account &amp; Password</option>
+          <option>Technical Support</option>
+          <option>Policy Changes</option>
+          <option>Emergency Services</option>
+          <option>Refund &amp; Returns</option>
+        </select>
+        <p style="font-size:11px;color:var(--text-muted);margin-top:6px;">🤖 Corrections are used to automatically retrain the AI model.</p>
+      </div>
+      <div id="fbErr" style="color:var(--red);font-size:13px;display:none;"></div>
+      <div id="fbSucc" style="color:var(--green);font-size:13px;display:none;"></div>
+    </div>
+    <div class="modal-footer" style="border-top:1px solid var(--border);padding:16px 24px;justify-content:flex-end;">
+      <button class="btn btn-ghost" onclick="closeFeedbackModal()">Cancel</button>
+      <button class="btn btn-primary" id="fbSubmitBtn" onclick="submitFeedback()" style="margin-left:8px;">Submit Feedback</button>
+    </div>
+  </div>
+</div>
+
+<!-- Category Feedback Toast -->
+<div id="categoryFeedbackToast" style="position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(180px);background:rgba(17,24,39,0.95);border:1px solid var(--blue);border-radius:12px;padding:16px 20px;box-shadow:0 20px 40px rgba(0,0,0,0.5);display:flex;flex-direction:column;gap:12px;z-index:999;transition:all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);width:90%;max-width:400px;backdrop-filter:blur(8px);">
+  <div style="display:flex;align-items:center;gap:10px;">
+    <span style="font-size:20px;">🤖</span>
+    <div style="flex:1;">
+      <div style="font-size:13px;font-weight:600;color:var(--text-primary)">Triage Routing Check</div>
+      <div style="font-size:12px;color:var(--text-secondary);margin-top:2px;">AI routed this query to <b id="toastCategory" style="color:var(--blue);">Claims</b>. Is this correct?</div>
+    </div>
+  </div>
+  <div style="display:flex;gap:8px;justify-content:flex-end;" id="toastActionRow">
+    <button class="btn btn-ghost" style="padding:6px 12px;font-size:11px;" onclick="submitToastFeedback(true)">Yes, Correct</button>
+    <button class="btn btn-danger" style="padding:6px 12px;font-size:11px;background:rgba(255,77,109,0.15);color:var(--red);" onclick="showToastCorrectionSelect()">No, Incorrect</button>
+  </div>
+  <div id="toastCorrectionDiv" style="display:none;flex-direction:column;gap:8px;">
+    <select id="toastCorrectionSelect" style="width:100%;padding:8px;background:var(--bg-input);border:1px solid var(--border);border-radius:6px;color:var(--text-primary);font-size:12px;outline:none;">
+      <option value="Claims">Claims</option>
+      <option value="Policy & Coverage">Policy &amp; Coverage</option>
+      <option value="Billing & Payments">Billing &amp; Payments</option>
+      <option value="Complaints & Feedback">Complaints &amp; Feedback</option>
+      <option value="General Inquiry">General Inquiry</option>
+      <option value="Account & Password">Account &amp; Password</option>
+      <option value="Technical Support">Technical Support</option>
+      <option value="Policy Changes">Policy Changes</option>
+      <option value="Emergency Services">Emergency Services</option>
+      <option value="Refund & Returns">Refund &amp; Returns</option>
+    </select>
+    <div style="display:flex;gap:6px;justify-content:flex-end;">
+      <button class="btn btn-ghost" style="padding:4px 10px;font-size:11px;" onclick="hideToastCorrectionSelect()">Cancel</button>
+      <button class="btn btn-primary" style="padding:4px 10px;font-size:11px;" onclick="submitToastCorrection()">Submit Correction</button>
+    </div>
+  </div>
+  <div id="toastFeedbackMsg" style="display:none;font-size:12px;color:var(--green);font-weight:500;text-align:center;padding:4px 0;">
+    Thank you! Feedback saved to improve AI Triage.
+  </div>
+</div>
+
+<script>
+let userData = null, token = null, customerId = null, currentTicketId = null, allTickets = [];
+
+function init() {
+  const u = localStorage.getItem('user');
+  token = localStorage.getItem('token');
+  if (!u || !token) { window.location.href = 'login.html'; return; }
+  userData = JSON.parse(u);
+  customerId = userData.customer_id;
+  document.getElementById('sidebarName').textContent = userData.name || userData.email;
+  document.getElementById('sidebarAvatar').textContent = (userData.name||'U')[0].toUpperCase();
+  loadDashboard();
+}
+
+function authHeader() { return { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' }; }
+function logout() { localStorage.clear(); window.location.href = 'login.html'; }
+
+function showSection(sec) {
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  event && event.currentTarget && event.currentTarget.classList.add('active');
+  document.getElementById('pageTitle').textContent = {dashboard:'Dashboard',tickets:'My Tickets',new:'New Request'}[sec];
+  if (sec==='dashboard') loadDashboard();
+  else if (sec==='tickets') loadTickets();
+  else if (sec==='new') loadNewRequest();
+}
+
+async function loadDashboard() {
+  const c = document.getElementById('mainContent');
+  c.innerHTML = '<div style="text-align:center;padding:60px;"><div class="spinner"></div></div>';
+  try {
+    const r = await fetch(`/customer/${customerId}/tickets`, {headers: authHeader()});
+    const d = await r.json();
+    allTickets = d.tickets || [];
+    const total = allTickets.length;
+    const open = allTickets.filter(t => !['resolved','closed'].includes((t.status||'').toLowerCase())).length;
+    const resolved = allTickets.filter(t => ['resolved','closed'].includes((t.status||'').toLowerCase())).length;
+    c.innerHTML = `
+      <div class="stats">
+        <div class="stat-card" style="--accent:#2a7fff"><div class="stat-label">Total Tickets</div><div class="stat-value">${total}</div><div class="stat-sub">All time</div></div>
+        <div class="stat-card" style="--accent:#f59e0b"><div class="stat-label">Open</div><div class="stat-value">${open}</div><div class="stat-sub">Awaiting response</div></div>
+        <div class="stat-card" style="--accent:#10d88e"><div class="stat-label">Resolved</div><div class="stat-value">${resolved}</div><div class="stat-sub">Completed</div></div>
+      </div>
+      <div class="submit-area">
+        <h2><span class="emoji">🤖</span>AI Support — Submit a Request</h2>
+        <div class="submit-form">
+          <textarea id="queryText" placeholder="Describe your issue... e.g. 'I forgot my password' or 'I need a refund for order #1234'"></textarea>
+          <button class="btn btn-primary btn-submit" onclick="submitQuery()">Submit Request</button>
+        </div>
+      </div>
+      <div class="ai-card" id="aiCard">
+        <div class="ai-card-header">
+          <div class="ai-badge">AI RESPONSE</div>
+          <span style="font-size:13px;font-weight:600;color:var(--text-primary)" id="aiCategory"></span>
+        </div>
+        <div class="ai-card-body" id="aiBody"></div>
+        <div class="ai-ticket-id" id="aiTicketId"></div>
+      </div>
+      <div class="section-header"><div class="section-title">Recent Tickets</div><button class="btn btn-ghost" onclick="showSection('tickets')">View All</button></div>
+      ${renderTicketList(allTickets.slice(0,5))}`;
+  } catch(e) { c.innerHTML = `<div class="empty-state"><div class="empty-icon">⚠️</div><p>Error loading dashboard</p></div>`; }
+}
+
+async function loadTickets() {
+  const c = document.getElementById('mainContent');
+  c.innerHTML = '<div style="text-align:center;padding:60px;"><div class="spinner"></div></div>';
+  try {
+    const r = await fetch(`/customer/${customerId}/tickets`, {headers: authHeader()});
+    const d = await r.json();
+    allTickets = d.tickets || [];
+    c.innerHTML = `
+      <div class="section-header"><div class="section-title">All Tickets <span class="badge badge-blue">${allTickets.length}</span></div></div>
+      ${renderTicketList(allTickets)}`;
+  } catch(e) { c.innerHTML = `<div class="empty-state"><div class="empty-icon">⚠️</div><p>Error loading tickets</p></div>`; }
+}
+
+function loadNewRequest() {
+  const c = document.getElementById('mainContent');
+  c.innerHTML = `
+    <div class="submit-area" style="max-width:600px;">
+      <h2><span class="emoji">🤖</span>Submit a Support Request</h2>
+      <p style="font-size:13px;color:var(--text-secondary);margin-bottom:16px;">Our AI will analyse your query and route it to the right team.</p>
+      <div class="submit-form" style="flex-direction:column;">
+        <textarea id="queryText" style="height:120px;" placeholder="Describe your issue in detail..."></textarea>
+        <button class="btn btn-primary" style="align-self:flex-start;margin-top:4px;" onclick="submitQuery()">Submit Request</button>
+      </div>
+    </div>
+    <div class="ai-card" id="aiCard">
+      <div class="ai-card-header">
+        <div class="ai-badge">AI RESPONSE</div>
+        <span style="font-size:13px;font-weight:600;color:var(--text-primary)" id="aiCategory"></span>
+      </div>
+      <div class="ai-card-body" id="aiBody"></div>
+      <div class="ai-ticket-id" id="aiTicketId"></div>
+    </div>`;
+}
+
+function renderTicketList(tickets) {
+  if (!tickets.length) return `<div class="ticket-list"><div class="empty-state"><div class="empty-icon">📭</div><p>No tickets yet. Submit your first request above.</p></div></div>`;
+  return `<div class="ticket-list">
+    <div class="ticket-row header-row">
+      <div class="col-header">Subject</div>
+      <div class="col-header col4">Category</div>
+      <div class="col-header">Status</div>
+      <div class="col-header col5">Priority</div>
+      <div class="col-header">Date</div>
+    </div>
+    ${tickets.map(t=>`
+    <div class="ticket-row" onclick="openTicket('${t.id}')">
+      <div><div class="ticket-subject">${esc(t.subject||'Support Ticket')}</div><div class="ticket-id">${t.id}</div></div>
+      <div class="ticket-cat col4">${esc(t.category||'General')}</div>
+      <div>${statusBadge(t.status)}</div>
+      <div class="col5">${priorityBadge(t.priority)}</div>
+      <div class="ticket-date">${formatDate(t.created_date || t.created)}</div>
+    </div>`).join('')}
+  </div>`;
+}
+
+function statusBadge(s) {
+  const cls = {new:'badge-blue',open:'badge-orange','in progress':'badge-orange',resolved:'badge-green',closed:'badge-gray',escalated:'badge-red'}[(s||'').toLowerCase()]||'badge-gray';
+  return `<span class="badge ${cls}">${s||'Unknown'}</span>`;
+}
+function priorityBadge(p) {
+  const cls = {high:'badge-red',medium:'badge-orange',low:'badge-green'}[(p||'').toLowerCase()]||'badge-gray';
+  return `<span class="badge ${cls}">${p||'Medium'}</span>`;
+}
+function formatDate(d) { if(!d) return '—'; try{ return new Date(d).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric',hour:'2-digit',minute:'2-digit'}); }catch{return d;} }
+function esc(s) { const d=document.createElement('div');d.textContent=s;return d.innerHTML; }
+
+async function submitQuery() {
+  const qEl = document.getElementById('queryText');
+  const q = qEl.value.trim();
+  if (!q) return;
+  const btn = document.querySelector('.btn-submit') || document.querySelector('[onclick="submitQuery()"]');
+  if(btn){btn.disabled=true;btn.innerHTML='<span style="display:inline-block;width:12px;height:12px;border:2px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:spin 0.6s linear infinite;vertical-align:middle;margin-right:6px;"></span>Processing...';}
+  try {
+    const r = await fetch('/process-ticket',{method:'POST',headers:authHeader(),body:JSON.stringify({text:q,customer_id:customerId,channel:'web'})});
+    const d = await r.json();
+    if(!r.ok) throw new Error(d.detail||'Error');
+    const card = document.getElementById('aiCard');
+    document.getElementById('aiCategory').textContent = d.category||'';
+    document.getElementById('aiBody').textContent = d.response||'Your request has been received.';
+    document.getElementById('aiTicketId').textContent = `Ticket ID: ${d.ticket_id||'—'} · Source: ${d.source||'—'}`;
+    card.classList.add('show');
+    qEl.value = '';
+    if (btn){btn.disabled=false;btn.textContent='Submit Request';}
+    // Show interactive category verification popup
+    if (d.ticket_id && d.category) {
+      showCategoryFeedbackToast(d.ticket_id, d.category);
+    }
+    // Refresh tickets after a short delay
+    setTimeout(()=>{ if(document.querySelectorAll('.nav-item')[1].classList.contains('active')) loadTickets(); }, 500);
+  } catch(e) {
+    alert('Error: '+e.message);
+    if(btn){btn.disabled=false;btn.textContent='Submit Request';}
+  }
+}
+
+async function openTicket(id) {
+  currentTicketId = id;
+  document.getElementById('ticketOverlay').classList.add('open');
+  document.getElementById('modalTitle').textContent = `Ticket Details: ${id}`;
+  document.getElementById('modalSub').textContent = '';
+  document.getElementById('modalBody').innerHTML = '<div style="text-align:center;padding:40px;"><div class="spinner"></div></div>';
+  try {
+    const r = await fetch(`/salesforce/ticket/${id}`, {headers: authHeader()});
+    const t = await r.json();
+    renderTicketModal(t);
+  } catch(e) {
+    document.getElementById('modalBody').innerHTML = `<div class="empty-state">Could not load ticket details.</div>`;
+  }
+}
+
+function renderTicketModal(t) {
+  document.getElementById('modalSub').innerHTML = `${statusBadge(t.status)} &nbsp; ${priorityBadge(t.priority)}`;
+  const msgs = t.messages||[];
+  document.getElementById('modalBody').innerHTML = `
+    <div class="info-grid">
+      <div class="info-item"><label>Subject</label><div class="val">${esc(t.subject||'—')}</div></div>
+      <div class="info-item"><label>Category</label><div class="val">${esc(t.category||'General')}</div></div>
+      <div class="info-item"><label>Status</label><div class="val">${t.status||'New'}</div></div>
+      <div class="info-item"><label>Created</label><div class="val">${formatDate(t.created_date || t.created)}</div></div>
+    </div>
+    <div class="conv-title">Conversation History</div>
+    <div class="messages" id="msgContainer">
+      ${msgs.length ? msgs.map(m=>renderMsg(m)).join('') : '<div style="color:var(--text-muted);font-size:13px;text-align:center;padding:20px;">No messages yet.</div>'}
+    </div>`;
+  // Scroll to bottom
+  setTimeout(()=>{const el=document.getElementById('msgContainer');if(el)el.scrollTop=el.scrollHeight;},50);
+}
+
+function renderMsg(m) {
+  const role = (m.from||'agent').toLowerCase();
+  const cls = role==='customer'?'customer':role==='ai'?'ai':'agent';
+  const label = role==='customer'?'You':role==='ai'?'AI Agent':'Support Agent';
+  return `<div class="msg ${cls}">
+    <div class="msg-meta">
+      <span class="msg-from ${cls}">${label}</span>
+      <span>·</span>
+      <span>${formatDate(m.time)}</span>
+    </div>
+    <div class="msg-body">${esc(m.text||'')}</div>
+  </div>`;
+}
+
+async function sendReply() {
+  const txt = document.getElementById('replyText').value.trim();
+  if(!txt||!currentTicketId) return;
+  const btn = document.querySelector('.modal-footer .btn-primary');
+  btn.disabled=true; btn.textContent='Sending...';
+  try {
+    const r = await fetch(`/ticket/${currentTicketId}/respond`,{method:'POST',headers:authHeader(),body:JSON.stringify({text:txt,status:'keep-status'})});
+    if(!r.ok) throw new Error('Failed to send');
+    document.getElementById('replyText').value='';
+    // Re-fetch and re-render
+    const tr = await fetch(`/salesforce/ticket/${currentTicketId}`,{headers:authHeader()});
+    renderTicketModal(await tr.json());
+  } catch(e){ alert('Error: '+e.message); }
+  btn.disabled=false; btn.textContent='Send Reply';
+}
+
+function closeModal(e) { if(e.target===document.getElementById('ticketOverlay')) closeTicketModal(); }
+function closeTicketModal() { document.getElementById('ticketOverlay').classList.remove('open'); currentTicketId=null; }
+
+// ── Feedback Modal ──────────────────────────────────────────────────────────
+let fbRating = 0;
+function openFeedbackModal() {
+  if(!currentTicketId) return;
+  fbRating=0;
+  document.querySelectorAll('#starRow span').forEach(s=>s.textContent='☆');
+  document.getElementById('fbComment').value='';
+  document.getElementById('fbCategory').value='';
+  document.getElementById('fbErr').style.display='none';
+  document.getElementById('fbSucc').style.display='none';
+  document.getElementById('feedbackOverlay').classList.add('open');
+}
+function closeFeedbackModal(e) {
+  if(e && e.target!==document.getElementById('feedbackOverlay')) return;
+  document.getElementById('feedbackOverlay').classList.remove('open');
+}
+function setRating(v) {
+  fbRating=v;
+  document.querySelectorAll('#starRow span').forEach(s=>{
+    s.textContent = parseInt(s.dataset.v)<=v ? '⭐' : '☆';
+  });
+}
+async function submitFeedback() {
+  if(!fbRating){const e=document.getElementById('fbErr');e.textContent='Please select a star rating.';e.style.display='block';return;}
+  const btn=document.getElementById('fbSubmitBtn');
+  btn.disabled=true;btn.textContent='Submitting...';
+  const payload={rating:fbRating,comments:document.getElementById('fbComment').value.trim()};
+  const cat=document.getElementById('fbCategory').value;
+  if(cat) payload.correct_category=cat;
+  try{
+    const r=await fetch(`/ticket/${currentTicketId}/feedback`,{method:'POST',headers:authHeader(),body:JSON.stringify(payload)});
+    const d=await r.json();
+    if(!r.ok) throw new Error(d.detail||'Failed');
+    const s=document.getElementById('fbSucc');
+    s.textContent=cat?'Feedback submitted! AI model will learn from your correction.':'Thank you for your feedback!';
+    s.style.display='block';
+    setTimeout(()=>document.getElementById('feedbackOverlay').classList.remove('open'),2000);
+  }catch(e){const err=document.getElementById('fbErr');err.textContent=e.message;err.style.display='block';}
+  btn.disabled=false;btn.textContent='Submit Feedback';
+}
+
+async function deleteTicket() {
+  if(!currentTicketId || !confirm(`Delete ticket ${currentTicketId}?`)) return;
+  try {
+    const r = await fetch(`/ticket/${currentTicketId}`, {method:'DELETE', headers:authHeader()});
+    if(!r.ok) throw new Error('Failed to delete');
+    closeTicketModal();
+    loadTickets();
+    loadDashboard();
+  } catch(e) { alert('Error: '+e.message); }
+}
+
+let toastTicketId = null;
+function showCategoryFeedbackToast(ticketId, category) {
+  toastTicketId = ticketId;
+  document.getElementById('toastCategory').textContent = category;
+  const toast = document.getElementById('categoryFeedbackToast');
+  toast.style.transform = 'translateX(-50%) translateY(0)';
+  document.getElementById('toastActionRow').style.display = 'flex';
+  document.getElementById('toastCorrectionDiv').style.display = 'none';
+  document.getElementById('toastFeedbackMsg').style.display = 'none';
+}
+
+function hideCategoryFeedbackToast() {
+  const toast = document.getElementById('categoryFeedbackToast');
+  toast.style.transform = 'translateX(-50%) translateY(180px)';
+}
+
+function showToastCorrectionSelect() {
+  document.getElementById('toastActionRow').style.display = 'none';
+  document.getElementById('toastCorrectionDiv').style.display = 'flex';
+}
+
+function hideToastCorrectionSelect() {
+  document.getElementById('toastActionRow').style.display = 'flex';
+  document.getElementById('toastCorrectionDiv').style.display = 'none';
+}
+
+async function submitToastFeedback(isCorrect) {
+  if (!toastTicketId) return;
+  const payload = { rating: 5, comments: isCorrect ? "Category classification verified correct by user" : "Category classification marked incorrect by user" };
+  try {
+    const r = await fetch(`/ticket/${toastTicketId}/feedback`, {
+      method: 'POST',
+      headers: authHeader(),
+      body: JSON.stringify(payload)
+    });
+    if (r.ok) {
+      document.getElementById('toastActionRow').style.display = 'none';
+      const msg = document.getElementById('toastFeedbackMsg');
+      msg.textContent = "Thank you! Feedback saved to improve AI Triage.";
+      msg.style.display = 'block';
+      setTimeout(hideCategoryFeedbackToast, 2500);
+    }
+  } catch(e) {
+    console.error("Feedback error", e);
+  }
+}
+
+async function submitToastCorrection() {
+  if (!toastTicketId) return;
+  const selectedCat = document.getElementById('toastCorrectionSelect').value;
+  const payload = {
+    rating: 3,
+    comments: `User corrected category from ${document.getElementById('toastCategory').textContent} to ${selectedCat}`,
+    correct_category: selectedCat
+  };
+  try {
+    const r = await fetch(`/ticket/${toastTicketId}/feedback`, {
+      method: 'POST',
+      headers: authHeader(),
+      body: JSON.stringify(payload)
+    });
+    if (r.ok) {
+      document.getElementById('toastCorrectionDiv').style.display = 'none';
+      const msg = document.getElementById('toastFeedbackMsg');
+      msg.textContent = "Thank you! AI model will automatically learn from this correction.";
+      msg.style.display = 'block';
+      setTimeout(hideCategoryFeedbackToast, 3000);
+      setTimeout(() => {
+        loadDashboard();
+      }, 1000);
+    }
+  } catch(e) {
+    console.error("Correction error", e);
+  }
+}
+
+init();
+</script>
+</body>
+</html>

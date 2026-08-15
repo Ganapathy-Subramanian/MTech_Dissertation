@@ -1,0 +1,65 @@
+{
+  "generated_at": "2026-07-31T10:53:39.552777",
+  "target": 85,
+  "overall_coverage": 19.9,
+  "overall_status": "FAIL",
+  "modules": [
+    {
+      "name": "Core Triage Engine",
+      "coverage": 24.5,
+      "lines_covered": 194,
+      "lines_total": 792,
+      "status": "FAIL"
+    },
+    {
+      "name": "RAG/Memory System",
+      "coverage": 47.0,
+      "lines_covered": 31,
+      "lines_total": 66,
+      "status": "FAIL"
+    },
+    {
+      "name": "LLM Integration",
+      "coverage": 14.4,
+      "lines_covered": 22,
+      "lines_total": 153,
+      "status": "FAIL"
+    },
+    {
+      "name": "Salesforce Integration",
+      "coverage": 9.2,
+      "lines_covered": 65,
+      "lines_total": 706,
+      "status": "FAIL"
+    },
+    {
+      "name": "Workflow Automation",
+      "coverage": 25.5,
+      "lines_covered": 27,
+      "lines_total": 106,
+      "status": "FAIL"
+    },
+    {
+      "name": "Analytics Module",
+      "coverage": 17.8,
+      "lines_covered": 48,
+      "lines_total": 269,
+      "status": "FAIL"
+    },
+    {
+      "name": "API Endpoints",
+      "coverage": 22.3,
+      "lines_covered": 211,
+      "lines_total": 945,
+      "status": "FAIL"
+    },
+    {
+      "name": "Security/Auth",
+      "coverage": 22.8,
+      "lines_covered": 54,
+      "lines_total": 237,
+      "status": "FAIL"
+    }
+  ],
+  "tests_stdout_tail": "'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\nC:\\Python314\\Lib\\importlib\\__init__.py:88: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\ntests\\test_workflow_coverage.py:5: in <module>\n    from workflow.automation import (\nE   ImportError: cannot import name 'get_action_description' from 'workflow.automation' (D:\\fixed_project_updated\\fixed_project\\workflow\\automation.py)\n=========================== short test summary info ===========================\nERROR tests/test_auth_extended.py\nERROR tests/test_auto_retrain_extended.py\nERROR tests/test_workflow_coverage.py\n!!!!!!!!!!!!!!!!!!! Interrupted: 3 errors during collection !!!!!!!!!!!!!!!!!!!\n3 errors in 36.84s\n"
+}
